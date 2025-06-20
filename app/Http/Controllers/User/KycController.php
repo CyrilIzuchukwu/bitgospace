@@ -186,7 +186,8 @@ class KycController extends Controller
 
 
             // Send notification to admin email
-            $adminEmail = env('KYC_ADMIN_EMAIL', 'alexcyril34@gmail.com');
+            // $adminEmail = env('KYC_ADMIN_EMAIL', 'alexcyril34@gmail.com');
+            $adminEmail = env('KYC_ADMIN_EMAIL', 'hello@bitgospace.com');
             Notification::route('mail', $adminEmail)->notify(new NewKycSubmission($kycVerification, $user));
 
             // $adminUser = User::where('role', 'admin')->first();
