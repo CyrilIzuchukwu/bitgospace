@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\KycApprovedMail;
 use App\Models\KycVerification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class AdminKycController extends Controller
 {
@@ -40,16 +43,30 @@ class AdminKycController extends Controller
 
     public function approve($id)
     {
-        $kyc = KycVerification::findOrFail($id);
+        DB::beginTransaction();
 
-        $kyc->update([
-            'status' => 'approved',
-            'reviewed_at' => Carbon::now()
-        ]);
+        try {
+            $kyc = KycVerification::findOrFail($id);
+            $user = $kyc->user;
 
-        return back()->with('success', 'KYC approved successfully');
+            // ✅ Send email before updating anything
+            Mail::to($user->email)->send(new KycApprovedMail($user));
+
+            // ✅ Now update KYC status
+            $kyc->update([
+                'status' => 'approved',
+                'reviewed_at' => now(),
+            ]);
+
+            DB::commit();
+
+            return back()->with('success', 'KYC approved successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return back()->with('error', 'Failed to approve KYC: ' . $e->getMessage());
+        }
     }
-
 
     public function reject(Request $request, $id)
     {

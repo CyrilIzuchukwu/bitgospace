@@ -14,4 +14,8 @@ class Plan extends Model
     {
         return 'slug';
     }
+
+    protected $casts = [
+        'duration' => 'integer',
+    ];
 }

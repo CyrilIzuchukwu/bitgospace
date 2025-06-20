@@ -219,7 +219,8 @@ class InvestmentController extends Controller
                 'profit' => 0,
                 'roi' => $totalRoi,
                 'start_date' => now(),
-                'end_date' => now()->addDays($plan->duration),
+                // 'end_date' => now()->addDays($plan->duration),
+                'end_date' => now()->addDays((int)$plan->duration),
                 'withdrawn' => false,
                 'due' => false
             ]);

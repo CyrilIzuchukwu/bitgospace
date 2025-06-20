@@ -24,7 +24,7 @@
                         <div class="col-md-5">
                             <div class="resused-side">
                                 <img src="{{ asset('assets/images/star.png') }}" alt="">
-                                <h3 class="theme-gradient">We’re here to help — anytime.</h3>
+                                <h3 class="theme-gradient">We're here to help — anytime.</h3>
                             </div>
                         </div>
                         <div class="col-md-7">
@@ -33,7 +33,7 @@
                                 <div class="row mt-5">
                                     <div class="col-md-6">
                                         <h6>ADDRESS</h6>
-                                        <span>430 California St San Francisco, CA 94104 United States</span>
+                                        <span>British Virgin Island</span>
                                     </div>
 
                                     <div class="col-md-6 mt-4 mt-md-0">
@@ -54,7 +54,7 @@
 <section class="contact-map">
     <div class="row">
         <div class="col-md-12">
-            <div style="width: 100%"><iframe width="100%" height="450px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=450&amp;hl=en&amp;q=430%20California%20St%20San%20Francisco,%20CA%2094104%20United%20States+(BitGoSpace)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.mapsdirections.info/calcular-la-población-en-un-mapa">Mapa de población</a></iframe></div>
+            <div style="width: 100%"><iframe width="100%" height="450ox" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=450&amp;hl=en&amp;q=British%20Virgin%20Island+(Bitgospace)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.mapsdirections.info/calcular-la-población-en-un-mapa">Mapa de población</a></iframe></div>
         </div>
     </div>
 </section>

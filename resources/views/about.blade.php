@@ -214,8 +214,7 @@
                                 </h2>
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExamplea">
                                     <div class="accordion-body card-body">
-                                        After purchasing the product need you any support you can be share with
-                                        us with sending mail to rainbowit10@gmail.com.
+                                        Nope! BitGoSpace was built to be beginner-friendly. Just sign up, fund your wallet, and activate the bot. It handles the rest.
                                     </div>
                                 </div>
                             </div>
@@ -228,9 +227,7 @@
                                 </h2>
                                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExamplea">
                                     <div class="accordion-body card-body">
-                                        Yes, We will get update the Trydo. And you can get it any time. Next
-                                        time we will comes with more feature. You can be get update for
-                                        unlimited times. Our dedicated team works for update.
+                                        Yes, Your funds are stored securely in your BitGoSpace wallet. Our platform uses encrypted connections, and the bot trades without needing access to your personal data.
                                     </div>
                                 </div>
                             </div>
@@ -243,11 +240,7 @@
                                 </h2>
                                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExamplea">
                                     <div class="accordion-body card-body">
-                                        You can run doob easily. First You'll need to have node and npm on your
-                                        machine. So Please open your command prompt then check your node -v and
-                                        npm -v Version. Goes To Your your command prompt: then First: npm
-                                        install At Last: npm run start. By the following way you can be run your
-                                        project easily.
+                                        It scans multiple exchanges 24/7, finds price differences (arbitrage opportunities), buys crypto at a lower price on one platform, and sells higher on another automatically.
                                     </div>
                                 </div>
                             </div>
@@ -261,7 +254,7 @@
                                 </h2>
                                 <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExamplea">
                                     <div class="accordion-body card-body">
-                                        Yes, you can withdraw your funds anytime without restrictions.
+                                        Yes. Once the bot completes its trade cycles, your funds and profits are available for withdrawal straight from your dashboard.
                                     </div>
                                 </div>
                             </div>
@@ -274,7 +267,7 @@
                                 </h2>
                                 <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExamplea">
                                     <div class="accordion-body card-body">
-                                        The AI bot trades automatically multiple times a day, based on market opportunities.
+                                        The bot operates continuously day and night identifying multiple small-profit trades across exchanges throughout the day.
                                     </div>
                                 </div>
                             </div>
@@ -287,7 +280,7 @@
                                 </h2>
                                 <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExamplea">
                                     <div class="accordion-body card-body">
-                                        Yes, the minimum deposit to start is $100.
+                                        Yes, we have a small minimum starting balance to activate your trading wallet. You’ll see the current amount when setting up your account.
                                     </div>
                                 </div>
                             </div>
@@ -301,7 +294,7 @@
                                 </h2>
                                 <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExamplea">
                                     <div class="accordion-body card-body">
-                                        Absolutely! You can pause or stop the bot whenever you choose.
+                                        Absolutely. You can pause or stop your bot with a single click from your dashboard, giving you full control.
                                     </div>
                                 </div>
                             </div>
