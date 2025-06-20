@@ -1,0 +1,308 @@
+@import url("https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@100;200;300;400;500;600;700;800&amp;family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&amp;display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --font-primary: "Overpass", sans-serif;
+    --font-secondary: 'Anek Telugu', sans-serif;
+}
+
+/* font-family: 'Overpass', sans-serif; */
+*,
+body {
+
+    font-family: var(--font-primary) !important;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.log-wrapper {
+    background: url('/auth_assets/images/bg_404.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    overflow-y: auto;
+}
+
+.log-wrapper .content {
+    margin: auto;
+    padding: 10px;
+    text-align: left;
+}
+
+.log-wrapper .content .form-content {
+    background-color: rgba(0, 10, 16, 0.8);
+    color: rgb(255, 255, 255);
+    padding: 50px 60px;
+    width: 520px;
+    /* width: 100%; */
+    border-radius: 15px;
+}
+
+.log-wrapper .content .form-content .header-text {
+    margin-bottom: 30px;
+    padding-left: 10px;
+    border-left: 4px solid #70bbfd;
+    width: 100%;
+}
+
+.log-wrapper .content .form-content .header-text .welcome-title {
+    color: #fff;
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 400;
+    width: 100%;
+}
+
+.log-wrapper .content .form-content .header-text .welcome-title .company-name {
+    font-weight: 700;
+}
+
+.log-wrapper .content .form-content .header-text .welcome-title .company-name .company-tagline {
+    color: #70bbfd
+}
+
+.log-wrapper .content .form-content .header-text h4.subhead {
+    font-size: 12px;
+    color: rgb(153, 153, 153);
+    line-height: 16px;
+}
+
+.form-content form {
+    width: 100% !important;
+}
+
+.form-content form .form-group {
+    margin-bottom: 20px;
+    width: 100% !important;
+    position: relative;
+}
+
+.form-content form .form-group .invalid-feedback {
+    color: #d02222;
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.form-content form .form-group label {
+    color: rgb(100, 103, 119);
+    margin-bottom: 4px;
+    display: inline-block;
+}
+
+.form-content form .form-group .input-group {
+    position: relative;
+    width: 100%;
+}
+
+.form-content form .form-group .input-group .left-icon {
+    position: absolute;
+    top: 50%;
+    content: "";
+    transform: translateY(-50%);
+    left: 10px;
+}
+
+.form-content form .form-group .input-group .left-icon i {
+    color: #999999;
+    font-size: 16px;
+}
+
+.form-content form .form-group .input-group .right-icon {
+    cursor: pointer;
+}
+
+.form-content form .form-group .input-group .right-icon .password-eye {
+    position: absolute;
+    top: 50%;
+    content: "";
+    transform: translateY(-50%);
+    right: 10px;
+    color: #999999;
+    font-size: 16px;
+
+}
+
+
+.form-content form .form-group .input-group .input {
+    width: 100%;
+    color: #fff;
+    box-shadow: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    height: 40px;
+    background: transparent;
+    outline: none;
+    border: 1px solid #fff;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+
+
+.form-content form .form-group .input-group .input:focus {
+    border: 1px solid #70bbfd;
+    /* border-radius: 0px; */
+    background: #fff;
+    color: #222;
+}
+
+.forgot-password {
+    position: absolute;
+    line-height: 15px;
+    bottom: -20px;
+    right: 0px;
+}
+
+.forgot-password a {
+    color: #70bbfd;
+    transition: 0.3s;
+    font-size: 13px;
+}
+
+.forgot-password a:hover {
+    color: #3ea3fc;
+}
+
+.log-footer {
+    text-align: center;
+    margin-top: 45px;
+    position: relative;
+}
+
+.log-footer::before {
+    left: 0px;
+    content: "";
+    height: 1px;
+    width: calc(50% - 80px);
+    background: rgb(221, 221, 221);
+    position: absolute;
+    top: 10px;
+}
+
+.log-footer::after {
+    right: 0px;
+    content: "";
+    height: 1px;
+    width: calc(50% - 80px);
+    background: rgb(221, 221, 221);
+    position: absolute;
+    top: 10px;
+}
+
+
+.auth-buttons {
+    display: flex;
+    width: 100%;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.auth-buttons .auth-button {
+    width: 100%;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 10px 25px;
+    transition: 0.4s;
+    font-size: 14px;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    background-color: #70bbfd;
+    border: 1px solid #70bbfd;
+    color: #ffffff;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 14px;
+    transition: 0.4s;
+}
+
+.auth-buttons .auth-button::before {
+    content: "";
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+    z-index: -1;
+    background-color: #3ea3fc;
+}
+
+.auth-buttons .auth-button:hover {
+    color: white;
+    border: 1px solid #3ea3fc;
+    transition: 0.4s;
+}
+
+.auth-buttons .auth-button:hover::before {
+    width: 225%;
+    height: 562.5%;
+}
+
+.auth-buttons .auth-button-cancel {
+    width: 100%;
+    display: inline-block;
+    border-radius: 5px;
+    white-space: nowrap;
+    padding: 10px 25px;
+    transition: all 0.4s;
+    font-size: 14px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    /* Changed from 0 to 1 */
+    background-color: transparent;
+    border: 1px solid #70bbfd;
+    color: #70bbfd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.auth-buttons .auth-button-cancel::before {
+    content: "";
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: #70bbfd;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+    z-index: -1;
+}
+
+.auth-buttons .auth-button-cancel:hover {
+    color: white;
+    transition: 0.4s;
+}
+
+.auth-buttons .auth-button-cancel:hover::before {
+    width: 225%;
+    height: 562.5%;
+}

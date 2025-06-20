@@ -1,0 +1,580 @@
+@media only screen and (max-width: 767px) {
+    .card-header {
+        padding-inline: 10px;
+    }
+
+    .card-footer {
+        padding-inline: 10px;
+    }
+
+
+    .btn-default {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        border-radius: 6px;
+        padding: 10px 25px;
+        transition: 0.4s;
+        font-size: 14px;
+        position: relative;
+        overflow: hidden;
+        z-index: 0;
+        background-color: var(--color-primary);
+        border: 1px solid var(--color-primary);
+        color: #ffffff;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        text-align: center;
+        cursor: pointer;
+        white-space: nowrap;
+        font-size: 14px;
+        transition: 0.4s;
+        height: 45px;
+        box-shadow: 0px 4px 4px 0px #FFFFFF40 inset;
+        box-shadow: 0px -3px 4px 0px #00000040 inset;
+    }
+
+
+    /* SIDEBAR DASHBORD STYLE SIDEBAR DASHBORD STYLE SIDEBAR DASHBORD STYLE SIDEBAR DASHBORD STYLE SIDEBAR DASHBORD STYLE SIDEBAR DASHBORD STYLE SIDEBAR DASHBORD STYLE SIDEBAR DASHBORD STYLE SIDEBAR DASHBORD STYLE SIDEBAR DASHBORD STYLE SIDEBAR DASHBORD STYLE SIDEBAR DASHBORD STYLE SIDEBAR DASHBORD STYLE SIDEBAR DASHBORD STYLE */
+
+
+    .side-nav .side-nav-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        background: var(--color-primary);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        /* text-shadow: 0 0 5px rgba(59, 130, 246, 0.3); */
+    }
+
+
+
+
+
+
+    /* Base Styles */
+    .user-dashboard-grid.crypto-style {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+
+    .user-dashboard-grid .dashboard-card .card-header {
+        padding: 18px 20px;
+        border-bottom: 1px solid #2d3748;
+    }
+
+    .user-dashboard-grid .dashboard-card .card-title {
+        font-size: 15px;
+    }
+
+    .user-dashboard-grid .dashboard-card .balance-amount {
+        font-size: 20px;
+        gap: 10px;
+    }
+
+
+    .user-dashboard-grid .dashboard-card .stat-value {
+        font-size: 12px;
+    }
+
+    .user-dashboard-grid .dashboard-card .active-investments {
+        margin-top: 15px;
+    }
+
+    .user-dashboard-grid .dashboard-card .no-investments {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+
+    .section-title {
+        font-size: 18px;
+    }
+
+
+
+    /* USER PLAN PAGE  */
+    /* INVESTMENT/TRADE STYLE INVESTMENT/TRADE STYLE INVESTMENT/TRADE STYLE INVESTMENT/TRADE STYLE INVESTMENT/TRADE STYLE INVESTMENT/TRADE STYLE INVESTMENT/TRADE STYLE INVESTMENT/TRADE STYLE INVESTMENT/TRADE STYLE INVESTMENT/TRADE STYLE INVESTMENT/TRADE STYLE INVESTMENT/TRADE STYLE INVESTMENT/TRADE STYLE INVESTMENT/TRADE STYLE */
+    .plans-grid {
+        grid-template-columns: repeat(1, 1fr);
+        row-gap: 20px;
+    }
+
+
+
+    .invest-plan .profit-duration .daily-profit .bottom,
+    .invest-plan .profit-duration .duration .bottom {
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 600;
+    }
+
+    /* .page-container {
+        padding-inline: 100px !important;
+    } */
+
+    /* CONFIRM DEPOSIT DESIGN PAGE   CONFIRM DEPOSIT DESIGN PAGE  CONFIRM DEPOSIT DESIGN PAGE  CONFIRM DEPOSIT DESIGN PAGE  CONFIRM DEPOSIT DESIGN PAGE  CONFIRM DEPOSIT DESIGN PAGE  CONFIRM DEPOSIT DESIGN PAGE  CONFIRM DEPOSIT DESIGN PAGE  CONFIRM DEPOSIT DESIGN PAGE  CONFIRM DEPOSIT DESIGN PAGE CONFIRM DEPOSIT DESIGN PAGE  CONFIRM DEPOSIT DESIGN PAGE  CONFIRM DEPOSIT DESIGN PAGE  CONFIRM DEPOSIT DESIGN PAGE*/
+
+    .card {
+        margin-top: 1rem;
+    }
+
+    .card.deposit-wrapper {
+        padding: 30px 16px;
+    }
+
+    .card.deposit-wrapper form .card-body {
+        /* background: red; */
+        padding-inline: 0px;
+    }
+
+    /* INVESTMENT HISTORY INVESTMENT HISTORY  INVESTMENT HISTORY  INVESTMENT HISTORY  INVESTMENT HISTORY  INVESTMENT HISTORY  INVESTMENT HISTORY */
+    .no-investment {
+        margin-top: 40px;
+    }
+
+    .no-investment .not-found {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+        padding-block: 40px;
+    }
+
+    .no-investment .not-found .image-notfound img {
+        width: 300px;
+    }
+
+    .no-investment .not-found .text-notfound p {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .no-investment .not-found .text-notfound span {
+        font-size: 12px;
+        line-height: 20px;
+        text-align: center;
+    }
+
+
+
+    .investment-wrapper .initiateInvestment .info {
+        font-style: italic;
+        font-size: 10px;
+        margin-top: 5px;
+    }
+
+
+
+
+
+    /* DEPOSIT DEPOSIT DEPOSIT DEPOSIT DEPOSIT DEPOSIT  */
+    .confirm-deposit {
+        padding-inline: 0px;
+        margin-top: 0px;
+    }
+
+    .confirm-deposit .exchange-send-get {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .confirm-deposit .exchange-send-get .box {
+        padding: 20px 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+    }
+
+    .confirm-deposit .exchange-send-get .send-left-box .send-text {
+        font-size: 12px;
+    }
+
+    .confirm-deposit .exchange-send-get .send-left-box .btc-value {
+        font-size: 14px;
+        line-height: 22px;
+        font-weight: 700;
+    }
+
+
+    .confirm-deposit .exchange-send-get .get-right-box {
+        padding-left: 30px;
+    }
+
+    .confirm-deposit .exchange-send-get .get-right-box .get-text {
+        font-size: 14px;
+    }
+
+    .confirm-deposit .exchange-send-get .get-right-box .usd-value {
+        font-size: 14px;
+        line-height: 22px;
+        font-weight: 700;
+    }
+
+    .confirm-deposit .payment-details {
+        margin-top: 30px;
+    }
+
+
+    .confirm-deposit .payment-details .payout {
+        display: flex;
+        align-items: start;
+        gap: 20px;
+        justify-content: space-between;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .confirm-deposit .copy-div .copy-btn {
+        position: absolute;
+        content: "";
+        right: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+
+    /* PROFILE  */
+
+    .profile-wrapper {
+        margin-top: 40px;
+    }
+
+    .profile-wrapper .profile-content {
+        margin-inline: 5px;
+    }
+
+    .profile-wrapper .profile-content .card-body.main-card {
+        padding: 40px;
+        padding-inline: 15px;
+    }
+
+    .profile-wrapper .profile-content .card-body.main-card .border-end {
+        border-right: 1px solid transparent;
+        border: none;
+    }
+
+    .profile-wrapper .profile-content .card-body.main-card .bg-light img {
+        width: 200px;
+    }
+
+
+
+
+
+
+    /* KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC KYC */
+
+    .kyc-details {
+        margin-top: 20px !important;
+    }
+
+    .kyc-status-wrapper .card-body {
+        padding: 0px;
+    }
+
+    .card {
+        /* background: linear-gradient(87.97deg, rgba(45, 45, 45, 0.57) 3.85%, rgba(31, 31, 31, 0.57) 52.27%); */
+        /* background: red; */
+    }
+
+
+    .app-topbar {
+        background: linear-gradient(87.97deg, rgba(30, 30, 38, 0.9));
+    }
+
+
+    .kyc-main .kyc-image img {
+        width: 200px;
+        height: auto;
+    }
+
+    .kyc-main .header-text {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+
+    .kyc-main .kyc-list {
+        padding-left: 0px;
+        display: flex;
+        width: 100%;
+        align-items: start;
+        justify-content: start;
+        margin: auto;
+    }
+
+
+
+
+    .kyc-main .kyc-list ul li p {
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    p {
+        margin-bottom: 0px !important;
+    }
+
+    .kyc-main .proceed-btn {
+        margin-top: 10px;
+    }
+
+
+
+    .kyc-main .kyc-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .kyc-main .kyc-footer p {
+        line-height: 22px;
+        width: 100%;
+    }
+
+
+
+
+
+
+    /* KYC IDENTIFICATION  */
+    .kyc-identification {
+        padding-block: 25px;
+        padding-inline: 20px;
+    }
+
+    .kyc-identification .content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .kyc-identification .content .aside {
+        width: 100%;
+    }
+
+
+    .kyc-identification .content .aside .title {
+        font-size: 22px;
+        letter-spacing: 0%;
+        text-align: center;
+    }
+
+    .kyc-identification .content .aside .sub-text {
+        font-size: 14px;
+        text-align: center;
+    }
+
+
+    .kyc-identification .content .aside .kyc-steps {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        margin-top: 30px;
+        gap: 20px;
+        padding-right: 60px;
+    }
+
+    .kyc-identification .content .aside .kyc-steps .step {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        position: relative;
+    }
+
+
+
+    .kyc-identification .content .aside .kyc-steps .step .step-text {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        gap: 5px;
+    }
+
+    .kyc-identification .content .aside .kyc-steps .step .step-text p {
+        font-size: 16px;
+    }
+
+
+
+
+
+    .kyc-identification .content .main {
+        width: 100%;
+    }
+
+
+    .kyc-identification .content .main .type-head .type-head__title {
+        font-size: 16px;
+    }
+
+    .kyc-identification .content .main .verification-form {
+        margin-top: 30px;
+    }
+
+    .kyc-identification .content .main .verification-form .country-label {
+        margin-bottom: 8px !important;
+    }
+
+
+    /* Document Options Styling */
+    .kyc-identification .content .main .verification-form .document-group {
+        margin-top: 40px;
+    }
+
+    .kyc-identification .content .main .verification-form .document-options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .kyc-identification .content .main .verification-form .document-options .document-option {
+        display: flex;
+        align-items: center;
+        padding: 14px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: #3030305b;
+        border: 1px solid transparent;
+    }
+
+
+
+    .kyc-identification .content .main .verification-form .document-options .document-option .document-option-content {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+
+    .verification-form .document-options .document-option .document-option-content .document-option-title {
+        font-weight: 500;
+    }
+
+    .verification-form .document-options .document-option .document-option-content .document-option-description {
+        font-size: 8px;
+        line-height: 18px;
+    }
+
+
+    .kyc-identification .content .main .verification-form .doc-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .kyc-identification .content .main .verification-form .single-doc .label-wrapper {
+        padding: 10px;
+    }
+
+
+    .kyc-identification .content .main .verification-form .single-doc .label-wrapper .document-label {
+        height: 180px;
+    }
+
+    /* KYC STATUS WRAPPER  */
+    .kyc-status-wrapper .card {
+        padding: 30px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* REFERRAL REFERRAL REFERRAL REFERRAL REFERRAL REFERAL  REFERRAL REFERRAL REFERRAL REFERRAL REFERRAL REFERAL  REFERRAL REFERRAL REFERRAL REFERRAL REFERRAL REFERAL */
+    .referral-top-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        row-gap: 20px;
+    }
+
+    .referral-top-grid .card {
+        position: relative;
+    }
+
+    .referral-top-grid .card #copiedMessage {
+        position: absolute;
+        top: -30px;
+        right: 17px;
+        content: "";
+        font-size: 10px;
+    }
+
+    .referral-top-grid .card {
+        margin-bottom: 0px;
+    }
+
+    .referral-top-grid .card .card-body {
+        padding-inline: 0px;
+    }
+
+    .referral-top-grid .card .stat-box {
+        padding-inline: 0px !important;
+    }
+
+
+    /* SHOW USER SHOW USER SHOW USER SHOW USER SHOW USER SHOW USER SHOW USER SHOW USER SHOW USER SHOW USER SHOW USER SHOW USER SHOW USER SHOW USER  */
+    .user-details .wallet-details {
+        border-left: none;
+        padding-inline: 0px;
+        padding-top: 30px;
+        margin-top: 20px;
+        border-top: 1px solid #333;
+    }
+
+    .user-details .wallet-details .button-header {
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        margin-bottom: 30px;
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .user-details .wallet-details .button-header .wallet-buttons {
+        display: flex;
+        gap: 5px;
+        width: 100%;
+    }
+
+    .user-details .wallet-details .button-header .wallet-buttons button {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* universal styling of table  */
+    .table>:not(caption)>*>* {
+        padding: .75rem .4rem;
+    }
+
+    .table-card th {
+        font-weight: 600;
+        font-size: 9px;
+        text-wrap: wrap;
+    }
+
+    .table-card td {
+        font-size: 10px;
+    }
+
+    .table-card td form button {
+        font-size: 10px;
+    }
+
+}
