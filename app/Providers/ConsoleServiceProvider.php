@@ -27,7 +27,7 @@ class ConsoleServiceProvider extends ServiceProvider
         $schedule = $this->app->make(Schedule::class);
         $schedule->command(SendDailyEmails::class)->daily();
         $schedule->command(CheckExpiredDeposits::class)->daily();
-        $schedule->command(ProcessDailyInvestmentProfits::class)->dailyAt('00:00')->timezone(config('app.timezone'))->onOneServer();
+        $schedule->command(ProcessDailyInvestmentProfits::class)->dailyAt('00:00')->timezone(config('app.timezone'))->onOneServer()->withoutOverlapping();
         // $schedule->command(ProcessDailyInvestmentProfits::class)->everyMinute();
     }
 }

@@ -8,7 +8,7 @@
 
         <div class="page-title-head d-flex align-items-sm-center flex-sm-row flex-column gap-2">
             <div class="flex-grow-1">
-                <h4 class="fs-18 fw-semibold mb-0">Trade Plans</h4>
+                <h4 class="fs-18 fw-semibold mb-0"> AI-driven Plans</h4>
             </div>
 
             <div class="text-end">
@@ -27,9 +27,9 @@
 
                 <!-- Pricing Title-->
                 <div class="text-center">
-                    <h3 class="mb-2 section-title" style="text-transform: uppercase;">Investment plans</h3>
+                    <h3 class="mb-2 section-title" style="text-transform: uppercase;">Smart Trades</h3>
                     <p class="text-muted w-100 m-auto">
-                        Here are our several investment plans. You can invest daily, weekly or monthly and get higher returns in your investment.
+                        AI-driven plans built to grow your crypto — hands-free.
                     </p>
                 </div>
 
@@ -82,7 +82,7 @@
                             @foreach($privileges as $item)
                             <div class="d-flex justify-content-between">
                                 <p class="label text-gray-100">{{ $item }}</p>
-                                <p class=" value text-dark">Yes
+                                <p class=" value text-dark">
                                 </p>
                             </div>
                             @endforeach
@@ -92,8 +92,7 @@
                         </div>
 
                         <div class="card-footer ">
-
-                            <a href="{{ route('user.start-investment', $plan->slug) }}" class="btn btn-outline-primary w-100">Invest Now</a>
+                            <a href="{{ route('user.start-investment', $plan->slug) }}" class="btn btn-outline-primary w-100">Activate</a>
                         </div>
                     </div>
 

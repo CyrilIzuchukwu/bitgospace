@@ -2,7 +2,7 @@
             <div class="inner">
                 <div class="header-top">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="/">
                             <img class="logo-light" src="{{ asset('assets/images/logo/logo.png') }}" alt="Logo">
                             <img class="logo-dark" src="{{ asset('assets/images/logo/logo-dark.png' ) }}" alt="Logo">
                         </a>
