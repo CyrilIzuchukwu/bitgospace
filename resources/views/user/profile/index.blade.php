@@ -26,7 +26,7 @@
                                         <div class="position-relative d-inline-block">
                                             <!-- <img src="{{ $user->profile && $user->profile->profile_picture ? asset('storage/profile_pictures/' . $user->profile->profile_picture) : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=random' }}" class="rounded-circle shadow" width="120" height="120" alt="Profile" id="profileImage"> -->
 
-                                            <img src="{{ $user->profile && $user->profile->profile_picture ? asset('storage/profile_pictures/' . $user->profile->profile_picture) : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&size=240&background=random' }}" class="rounded-circle shadow" width="120" height="120" alt=" Profile " id="profileImage">
+                                            <img src="{{ $user->profile && $user->profile->profile_picture ? asset('storage/profile_pictures/' . $user->profile->profile_picture) : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&size=240&background=random' }}" class="rounded-circle shadow" width="120" height="120" style="object-fit: cover;" alt=" Profile " id="profileImage">
 
                                             <label for="profile_picture" class="btn btn-sm btn-primary position-absolute bottom-0 end-0 rounded-pill cursor-pointer">
                                                 <i class="ti ti-camera"></i>

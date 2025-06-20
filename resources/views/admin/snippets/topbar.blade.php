@@ -42,7 +42,7 @@
             <div class="topbar-item nav-user">
                 <div class="dropdown">
                     <a class="topbar-link dropdown-toggle drop-arrow-none pl-2" data-bs-toggle="dropdown" data-bs-offset="0,19" type="button" aria-haspopup="false" aria-expanded="false">
-                        <img src="{{ asset('dashboard_assets/assets/images/users/avatar1.jpg') }}" width="32" class="rounded-circle me-lg-2 d-flex" alt="user-image">
+                        <img src="{{ asset('dashboard_assets/assets/images/users/avatar1.jpg') }}" width="40" class="rounded-circle me-lg-2 d-flex image-profile" alt="user-image">
                         <span class="d-lg-flex flex-column gap-1 d-none">
                             <h5 class="my-0">{{ Auth::user()->name }}</h5>
                             <h6 class="my-0 fw-normal">{{ Auth::user()->email }}</h6>
@@ -75,3 +75,11 @@
         </div>
     </div>
 </header>
+<style>
+    .image-profile {
+        width: 40px !important;
+        height: 40px !important;
+        object-fit: cover !important;
+        border-radius: 50%;
+    }
+</style>

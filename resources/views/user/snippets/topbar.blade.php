@@ -106,9 +106,7 @@
                         $profilePicture = $user->profile->profile_picture ?? null;
                         @endphp
 
-                        <img
-                            src="{{ $profilePicture ? asset('storage/profile_pictures/' . $profilePicture) : asset('dashboard_assets/assets/images/users/user-avatar.jpg') }}"
-                            width="40" class="rounded-circle me-lg-2 d-flex" alt="user-image">
+                        <img src="{{ $profilePicture ? asset('storage/profile_pictures/' . $profilePicture) : asset('dashboard_assets/assets/images/users/user-avatar.jpg') }}" width="40" class="rounded-circle me-lg-2 d-flex image-profile" alt="user-image">
                         <span class="d-lg-flex flex-column gap-1 d-none">
                             <h5 class="my-0">{{ Auth::user()->name }}</h5>
                             <h6 class="my-0 fw-normal">{{ Auth::user()->email }}</h6>
@@ -171,3 +169,12 @@
         </div>
     </div>
 </header>
+
+<style>
+    .image-profile {
+        width: 40px !important;
+        height: 40px !important;
+        object-fit: cover !important;
+        border-radius: 50%;
+    }
+</style>

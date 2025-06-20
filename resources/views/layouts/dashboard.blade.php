@@ -188,6 +188,12 @@
         .swal2-icon-content {
             font-size: 16px !important;
         }
+
+        @media only screen and (max-width: 767px) {
+            body {
+                overflow: hidden !important;
+            }
+        }
     </style>
 
 </body>
