@@ -137,6 +137,12 @@
                                         </svg>
                                     </span>
                                 </div>
+
+                                <div class="mt-3">
+                                    <label for="transactionHash">Transaction hash</label>
+                                    <input class="form-control input-form-control apply-bg" type="text" name="transaction_hash" required placeholder="Paste the transaction id hash" id="walletAddress" value="">
+                                    <span class="text-danger">@error ('transaction_hash') {{ $message }} @enderror</span>
+                                </div>
                             </div>
 
 

@@ -14,6 +14,7 @@ class Deposit extends Model
         'payment_method',
         'status',
         'expires_at',
+        'transaction_hash'
     ];
 
     protected $casts = [

@@ -55,9 +55,13 @@
                     </div>
                 </div>
                 <div class="col-md-7">
-                    <form class="rainbow-newsletter mt_md--20 mt_sm--20" action="#">
-                        <div class="form-group"><input type="email" placeholder="Email Address"></div>
-                        <div class="form-group"><button class="btn-default">Subscribe</button></div>
+                    <form class="rainbow-newsletter mt_md--20 mt_sm--20" onsubmit="window.open('https://www.youtube.com/channel/UCGcJhZzM8xEcir2O-HqR9WQ', '_blank'); return false;">
+                        <div class="form-group">
+                            <input type="email" required placeholder="Email Address">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn-default">Subscribe</button>
+                        </div>
                     </form>
                 </div>
                 <div class="col-md-12">

@@ -40,9 +40,10 @@
     <!-- Begin page -->
     <div class="wrapper">
 
-        <div id="preloader">
+        <!-- <div id="preloader">
             <div class="loader"></div>
-        </div>
+        </div> -->
+        @include('partials.preloader')
 
         <!-- Sidenav Menu Start -->
         @include('admin.snippets.sidebar')

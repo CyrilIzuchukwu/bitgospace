@@ -218,7 +218,7 @@
             height: 100% !important;
         }
 
-        .wrapper {
+        /* .wrapper {
             min-height: 100vh;
             overflow-y: auto !important;
         }
@@ -226,7 +226,7 @@
         .page-content {
             overflow-y: auto !important;
             position: relative;
-        }
+        } */
     </style>
 
 </body>

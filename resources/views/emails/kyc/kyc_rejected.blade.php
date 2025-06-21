@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KYC Approved - BitGoSpace</title>
+    <title>KYC Rejected - BitGoSpace</title>
 </head>
 
 <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
@@ -12,7 +12,7 @@
         <tr>
             <td align="center">
                 <!-- Main Container -->
-                <table cellpadding="0" cellspacing="0" border="0" width="600" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); overflow: hidden;">
+                <table cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); overflow: hidden; max-width: 640px;">
 
                     <!-- Header -->
                     <tr>
@@ -21,12 +21,11 @@
                         </td>
                     </tr>
 
-                    <!-- Success Icon and Title -->
+                    <!-- Title -->
                     <tr>
                         <td style="padding: 40px 30px 20px; text-align: center;">
-
-                            <h1 style="color: #061f6d; font-size: 28px; font-weight: bold; margin: 0 0 10px; line-height: 1.2;">KYC Verification Approved!</h1>
-                            <p style="color: #666666; font-size: 16px; margin: 0; line-height: 1.4;">Congratulations! Your identity verification has been successfully completed.</p>
+                            <h1 style="color: #061f6d; font-size: 24px; font-weight: bold; margin: 0 0 10px; line-height: 1.2;">KYC Verification Not Approved</h1>
+                            <p style="color: #666666; font-size: 16px; margin: 0; line-height: 1.4;">We couldn't verify your identity with the provided documents.</p>
                         </td>
                     </tr>
 
@@ -35,13 +34,16 @@
                         <td style="padding: 0 30px 30px;">
                             <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                 <tr>
-                                    <td style="background-color: #f8f9fa; padding: 25px; border-radius: 6px; border-left: 4px solid #061f6d;">
+                                    <td style="background-color: #f8f9fa; padding: 25px; border-radius: 6px; border-left: 4px solid #d32f2f;">
                                         <h2 style="color: #061f6d; font-size: 18px; font-weight: bold; margin: 0 0 15px;">Hello {{ $user->name ?? 'Valued Customer' }},</h2>
                                         <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 15px;">
-                                            We're excited to inform you that your KYC (Know Your Customer) verification has been <strong style="color: #4CAF50;">successfully approved</strong>!
+                                            We regret to inform you that your KYC (Know Your Customer) verification has <strong style="color: #d32f2f;">not been approved</strong>.
+                                        </p>
+                                        <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 15px;">
+                                            <strong>Reason:</strong> {{ $rejectionReason }}
                                         </p>
                                         <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0;">
-                                            Your account is now fully verified and you can access all features and services on our platform without any restrictions.
+                                            Please review the reason above and submit new documents for verification.
                                         </p>
                                     </td>
                                 </tr>
@@ -49,18 +51,18 @@
                         </td>
                     </tr>
 
-                    <!-- Features Unlocked -->
+                    <!-- Next Steps -->
                     <tr>
                         <td style="padding: 0 30px 30px;">
-                            <h3 style="color: #061f6d; font-size: 18px; font-weight: bold; margin: 0 0 20px;">What's Now Available:</h3>
+                            <h3 style="color: #061f6d; font-size: 18px; font-weight: bold; margin: 0 0 20px;">What To Do Next:</h3>
                             <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                 <tr>
                                     <td style="padding: 15px; background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 6px; margin-bottom: 10px;">
                                         <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                             <tr>
                                                 <td style="vertical-align: top; padding-left: 15px;">
-                                                    <h4 style="color: #061f6d; font-size: 16px; font-weight: bold; margin: 0 0 5px;">Higher Transaction Limits</h4>
-                                                    <p style="color: #666666; font-size: 14px; margin: 0; line-height: 1.4;">Enjoy increased deposit and withdrawal limits</p>
+                                                    <h4 style="color: #061f6d; font-size: 16px; font-weight: bold; margin: 0 0 5px;">Review Requirements</h4>
+                                                    <p style="color: #666666; font-size: 14px; margin: 0; line-height: 1.4;">Check our KYC documentation requirements</p>
                                                 </td>
                                             </tr>
                                         </table>
@@ -70,10 +72,9 @@
                                     <td style="padding: 15px; background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 6px; margin-bottom: 10px;">
                                         <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                             <tr>
-
                                                 <td style="vertical-align: top; padding-left: 15px;">
-                                                    <h4 style="color: #061f6d; font-size: 16px; font-weight: bold; margin: 0 0 5px;">Enhanced Security</h4>
-                                                    <p style="color: #666666; font-size: 14px; margin: 0; line-height: 1.4;">Your account is now fully secured and protected</p>
+                                                    <h4 style="color: #061f6d; font-size: 16px; font-weight: bold; margin: 0 0 5px;">Resubmit Documents</h4>
+                                                    <p style="color: #666666; font-size: 14px; margin: 0; line-height: 1.4;">Upload clear, valid documents that meet our requirements</p>
                                                 </td>
                                             </tr>
                                         </table>
@@ -84,8 +85,8 @@
                                         <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                             <tr>
                                                 <td style="vertical-align: top; padding-left: 15px;">
-                                                    <h4 style="color: #061f6d; font-size: 16px; font-weight: bold; margin: 0 0 5px;">Premium Features</h4>
-                                                    <p style="color: #666666; font-size: 14px; margin: 0; line-height: 1.4;">Access to all platform features and services</p>
+                                                    <h4 style="color: #061f6d; font-size: 16px; font-weight: bold; margin: 0 0 5px;">Contact Support</h4>
+                                                    <p style="color: #666666; font-size: 14px; margin: 0; line-height: 1.4;">If you need clarification about the rejection</p>
                                                 </td>
                                             </tr>
                                         </table>
@@ -101,8 +102,8 @@
                             <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
                                 <tr>
                                     <td>
-                                        <a href="{{ route('login') }}" style="background-color: #061f6d; color: #ffffff; text-decoration: none; padding: 15px 30px; border-radius: 6px; font-size: 16px; font-weight: bold; display: inline-block; text-align: center; min-width: 200px;">
-                                            Access Your Account
+                                        <a href="{{ route('user.kyc') }}" style="background-color: #061f6d; color: #ffffff; text-decoration: none; padding: 15px 30px; border-radius: 6px; font-size: 16px; font-weight: bold; display: inline-block; text-align: center; min-width: 200px;">
+                                            Resubmit KYC Documents
                                         </a>
                                     </td>
                                 </tr>
@@ -115,7 +116,7 @@
                         <td style="background-color: #f8f9fa; padding: 25px 30px; border-top: 1px solid #e0e0e0;">
                             <h3 style="color: #061f6d; font-size: 16px; font-weight: bold; margin: 0 0 15px;">Need Help?</h3>
                             <p style="color: #666666; font-size: 14px; line-height: 1.5; margin: 0 0 15px;">
-                                If you have any questions or need assistance, our support team is here to help you 24/7.
+                                Our support team is available to help you with the verification process.
                             </p>
                             <table cellpadding="0" cellspacing="0" border="0">
                                 <tr>
@@ -133,27 +134,13 @@
                     <tr>
                         <td style="background-color: #061f6d; padding: 25px 30px; text-align: center;">
                             <p style="color: #ffffff; font-size: 14px; margin: 0 0 10px; line-height: 1.4;">
-                                Thank you for choosing BitGoSpace
+                                BitGoSpace - Your AI Arbitrage Advantage in Crypto!
                             </p>
                             <p style="color: #b3c3f7; font-size: 12px; margin: 0; line-height: 1.4;">
                                 If you have any concerns about this email, please contact our support team.
                             </p>
-                            <table cellpadding="0" cellspacing="0" border="0" style="margin: 20px auto 0;">
-                                <tr>
-                                    <td style="padding: 0 10px;">
-                                        <a href="#" style="color: #ffffff; text-decoration: none; font-size: 12px;">Privacy Policy</a>
-                                    </td>
-                                    <td style="color: #b3c3f7; font-size: 12px;">|</td>
-                                    <td style="padding: 0 10px;">
-                                        <a href="#" style="color: #ffffff; text-decoration: none; font-size: 12px;">Terms of Service</a>
-                                    </td>
-                                    <td style="color: #b3c3f7; font-size: 12px;">|</td>
-
-                                </tr>
-                            </table>
                         </td>
                     </tr>
-
                 </table>
             </td>
         </tr>

@@ -62,6 +62,7 @@
                                                 <th scope="col" class="text-muted">Status</th>
                                                 <th scope="col" class="text-muted">Currency</th>
                                                 <th scope="col" class="text-muted">Payment Method</th>
+                                                <th scope="col" class="text-muted">Txn Hash</th>
                                                 <th scope="col" class="text-muted">Date</th>
                                                 <th scope="col" class="text-muted text-center">Action</th>
                                             </tr>
@@ -71,11 +72,11 @@
                                             <tr data-status="{{ strtolower($transaction->status) }}">
                                                 <td>
                                                     <div class="d-flex align-items-center">
-                                                        <div class="avatar-xs me-2">
+                                                        <!-- <div class="avatar-xs me-2">
                                                             <span class="avatar-title bg-primary-subtle text-primary fw-semibold rounded-circle">
                                                                 {{ substr($transaction->user->name, 0, 1) }}
                                                             </span>
-                                                        </div>
+                                                        </div> -->
                                                         <div class="flex-grow-1">
                                                             <h6 class="mb-0">{{ $transaction->user->name }}</h6>
                                                             <small class="text-muted">{{ $transaction->user->email }}</small>
@@ -95,6 +96,9 @@
                                                 </td>
                                                 <td>{{ $transaction->currency }}</td>
                                                 <td>{{ $transaction->deposit->payment_method ?? 'N/A' }}</td>
+                                                <td style="width: 300px !important; word-break: break-all; white-space: normal;">
+                                                    {{ $transaction->transaction_hash ?? '-' }}
+                                                </td>
                                                 <td>{{ $transaction->created_at->format('M j, Y') }}</td>
                                                 <td class="text-center">
                                                     @if($transaction->status == 'pending')
@@ -146,6 +150,11 @@
 
     @include('admin.snippets.footer')
 </div>
+<style>
+    table thead th {
+        white-space: normal !important;
+    }
+</style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

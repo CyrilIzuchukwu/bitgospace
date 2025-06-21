@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\KycApprovedMail;
+use App\Mail\KycRejectedMail;
 use App\Models\KycVerification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -68,20 +69,53 @@ class AdminKycController extends Controller
         }
     }
 
+    // public function reject(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'rejection_reason' => 'required|string|max:500'
+    //     ]);
+
+    //     $kyc = KycVerification::findOrFail($id);
+
+    //     $kyc->update([
+    //         'status' => 'rejected',
+    //         'rejection_reason' => $request->rejection_reason,
+    //         'reviewed_at' => Carbon::now()
+    //     ]);
+
+    //     return back()->with('success', 'KYC rejected');
+    // }
+
+
+
     public function reject(Request $request, $id)
     {
         $request->validate([
             'rejection_reason' => 'required|string|max:500'
         ]);
 
-        $kyc = KycVerification::findOrFail($id);
+        DB::beginTransaction();
 
-        $kyc->update([
-            'status' => 'rejected',
-            'rejection_reason' => $request->rejection_reason,
-            'reviewed_at' => Carbon::now()
-        ]);
+        try {
+            $kyc = KycVerification::findOrFail($id);
+            $user = $kyc->user;
 
-        return back()->with('success', 'KYC rejected');
+            // Update KYC status first
+            $kyc->update([
+                'status' => 'rejected',
+                'rejection_reason' => $request->rejection_reason,
+                'reviewed_at' => Carbon::now()
+            ]);
+
+            // Send rejection email
+            Mail::to($user->email)->send(new KycRejectedMail($user, $request->rejection_reason));
+
+            DB::commit();
+
+            return back()->with('success', 'KYC rejected and user notified');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', 'Failed to reject KYC: ' . $e->getMessage());
+        }
     }
 }

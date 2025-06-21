@@ -179,6 +179,8 @@ class InvestmentController extends Controller
             $user = Auth::user();
             $wallet = $user->wallet()->lockForUpdate()->firstOrFail();
 
+            $kycAdminEmail = env('KYC_ADMIN_EMAIL');
+
 
 
             // Validate investment conditions

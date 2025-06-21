@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\WithdrawalRequestMail;
 use App\Models\Transaction;
 use App\Models\Wallet;
 use App\Models\WalletAddress;
@@ -12,6 +13,7 @@ use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Str;
 use URL;
 
@@ -192,11 +194,27 @@ class WithdrawalController extends Controller
                 // dd('there is an error');
             }
 
+            $kycAdminEmail = env('KYC_ADMIN_EMAIL');
+
+
+            // Prepare data for the email
+            $data = [
+                'user' => $user,
+                'withdrawal' => $withdrawalData,
+                'time' => now()->toDateTimeString(),
+            ];
+
+
+            // Send email first
+            try {
+                Mail::to($kycAdminEmail)->send(new WithdrawalRequestMail($data));
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Failed to send email: ' . $e->getMessage());
+            }
 
 
 
-            // we are here
-
+            // Process withdrawal after email is sent successfully
             DB::transaction(function () use ($user, $wallet, $withdrawalData) {
                 // Create withdrawal record
 
@@ -235,6 +253,7 @@ class WithdrawalController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
 
     public function withdrawalHistory()
     {

@@ -148,7 +148,8 @@ class DepositController extends Controller
         $request->validate([
             'deposit_id' => 'required|numeric',
             'balance' => 'required|numeric|min:0.00000001', // Minimum crypto amount
-            'amount' => 'required|numeric'
+            'amount' => 'required|numeric',
+            'transaction_hash' => 'required|string|max:255'
         ]);
 
         // Get the deposit from session and database
@@ -192,7 +193,9 @@ class DepositController extends Controller
                 'status' => 'pending',
                 'amount' => $request->amount,
                 // 'wallet_address' => $wallet->address,
-                'expires_at' => null
+                'expires_at' => null,
+                'transaction_hash' => $request->input('transaction_hash'),
+
             ]);
 
             $reference = 'DEP-' . strtoupper($wallet->symbol) . '-' . now()->format('ymdHis') . '-' . strtoupper(Str::random(5));
@@ -203,6 +206,7 @@ class DepositController extends Controller
                 'amount' => $deposit->amount,
                 'crypto_amount' => $request->balance,
                 'currency' => $wallet->symbol,
+                'transaction_hash' => $deposit->transaction_hash,
                 'type' => 'deposit',
                 'status' => 'pending',
                 'description' => 'Deposit initiated',
