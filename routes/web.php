@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminMediaController;
 use App\Http\Controllers\Admin\AdminWithdrawalController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\WalletAddressController;
+use App\Http\Controllers\Admin\WithdrawalAddressController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\DashboardController;
@@ -303,6 +304,18 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
         Route::patch('/wallets/{wallet:slug}', [WalletAddressController::class, 'update'])->name('wallets.update');
     });
 
+
+
+    Route::controller(WithdrawalAddressController::class)->group(function () {
+        Route::get('/withdrawal-address', 'index')->name('withdrawals.wallet.index');
+        Route::get('/withdrawal-address/create', 'create')->name('withdrawals.wallet.create');
+        Route::post('/withdrawal-address', 'storeWallet')->name('withdrawals.wallet.store');
+
+        Route::delete('/withdrawal-address/{id}', 'destroy')->name('withdrawals.wallet.destroy');
+
+        Route::get('/withdrawal-address/{id}/edit', 'edit')->name('withdrawal.wallets.edit');
+        Route::patch('/withdrawal-address/{id}', 'update')->name('withdrawals.wallet.update');
+    });
 
     Route::controller(AdminDepositController::class)->group(function () {
         Route::get('/deposits/transactions',  'allTransactions')->name('admin.deposits.transactions');

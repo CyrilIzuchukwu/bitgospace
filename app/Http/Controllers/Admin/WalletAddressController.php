@@ -34,7 +34,7 @@ class WalletAddressController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255|unique:wallet_addresses,name',
-                'address' => 'required|string|max:255|unique:wallet_addresses,address',
+                'address' => 'required|string|max:255',
                 'symbol' => 'required|string|max:10',
                 'qr_code' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', // max 2MB
             ], [
@@ -68,8 +68,8 @@ class WalletAddressController extends Controller
             return redirect()->route('wallets.index')->with('success', 'Wallet created successfully!');
         } catch (\Exception $e) {
             Log::error('Wallet creation error: ' . $e->getMessage());
-            dd('error', $e->getMessage());
-            return back()->with('error', 'An error occurred while creating the wallet.')->withInput();
+            // dd('error', $e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred while creating the wallet.' . $e->getMessage())->withInput();
 
             // dd('error', $e->getMessage());
         }
@@ -87,7 +87,7 @@ class WalletAddressController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255|unique:wallet_addresses,name,' . $wallet->id,
-                'address' => 'required|string|max:255|unique:wallet_addresses,address,' . $wallet->id,
+                'address' => 'required|string|max:255',
                 'symbol' => 'required|string|max:10',
                 'qr_code' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             ]);

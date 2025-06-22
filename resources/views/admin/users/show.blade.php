@@ -26,7 +26,7 @@
                             <div class="col-md-5">
                                 <div class="d-flex align-items-center gap-3 mb-4">
                                     <img src="{{ $viewedUser->profile && $viewedUser->profile->profile_picture ? asset('storage/profile_pictures/' . $viewedUser->profile->profile_picture) : asset('dashboard_assets/assets/images/users/user-avatar.jpg') }}"
-                                        alt="Profile" class="avatar-xl rounded-circle border border-light border-2">
+                                        alt="Profile" class="avatar-xl rounded-circle border border-light border-2 profile">
                                     <div>
                                         <h4 class="text-dark fw-medium">{{ $viewedUser->name }}</h4>
                                         <span class="badge {{ $viewedUser->active ? 'bg-success' : 'bg-danger' }} px-2 py-1 fs-12">
@@ -410,5 +410,13 @@
         });
     });
 </script>
+<style>
+    .user-details .profile {
+        width: 80px !important;
+        height: 80px !important;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+</style>
 
 @endsection

@@ -20,7 +20,7 @@
                 <div class="text-center mb-4">
                     <h3 class="mb-2" style="text-transform: uppercase;">Wallet Addresses</h3>
                     <p class="text-muted w-100 m-auto">
-                        Manage cryptocurrency wallet addresses for deposits
+                        Manage cryptocurrency wallet addresses for Withdrawals
                     </p>
                 </div>
 
@@ -43,7 +43,7 @@
                             <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
                                 <h4 class="header-title me-auto">Address List</h4>
                                 <div class="w-auto">
-                                    <a href="{{ route('wallets.create') }}" class="btn btn-primary bg-gradient">
+                                    <a href="{{ route('withdrawals.wallet.create') }}" class="btn btn-primary bg-gradient">
                                         <i class="ti ti-plus me-1"></i>Add Wallet
                                     </a>
                                 </div>
@@ -57,7 +57,6 @@
                                                 <th scope="col" class="text-muted">Wallet Name</th>
                                                 <th scope="col" class="text-muted">Symbol</th>
                                                 <th scope="col" class="text-muted">Wallet Address</th>
-                                                <th scope="col" class="text-muted">QR Code</th>
                                                 <th scope="col" class="text-muted text-center">Action</th>
                                             </tr>
                                         </thead>
@@ -75,20 +74,14 @@
                                                         </button>
                                                     </div>
                                                 </td>
-                                                <td>
-                                                    @if ($wallet->qr_code)
-                                                    <img src="{{ asset('storage/'.$wallet->qr_code) }}" alt="QR Code" width="40" height="40" class="rounded">
-                                                    @else
-                                                    <span class="text-muted">N/A</span>
-                                                    @endif
-                                                </td>
+
                                                 <td class="text-center">
                                                     <div class="d-flex gap-2 justify-content-center">
-                                                        <a href="{{ route('wallets.edit', $wallet->slug) }}"
+                                                        <a href="{{ route('withdrawal.wallets.edit', $wallet->id) }}"
                                                             class="btn btn-sm btn-success edit-wallet">
                                                             <i class="ti ti-edit fs-16"></i>
                                                         </a>
-                                                        <form action="{{ route('wallets.destroy', $wallet->id) }}" method="POST" class="delete-form">
+                                                        <form action="{{ route('withdrawals.wallet.destroy', $wallet->id) }}" method="POST" class="delete-form">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="button" class="btn btn-sm btn-danger delete-button">

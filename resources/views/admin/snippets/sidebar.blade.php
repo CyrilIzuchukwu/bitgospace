@@ -71,7 +71,7 @@
                     <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#wallets" aria-expanded="false" aria-controls="wallets" class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-wallet"></i></span>
-                            <span class="menu-text">Wallet Address</span>
+                            <span class="menu-text">Deposit Address</span>
                             <span class="menu-arrow"></span>
                         </a>
                         <div class="collapse" id="wallets">
@@ -83,6 +83,29 @@
                                 </li>
                                 <li class="side-nav-item">
                                     <a href="{{ route('wallets.index') }}" class="side-nav-link">
+                                        <span class="menu-text">Address List</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+
+                    <li class="side-nav-item">
+                        <a data-bs-toggle="collapse" href="#withdrawaladdress" aria-expanded="false" aria-controls="withdrawaladdress" class="side-nav-link">
+                            <span class="menu-icon"><i class="ti ti-building-bank"></i></span>
+                            <span class="menu-text">Withdrawal Address</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="withdrawaladdress">
+                            <ul class="sub-menu">
+                                <li class="side-nav-item">
+                                    <a href="{{ route('withdrawals.wallet.create') }}" class="side-nav-link">
+                                        <span class="menu-text">Add Wallet Address</span>
+                                    </a>
+                                </li>
+                                <li class="side-nav-item">
+                                    <a href="{{ route('withdrawals.wallet.index') }}" class="side-nav-link">
                                         <span class="menu-text">Address List</span>
                                     </a>
                                 </li>

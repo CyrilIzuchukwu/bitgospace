@@ -28,7 +28,7 @@
                 <div class="no-investment">
                     <div class="not-found card">
                         <div class="image-notfound">
-                            <img src="https://gekoinvests.com/theme/assets/dist/images/not-found.png" class="img-fluid" alt="">
+                            <img src="{{ asset('dashboard_assets/assets/images/not-found.png') }}" class="img-fluid" alt="">
                         </div>
                         <div class="text-notfound">
                             <p class="text-dark">No deposit transactions found</p>

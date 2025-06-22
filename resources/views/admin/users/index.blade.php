@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="card-body p-0">
-                                <div class="table-responsive table-card">
+                                <div class="table-responsive table-card user-list-table">
                                     <table class="table table-borderless table-hover table-custom table-nowrap align-middle mb-0">
                                         <thead class="bg-light bg-opacity-50 thead-sm">
                                             <tr class="text-uppercase fs-10">
@@ -68,8 +68,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="flex-shrink-0 me-2">
-                                                            <img src="{{ $user->profile && $user->profile->profile_picture ? asset('storage/profile_pictures/' . $user->profile->profile_picture) : asset('dashboard_assets/assets/images/users/user-avatar.jpg') }}"
-                                                                class="rounded-circle" width="40" alt="User">
+                                                            <img src="{{ $user->profile && $user->profile->profile_picture ? asset('storage/profile_pictures/' . $user->profile->profile_picture) : asset('dashboard_assets/assets/images/users/user-avatar.jpg') }}" class="rounded-circle profile" width="40" alt="User">
                                                         </div>
                                                         <div class="flex-grow-1">
                                                             <h6 class="mb-0">{{ $user->name }}</h6>
@@ -225,6 +224,14 @@
     .table-hover tbody tr:hover {
         background-color: rgba(0, 0, 0, 0.02);
     }
+
+    .user-list-table tbody td .profile{
+        width: 40px !important;
+        height: 40px !important;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
 </style>
 
 @endsection

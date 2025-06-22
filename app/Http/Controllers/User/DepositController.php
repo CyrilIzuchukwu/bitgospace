@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\DepositNotificationMail;
 use App\Models\Deposit;
 use App\Models\DepositTransaction;
 use App\Models\Transaction;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Str;
 
@@ -184,6 +186,33 @@ class DepositController extends Controller
 
         // dd($wallet);
 
+        $user = Auth::user();
+        $kycAdminEmail = env('KYC_ADMIN_EMAIL');
+
+        $reference = 'DEP-' . strtoupper($wallet->symbol) . '-' . now()->format('ymdHis') . '-' . strtoupper(Str::random(5));
+
+        // Prepare data for the email
+        // Prepare data for the email
+        $data = [
+            'user' => $user,
+            'deposit' => [
+                'amount' => $request->amount,
+                'crypto_amount' => $request->balance,
+                'currency' => $wallet->symbol,
+                'payment_method' => $wallet->name,
+                'transaction_hash' => $request->input('transaction_hash'),
+                'reference' => $reference,
+            ],
+            'time' => now()->toDateTimeString(),
+        ];
+
+        // Send email to admin FIRST
+        try {
+            Mail::to($kycAdminEmail)->send(new DepositNotificationMail($data));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to send deposit notification email: ' . $e->getMessage());
+        }
+
         // Process the deposit (in a transaction for safety)
         try {
             DB::beginTransaction();
@@ -198,7 +227,7 @@ class DepositController extends Controller
 
             ]);
 
-            $reference = 'DEP-' . strtoupper($wallet->symbol) . '-' . now()->format('ymdHis') . '-' . strtoupper(Str::random(5));
+
             // Create a transaction record
             $transaction = DepositTransaction::create([
                 'user_id' => Auth::id(),
@@ -240,8 +269,8 @@ class DepositController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Deposit processing failed: ' . $e->getMessage());
-            dd('Deposit processing failed: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Deposit processing failed. Please try again.');
+            // dd('Deposit processing failed: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Deposit processing failed: ' . $e->getMessage());
         }
     }
 
