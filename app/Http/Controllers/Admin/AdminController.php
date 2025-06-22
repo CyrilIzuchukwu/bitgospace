@@ -3,9 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DepositTransaction;
+use App\Models\Investment;
+use App\Models\KycVerification;
+use App\Models\ReferralCommission;
 use App\Models\User;
+use App\Models\Wallet;
+use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -13,7 +20,106 @@ class AdminController extends Controller
     //
     public function adminDashboard()
     {
-        return view('admin.index');
+        // Get user counts
+        $totalUsers = User::where('role', 'user')->count();
+        $activeUsers = User::where('role', 'user')->where('active', true)->count();
+        $inactiveUsers = User::where('role', 'user')->where('active', false)->count();
+
+        // Platform Balance (sum of all user wallets)
+        $platformBalance = Cache::remember('admin.platform_balance', now()->addHours(1), function () {
+            return Wallet::sum('balance');
+        });
+
+        // Total Deposits
+        $totalDepositsAdmin = DepositTransaction::where('status', 'completed')->sum('amount');
+        // Deposit counts by status
+        $completedDepositsCountAdmin = DepositTransaction::where('status', 'completed')->count();
+        $pendingDepositsCountAdmin = DepositTransaction::where('status', 'pending')->count();
+        $rejectedDepositsCountAdmin = DepositTransaction::where('status', 'rejected')->count();
+
+
+        $totalWithdrawalsAdmin = Withdrawal::where('status', 'completed')->sum('amount');
+
+        // Withdrawal counts by status
+        $approvedWithdrawalsCountAdmin = Withdrawal::where('status', 'completed')->count();
+        $pendingWithdrawalsCountAdmin = Withdrawal::where('status', 'pending')->count();
+        $rejectedWithdrawalsCountAdmin = Withdrawal::where('status', 'rejected')->count();
+
+        $investmentStatsAdmin = Investment::selectRaw('
+        SUM(amount) as total_amount,
+        SUM(CASE WHEN due = 0 THEN amount ELSE 0 END) as active_amount,
+        SUM(CASE WHEN due = 1 THEN amount ELSE 0 END) as completed_amount')->first();
+
+
+        // Total Referral Commissions
+        $totalReferralCommissionsAdmin = ReferralCommission::sum('amount');
+
+        // Level-wise breakdown
+        $level1CommissionsAdmin = ReferralCommission::where('level', 1)->sum('amount');
+        $level2CommissionsAdmin = ReferralCommission::where('level', 2)->sum('amount');
+        $level3CommissionsAdmin = ReferralCommission::where('level', 3)->sum('amount');
+
+
+        // Pending KYC Verifications
+        $pendingKycCountAdmin = KycVerification::where('status', 'pending')->count();
+
+        // Total Pending Approvals
+        $totalPendingApprovalsAdmin = $pendingWithdrawalsCountAdmin + $pendingDepositsCountAdmin + $pendingKycCountAdmin;
+
+
+        // Total Investment Profits (sum of all ROI from completed investments)
+        $totalInvestmentProfitsAdmin = Investment::where('due', true)->sum('roi');
+
+
+        // Get most recent user registration
+        $latestUser = User::latest()->first();
+
+        // Get most recent deposit
+        $latestDeposit = DepositTransaction::latest()->first();
+
+        // Get most recent withdrawal
+        $latestWithdrawal = Withdrawal::latest()->first();
+
+        // Get most recent investment
+        $latestInvestment = Investment::latest()->first();
+
+
+        return view('admin.index', [
+            'totalUsers' => $totalUsers,
+            'activeUsers' => $activeUsers,
+            'inactiveUsers' => $inactiveUsers,
+            'platformBalance' => $platformBalance,
+            'totalDepositsAdmin' => $totalDepositsAdmin,
+            'completedDepositsCountAdmin' => $completedDepositsCountAdmin,
+            'pendingDepositsCountAdmin' => $pendingDepositsCountAdmin,
+            'rejectedDepositsCountAdmin' => $rejectedDepositsCountAdmin,
+            'totalWithdrawalsAdmin' => $totalWithdrawalsAdmin,
+            'approvedWithdrawalsCountAdmin' => $approvedWithdrawalsCountAdmin,
+            'pendingWithdrawalsCountAdmin' => $pendingWithdrawalsCountAdmin,
+            'rejectedWithdrawalsCountAdmin' => $rejectedWithdrawalsCountAdmin,
+
+            'totalInvestmentsAdmin' => number_format($investmentStatsAdmin->total_amount, 2),
+            'activeInvestmentsAdmin' => number_format($investmentStatsAdmin->active_amount, 2),
+            'completedInvestmentsAdmin' => number_format($investmentStatsAdmin->completed_amount, 2),
+
+
+            'totalReferralCommissionsAdmin' => number_format($totalReferralCommissionsAdmin, 2),
+            'level1CommissionsAdmin' => number_format($level1CommissionsAdmin, 2),
+            'level2CommissionsAdmin' => number_format($level2CommissionsAdmin, 2),
+            'level3CommissionsAdmin' => number_format($level3CommissionsAdmin, 2),
+
+
+            'totalPendingApprovalsAdmin' => $totalPendingApprovalsAdmin,
+            'pendingKycCountAdmin' => $pendingKycCountAdmin,
+
+            'totalInvestmentProfitsAdmin' => number_format($totalInvestmentProfitsAdmin, 2),
+
+
+            'latestUser' => $latestUser,
+            'latestDeposit' => $latestDeposit,
+            'latestWithdrawal' => $latestWithdrawal,
+            'latestInvestment' => $latestInvestment,
+        ]);
     }
 
     // public function userList()
