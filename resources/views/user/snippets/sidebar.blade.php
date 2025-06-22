@@ -217,7 +217,7 @@
 
                                 <li class="side-nav-item">
                                     <a href="{{ route('markets.overview') }}" class="side-nav-link">
-                                        <span class="menu-text">Market Overview</span>
+                                        <span class="menu-text">Market Rates</span>
                                     </a>
                                 </li>
 
