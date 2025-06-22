@@ -270,9 +270,9 @@ class InvestmentController extends Controller
     protected function processReferralCommissions($investingUser, $investmentAmount, $reference, Investment $investment)
     {
         $commissionLevels = [
-            1 => 0.10, // 10% for level 1 (direct referral)
-            2 => 0.04, // 4% for level 2
-            3 => 0.015, // 1.5% for level 3
+            1 => 0.06,  // 6% for level 1 (direct referral)
+            2 => 0.025, // 2.5% for level 2
+            3 => 0.01,  // 1% for level 3
         ];
 
         $currentUser = $investingUser;

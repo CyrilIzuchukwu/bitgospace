@@ -121,7 +121,7 @@
                                         <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                             <tr>
                                                 <td style="vertical-align: top; padding-left: 15px;">
-                                                    <h4 style="color: #061f6d; font-size: 16px; font-weight: bold; margin: 0 0 5px;">📈 Level 1: 10% Commission</h4>
+                                                    <h4 style="color: #061f6d; font-size: 16px; font-weight: bold; margin: 0 0 5px;">📈 Level 1: 6% Commission</h4>
                                                     <p style="color: #666666; font-size: 14px; margin: 0; line-height: 1.4;">Direct referrals earn you the highest commission rate</p>
                                                 </td>
                                             </tr>
@@ -133,7 +133,7 @@
                                         <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                             <tr>
                                                 <td style="vertical-align: top; padding-left: 15px;">
-                                                    <h4 style="color: #061f6d; font-size: 16px; font-weight: bold; margin: 0 0 5px;">📊 Level 2: 4% Commission</h4>
+                                                    <h4 style="color: #061f6d; font-size: 16px; font-weight: bold; margin: 0 0 5px;">📊 Level 2: 2.5% Commission</h4>
                                                     <p style="color: #666666; font-size: 14px; margin: 0; line-height: 1.4;">Earn from your referrals' referrals</p>
                                                 </td>
                                             </tr>
@@ -145,7 +145,7 @@
                                         <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                             <tr>
                                                 <td style="vertical-align: top; padding-left: 15px;">
-                                                    <h4 style="color: #061f6d; font-size: 16px; font-weight: bold; margin: 0 0 5px;">🎯 Level 3: 1.5% Commission</h4>
+                                                    <h4 style="color: #061f6d; font-size: 16px; font-weight: bold; margin: 0 0 5px;">🎯 Level 3: 1% Commission</h4>
                                                     <p style="color: #666666; font-size: 14px; margin: 0; line-height: 1.4;">Build a deeper network for passive income</p>
                                                 </td>
                                             </tr>
