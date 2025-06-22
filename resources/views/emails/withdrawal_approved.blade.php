@@ -12,7 +12,7 @@
     <table width="100%" cellspacing="0" cellpadding="0" style="background-color: #061f6d; padding: 20px; border-radius: 8px 8px 0 0;">
         <tr>
             <td align="center">
-                <img src="cc" alt="BitGoSpace Logo" style="height:40px; width:auto;">
+                <img src="https://res.cloudinary.com/dpfcntrwo/image/upload/v1750386782/logo-dark_sezbb6.png" alt="BitGoSpace Logo" style="height:40px; width:auto;">
             </td>
         </tr>
     </table>

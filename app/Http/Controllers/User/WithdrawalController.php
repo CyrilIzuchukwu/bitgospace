@@ -8,6 +8,7 @@ use App\Models\Transaction;
 use App\Models\Wallet;
 use App\Models\WalletAddress;
 use App\Models\Withdrawal;
+use App\Models\WithdrawalWalletAddress;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
@@ -64,7 +65,7 @@ class WithdrawalController extends Controller
                 ->with('warning', 'Please set your transaction PIN before making withdrawals.');
         }
 
-        $wallets = WalletAddress::all();
+        $wallets = WithdrawalWalletAddress::all();
         return view('user.withdrawals.index', compact('wallets'));
     }
 

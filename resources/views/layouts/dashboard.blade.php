@@ -227,6 +227,16 @@
             overflow-y: auto !important;
             position: relative;
         } */
+
+        .wrapper {
+            overflow-x: hidden !important;
+        }
+
+        .page-content,
+        .page-container {
+            /* width: 100% !important; */
+            overflow-x: hidden !important;
+        }
     </style>
 
 </body>

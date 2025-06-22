@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ReferralCommissionEarnedMail;
 use App\Models\Investment;
 use App\Models\Plan;
 use App\Models\ReferralCommission;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 use Str;
 
@@ -310,6 +312,10 @@ class InvestmentController extends Controller
                     'amount' => $commission,
                     'percentage' => $commissionLevels[$level] * 100,
                 ]);
+
+
+                // ✅ Send email to the referrer
+                Mail::to($referrer->email)->send(new ReferralCommissionEarnedMail($referrer, $investingUser, $commission, $level));
             }
 
             $currentUser = $referrer;

@@ -44,7 +44,7 @@
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead class="bg-light">
-                            <tr class="text-uppercase fs-10">
+                            <tr class="text-uppercase fs-10 text-nowrap">
                                 <th>User</th>
                                 <th>Plan</th>
                                 <th>Amount</th>
@@ -159,9 +159,4 @@
         });
     });
 </script>
-
-
-
-
-
 @endsection
