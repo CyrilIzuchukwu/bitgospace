@@ -69,7 +69,7 @@
                                             <div class="card-body text-center">
                                                 <div class="level-badge bg-primary mb-3">1</div>
                                                 <h5>Level 1</h5>
-                                                <p>10% commission from direct referrals' investments</p>
+                                                <p>6% commission from direct referrals' investments</p>
                                             </div>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@
                                             <div class="card-body text-center">
                                                 <div class="level-badge bg-success mb-3">2</div>
                                                 <h5>Level 2</h5>
-                                                <p>4% commission from your referrals' referrals</p>
+                                                <p>2.5% commission from your referrals' referrals</p>
                                             </div>
                                         </div>
                                     </div>
@@ -87,7 +87,7 @@
                                             <div class="card-body text-center">
                                                 <div class="level-badge bg-info mb-3">3</div>
                                                 <h5>Level 3</h5>
-                                                <p>1.5% commission from third-level referrals</p>
+                                                <p>1% commission from third-level referrals</p>
                                             </div>
                                         </div>
                                     </div>

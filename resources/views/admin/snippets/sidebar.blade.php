@@ -143,12 +143,12 @@
 
 
 
-                    <li class="side-nav-item">
+                    <!-- <li class="side-nav-item">
                         <a href="dashboard-wallet.html" class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-wallet"></i></span>
                             <span class="menu-text"> Referrals </span>
                         </a>
-                    </li>
+                    </li> -->
 
 
 
@@ -192,6 +192,29 @@
                         </a>
                     </li>
 
+
+                    <li class="side-nav-item">
+                        <a data-bs-toggle="collapse" href="#pdf" aria-expanded="false" aria-controls="pdf" class="side-nav-link">
+                            <span class="menu-icon"><i class="ti ti-file-type-pdf"></i></span>
+                            <span class="menu-text">PDF Documents</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="pdf">
+                            <ul class="sub-menu">
+                                <li class="side-nav-item">
+                                    <a href="{{ route('admin.add-pdf') }}" class="side-nav-link">
+                                        <span class="menu-text">Add PDF</span>
+                                    </a>
+                                </li>
+
+                                <li class="side-nav-item">
+                                    <a href="{{ route('admin.pdf.list') }}" class="side-nav-link">
+                                        <span class="menu-text">PDF List</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
                     <li class="side-nav-item">
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form2').submit();" class="side-nav-link">

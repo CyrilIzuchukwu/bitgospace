@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminDepositController;
 use App\Http\Controllers\Admin\AdminInvestmentController;
 use App\Http\Controllers\Admin\AdminKycController;
 use App\Http\Controllers\Admin\AdminMediaController;
+use App\Http\Controllers\Admin\AdminPdfController;
 use App\Http\Controllers\Admin\AdminWithdrawalController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\WalletAddressController;
@@ -259,7 +260,8 @@ Route::middleware(['auth'])->prefix('user')->group(function () {
 
 
     Route::controller(PdfController::class)->group(function () {
-        Route::get('/pdf', 'pdf')->name('user.pdf');
+        // Route::get('/pdf', 'pdf')->name('user.pdf');
+        Route::get('/pdf/{language?}', [PdfController::class, 'pdf'])->name('user.pdf')->where('language', 'english|spanish|french|russian|chinese');
     });
 });
 
@@ -348,6 +350,19 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
         Route::put('/update-video/{reference}/{language}', 'updateVideo')->name('admin.update-video');
 
         Route::delete('/delete-video/{reference}/{language}', 'destroy')->name('admin.delete-video');
+    });
+
+
+    Route::prefix('pdf')->controller(AdminPdfController::class)->group(function () {
+        Route::get('/', 'index')->name('admin.pdf.list');
+
+        Route::get('/add-pdf', 'addPdf')->name('admin.add-pdf');
+
+        Route::post('/store-pdf', 'storePdf')->name('admin.store-pdf');
+
+        Route::get('/edit-pdf/{reference}/{language}', 'edit')->name('admin.edit-pdf');
+        Route::put('/update-pdf/{reference}/{language}', 'updatePdf')->name('admin.update-pdf');
+        Route::delete('/delete-pdf/{reference}/{language}', 'destroy')->name('admin.delete-pdf');
     });
 
 

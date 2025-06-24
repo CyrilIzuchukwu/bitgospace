@@ -11,7 +11,7 @@
                             <div class="text-center">
                                 <h3 class="mb-2 section-title">WITHDRAW FUNDS</h3>
                                 <p class="text-muted w-100 w-md-50 m-auto">
-                                    Withdraw your earnings to your preferred payment method
+                                    Withdraw your earnings to your preferred payment processor
                                 </p>
                             </div>
                         </div>

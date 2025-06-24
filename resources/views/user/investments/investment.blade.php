@@ -18,9 +18,9 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="text-center mb-4">
-                    <h3 class="mb-2" style="text-transform: uppercase;">Investment Portfolio</h3>
+                    <h3 class="mb-2" style="text-transform: uppercase;">Smart Trade Portfolio</h3>
                     <p class="text-muted w-100 m-auto">
-                        Overview of all your current and completed investments
+                        Everything you need to monitor your earnings, powered by Jarden.
                     </p>
                 </div>
 
@@ -49,7 +49,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <a href="{{ route('user.trades') }}" class="btn btn-primary bg-gradient"><i class="ti ti-file-import me-1"></i>New Investment</a>
+                                    <a href="{{ route('user.trades') }}" class="btn btn-primary bg-gradient"><i class="ti ti-file-import me-1"></i>New Trade</a>
                                 </div>
 
                             </div>

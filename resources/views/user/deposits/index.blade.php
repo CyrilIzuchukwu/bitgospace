@@ -25,7 +25,7 @@
                                     </svg>
                                 </div>
                                 <p class="text-muted w-100 w-md-50 m-auto">
-                                    You can fund your wallets using our various payments methods. Fill the details correctly & the amount you want to deposit
+                                    You can fund your wallets using our various payments processors. Fill the details correctly & the amount you want to deposit
                                 </p>
                             </div>
 

@@ -123,7 +123,7 @@
                     </li>
 
 
-                    <li class="side-nav-title mt-3">Referrals</li>
+                    <li class="side-nav-title mt-3">Jarden link</li>
 
 
 
