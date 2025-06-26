@@ -60,7 +60,10 @@
                             <input type="email" required placeholder="Email Address">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn-default">Subscribe</button>
+                            <button type="submit" class="btn-default" style="display: flex; align-items: center; gap: 5px;">
+                                Subscribe
+                                <img src="https://res.cloudinary.com/dpfcntrwo/image/upload/v1750930721/youtube1_lfeokf.jpg" alt="YouTube" style="width: 24px; border-radius: 2px; display: inline-block; vertical-align: middle;">
+                            </button>
                         </div>
                     </form>
                 </div>

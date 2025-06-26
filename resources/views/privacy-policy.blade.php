@@ -23,7 +23,7 @@
                 <div class="items">
                     <div class="item">
                         <p>Privacy Policy</p>
-                        <span>Last Updated: 29th February, 2023</span>
+                        <span>Last Updated: 29th February, 2025</span>
                         <span>At BitGoSpace, your privacy is important to us. This Privacy Policy explains how we collect, use, store, and protect your personal data when you use our website and services.</span>
                     </div>
 

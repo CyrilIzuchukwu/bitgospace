@@ -23,7 +23,7 @@
                 <div class="items">
                     <div class="item">
                         <p>Terms & Conditions</p>
-                        <span>Last Updated: 29th February, 2023</span>
+                        <span>Last Updated: 29th February, 2025</span>
                         <span>Welcome to BitGoSpace. By accessing or using our website and services, you agree to comply with and be bound by the following terms. Please read them carefully.</span>
                     </div>
 
@@ -112,7 +112,7 @@
 
                     <div class="item">
                         <p>12. Governing Law</p>
-                        <span>These Terms are governed by the laws of San Francisco, California, USA. Any disputes shall be resolved under its jurisdiction.</span>
+                        <span>These Terms are governed by the laws of British Virgin Island, British Overseas Territories. Any disputes shall be resolved under its jurisdiction.</span>
                     </div>
 
                     <div class="item">

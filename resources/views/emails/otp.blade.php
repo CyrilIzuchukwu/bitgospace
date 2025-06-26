@@ -47,15 +47,24 @@
                         </td>
                     </tr>
 
-                    <!-- Footer -->
+                    
                     <tr>
-                        <td style="background:#f8fafc; padding:20px 30px; text-align:center;">
-                            <p style="margin:0; color:#718096; font-size:12px;">
-                                © {{ date('Y') }} BitGoSpace. All rights reserved.
-                            </p>
-                            <p style="margin:10px 0 0 0; color:#718096; font-size:12px;">
-                                If you have any questions, contact us at <a href="mailto:support@bitgospace.com" style="color:#4299e1; text-decoration:none;">support@bitgospace.com</a>
-                            </p>
+                        <td style="background-color: #f8f9fa; padding: 20px; padding-top: 15px; padding-bottom: 15px; border-top: 1px solid #e0e0e0;" align="center">
+
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+                                <tr>
+                                    <td style="padding-bottom: 8px;" align="center">
+                                        <a href="https://www.youtube.com/channel/UCGcJhZzM8xEcir2O-HqR9WQ" target="_blank">
+                                            <img src="https://res.cloudinary.com/dpfcntrwo/image/upload/v1750930721/youtube1_lfeokf.jpg" alt="YouTube" style="width: 24px; border-radius: 2px; display: inline-block; vertical-align: middle;">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" valign="middle" style="font-size: 12px; color: #7f8c8d;">
+                                        © 2022 {{ config('app.name') }}. All rights reserved.
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </table>

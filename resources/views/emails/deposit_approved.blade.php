@@ -90,7 +90,16 @@
     <table width="100%" cellspacing="0" cellpadding="20" style="margin-top: 20px; color: #777777; font-size: 12px;">
         <tr>
             <td align="center">
-                <p style="margin: 0 0 10px 0;">© {{ date('Y') }} BitGoSpace. All rights reserved.</p>
+                <!-- YouTube Logo -->
+                <div style="margin-bottom: 15px;">
+                    <a href="https://www.youtube.com/channel/UCGcJhZzM8xEcir2O-HqR9WQ" target="_blank" style="display: inline-block;">
+                        <img src="https://res.cloudinary.com/dpfcntrwo/image/upload/v1750930721/youtube1_lfeokf.jpg"
+                            alt="YouTube"
+                            style="width: 24px; border-radius: 2px; vertical-align: middle;">
+                    </a>
+                </div>
+
+                <p style="margin: 0 0 10px 0;">© 2022 {{ config('app.name') }}. All rights reserved.</p>
                 <p style="margin: 0;">
                     <a href="{{ route('privacy-policy') }}" style="color: #061f6d; text-decoration: none; margin: 0 10px;">Privacy Policy</a>
                     <a href="{{ route('terms') }}" style="color: #061f6d; text-decoration: none; margin: 0 10px;">Terms of Service</a>

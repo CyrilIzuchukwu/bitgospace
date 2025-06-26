@@ -8,7 +8,7 @@
 
     <title>Bit-Go-Space</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.png') }}">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- CSS ============================================ -->
     <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}">

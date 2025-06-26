@@ -58,31 +58,6 @@
         <div class="row">
             <div class="col-lg-12">
 
-
-                <!-- <div class="logo-slider-container">
-                    <div class="logo-slider-track">
-                        <div class="logo-slide">
-                            <img src="{{ asset('assets/images/brand/brand1.png') }}" alt="Brand 1">
-                        </div>
-                        <div class="logo-slide">
-                            <img src="{{ asset('assets/images/brand/brand2.png') }}" alt="Brand 2">
-                        </div>
-                        <div class="logo-slide">
-                            <img src="{{ asset('assets/images/brand/brand3.png') }}" alt="Brand 3">
-                        </div>
-                        <div class="logo-slide">
-                            <img src="{{ asset('assets/images/brand/brand4.png') }}" alt="Brand 4">
-                        </div>
-                        <div class="logo-slide">
-                            <img src="{{ asset('assets/images/brand/brand3.png') }}" alt="Brand 3">
-                        </div>
-                    </div>
-
-
-                    <button class="slider-prev" aria-label="Previous">‹</button>
-                    <button class="slider-next" aria-label="Next">›</button>
-                </div> -->
-
                 <div class="marquee-slider-container">
                     <div class="marquee-slider-track">
                         <div class="marquee-slide">
@@ -398,7 +373,7 @@
                                                 It finds profitable trades fast, and I don't need to babysit it. I’ve seen consistent returns with zero stress.
                                             </p>
                                             <div class="client-info">
-                                                <h4 class="title">Carlos M.</h4>
+                                                <h4 class="title">Sergio Romero Delgado</h4>
                                                 <h6 class="rating">
                                                     <i class="ri-star-s-fill"></i>
                                                     <i class="ri-star-s-fill"></i>

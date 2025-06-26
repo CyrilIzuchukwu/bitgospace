@@ -65,7 +65,7 @@
     <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8f9fa; border-top: 1px solid #e9ecef;">
         <tr>
             <td style="padding: 20px; text-align: center; color: #718096; font-size: 12px;">
-                <p style="margin: 0;">© {{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
+                <p style="margin: 0;">©© 2022 {{ config('app.name') }}. All rights reserved.</p>
                 <p style="margin: 10px 0 0 0;">If you didn't request this email, please ignore it.</p>
             </td>
         </tr>

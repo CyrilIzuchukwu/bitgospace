@@ -50,10 +50,23 @@
                         </td>
                     </tr>
 
-                    <!-- Footer -->
                     <tr>
-                        <td style="text-align: center; padding: 20px; color: #666666; font-size: 12px; border-top: 1px solid #eeeeee;">
-                            <p style="margin: 0;">&copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
+                        <td style="background-color: #f8f9fa; padding: 20px; padding-top: 15px; padding-bottom: 15px; border-top: 1px solid #e0e0e0;" align="center">
+
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+                                <tr>
+                                    <td style="padding-bottom: 8px;" align="center">
+                                        <a href="https://www.youtube.com/channel/UCGcJhZzM8xEcir2O-HqR9WQ" target="_blank">
+                                            <img src="https://res.cloudinary.com/dpfcntrwo/image/upload/v1750930721/youtube1_lfeokf.jpg" alt="YouTube" style="width: 24px; border-radius: 2px; display: inline-block; vertical-align: middle;">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" valign="middle" style="font-size: 12px; color: #7f8c8d;">
+                                        © 2022 {{ config('app.name') }}. All rights reserved.
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </table>

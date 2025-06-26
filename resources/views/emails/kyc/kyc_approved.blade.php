@@ -132,25 +132,42 @@
                     <!-- Footer -->
                     <tr>
                         <td style="background-color: #061f6d; padding: 25px 30px; text-align: center;">
+                            <!-- YouTube Logo -->
+                            <div style="margin-bottom: 15px;">
+                                <a href="https://www.youtube.com/channel/UCGcJhZzM8xEcir2O-HqR9WQ" target="_blank" style="display: inline-block;">
+                                    <img src="https://res.cloudinary.com/dpfcntrwo/image/upload/v1750930721/youtube1_lfeokf.jpg"
+                                        alt="YouTube"
+                                        style="width: 24px; border-radius: 2px; vertical-align: middle;">
+                                </a>
+                            </div>
+
                             <p style="color: #ffffff; font-size: 14px; margin: 0 0 10px; line-height: 1.4;">
                                 Thank you for choosing BitGoSpace
                             </p>
                             <p style="color: #b3c3f7; font-size: 12px; margin: 0; line-height: 1.4;">
                                 If you have any concerns about this email, please contact our support team.
                             </p>
+
                             <table cellpadding="0" cellspacing="0" border="0" style="margin: 20px auto 0;">
                                 <tr>
                                     <td style="padding: 0 10px;">
-                                        <a href="#" style="color: #ffffff; text-decoration: none; font-size: 12px;">Privacy Policy</a>
+                                        <a href="{{ route('privacy-policy') }}" target="_blank" style="color: #ffffff; text-decoration: none; font-size: 12px;">Privacy Policy</a>
                                     </td>
                                     <td style="color: #b3c3f7; font-size: 12px;">|</td>
                                     <td style="padding: 0 10px;">
-                                        <a href="#" style="color: #ffffff; text-decoration: none; font-size: 12px;">Terms of Service</a>
+                                        <a href="{{ route('terms') }}" target="_blank" style="color: #ffffff; text-decoration: none; font-size: 12px;">Terms of Service</a>
                                     </td>
                                     <td style="color: #b3c3f7; font-size: 12px;">|</td>
-
+                                    <td style="padding: 0 10px;">
+                                        <a href="{{ route('contact') }}" target="_blank" style="color: #ffffff; text-decoration: none; font-size: 12px;">Contact Us</a>
+                                    </td>
                                 </tr>
                             </table>
+
+                            <!-- Copyright text -->
+                            <p style="color: #b3c3f7; font-size: 12px; margin: 20px 0 0; line-height: 1.4;">
+                                © 2022 {{ config('app.name') }}. All rights reserved.
+                            </p>
                         </td>
                     </tr>
 

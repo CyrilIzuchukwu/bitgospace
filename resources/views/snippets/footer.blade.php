@@ -5,7 +5,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="copyright-left">
                                 <ul class="ft-menu link-hover">
-                                    <li><a style="text-align: center;" href="javascript:void(0)">&copy; {{ date('Y') }} BitGoSpace. All rights reserved.</a></li>
+                                    <li><a style="text-align: center;" href="javascript:void(0)">© 2022 BitGoSpace. All rights reserved.</a></li>
 
                                 </ul>
                             </div>

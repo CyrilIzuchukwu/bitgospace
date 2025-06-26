@@ -11,6 +11,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
     <!-- App favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.png') }}">
 
@@ -169,6 +170,75 @@
 
         .swal2-icon-content {
             font-size: 16px !important;
+        }
+    </style>
+
+
+
+    <div class="support-button-container">
+        <a href="{{ route('admin.support.tickets') }}" id="supportButton" class="btn btn-primary rounded-circle p-3 shadow-lg">
+            <i class="ri-customer-service-2-line fs-4"></i>
+        </a>
+    </div>
+
+    <!-- support css  -->
+    <style>
+        /* Support Button Styles */
+        .support-button-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        #supportButton {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #4985d3;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        #supportButton:hover {
+            transform: scale(1.1);
+            background-color: #3a6db0;
+        }
+
+        /* Animation for attention */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        #supportButton.pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @media only screen and (max-width: 767px) {
+
+            .support-button-container {
+                position: fixed;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            #supportButton {
+                width: 35px;
+                height: 35px;
+            }
+
         }
     </style>
 

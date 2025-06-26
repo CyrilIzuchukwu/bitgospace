@@ -103,7 +103,7 @@
                     <!-- Footer -->
                     <tr>
                         <td style="background-color: #f8f9fa; padding: 20px; text-align: center; border-top: 1px solid #e0e0e0;">
-                            <p style="margin: 0; color: #7f8c8d; font-size: 12px;">© {{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
+                            <p style="margin: 0; color: #7f8c8d; font-size: 12px;">© 2022 {{ config('app.name') }}. All rights reserved.</p>
                         </td>
                     </tr>
                 </table>

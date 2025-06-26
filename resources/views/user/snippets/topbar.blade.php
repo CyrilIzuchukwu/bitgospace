@@ -71,20 +71,23 @@
             </div>
 
             <!-- Language Dropdown -->
-            <!-- <div class="topbar-item">
-                <div class="dropdown">
-                    <button class="topbar-link" data-bs-toggle="dropdown" data-bs-offset="0,25" type="button" aria-haspopup="false" aria-expanded="false">
-                        <img src="dashboard_assets/assets/images/flags/us.svg" alt="user-image" class="w-100 rounded" height="18" id="selected-language-image">
+            <div class="topbar-item">
+                <!-- <div class="dropdown">
+                    <button class="topbar-link d-flex align-items-center" id="languageButton" data-bs-toggle="dropdown" data-bs-offset="0,25" type="button" aria-haspopup="false" aria-expanded="false">
+                        Language
+                        <i class="ti ti-chevron-down d-none d-lg-block align-middle ms-2"></i>
                     </button>
 
-                    <div class="dropdown-menu dropdown-menu-end">
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown" id="languageDropdownMenu">
+                        <li><a class="dropdown-item language-option" href="#" data-lang="en" data-language="English">English</a></li>
+                        <li><a class="dropdown-item language-option" href="#" data-lang="fr" data-language="French">Français</a></li>
+                        <li><a class="dropdown-item language-option" href="#" data-lang="zh" data-language="Chinese">中文</a></li>
+                        <li><a class="dropdown-item language-option" href="#" data-lang="es" data-language="Spanish">Español</a></li>
+                        <li><a class="dropdown-item language-option" href="#" data-lang="ru" data-language="Russian">Русский</a></li>
+                    </ul>
+                </div> -->
 
-                        <a href="javascript:void(0);" class="dropdown-item" data-translator-lang="en">
-                            <img src="dashboard_assets/assets/images/flags/us.svg" alt="user-image" class="me-1 rounded" height="18" data-translator-image> <span class="align-middle">English</span>
-                        </a>
-                    </div>
-                </div>
-            </div> -->
+            </div>
 
 
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminInvestmentController;
 use App\Http\Controllers\Admin\AdminKycController;
 use App\Http\Controllers\Admin\AdminMediaController;
 use App\Http\Controllers\Admin\AdminPdfController;
+use App\Http\Controllers\Admin\AdminSupportController;
 use App\Http\Controllers\Admin\AdminWithdrawalController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\WalletAddressController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\User\NowPaymentsController;
 use App\Http\Controllers\User\PdfController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\ReferralController;
+use App\Http\Controllers\User\SupportController;
 use App\Http\Controllers\User\TransactionController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\UserMediaController;
@@ -263,6 +265,25 @@ Route::middleware(['auth'])->prefix('user')->group(function () {
         // Route::get('/pdf', 'pdf')->name('user.pdf');
         Route::get('/pdf/{language?}', [PdfController::class, 'pdf'])->name('user.pdf')->where('language', 'english|spanish|french|russian|chinese');
     });
+
+
+    Route::controller(SupportController::class)->group(function () {
+
+        Route::get('/support/ticket', 'support')->name('user.support');
+
+
+        Route::get('/support/ticket/create', 'createSupport')->name('user.create.support');
+        Route::post('/tickets', 'store')->name('user.tickets.store');
+        // View ticket
+        Route::get('/ticket/view/{reference_id}', [SupportController::class, 'viewTicket'])->name('user.ticket.view');
+        // Add message
+        Route::post('/ticket/{reference_id}/message', [SupportController::class, 'addMessage'])->name('user.ticket.message');
+
+        // Close ticket
+        Route::post('/ticket/{reference_id}/close', [SupportController::class, 'closeTicket'])->name('user.ticket.close');
+
+        Route::delete('/ticket-messages/{message}', [SupportController::class, 'deleteMessage'])->name('user.ticket.message.delete');
+    });
 });
 
 
@@ -372,5 +393,19 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
         Route::get('/{id}', 'show')->name('admin.kyc.show');
         Route::post('/{id}/approve', 'approve')->name('admin.kyc.approve');
         Route::post('/{id}/reject', 'reject')->name('admin.kyc.reject');
+    });
+
+
+    // admin support
+    Route::controller(AdminSupportController::class)->group(function () {
+
+        Route::get('/support/tickets', 'support')->name('admin.support.tickets');
+        // View ticket
+        Route::get('/ticket/view/{reference_id}', 'viewTicket')->name('admin.ticket.view');
+
+        // Add message
+        Route::post('/ticket/{reference_id}/message', 'addMessage')->name('admin.ticket.message');
+        // Close ticket
+        Route::post('/ticket/{reference_id}/close', 'closeTicket')->name('admin.ticket.close');
     });
 });
