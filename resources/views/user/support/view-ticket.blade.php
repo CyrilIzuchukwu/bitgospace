@@ -138,6 +138,7 @@
                                     </div>
                                 </div>
 
+
                                 <div class="col-auto">
                                     <!-- Attachment input -->
                                     <label class="btn btn-icon btn-soft-primary mb-0" style="cursor:pointer;">
@@ -150,7 +151,7 @@
                                     <input type="text" name="message" class="form-control" placeholder="Type Message..." required>
                                 </div>
 
-                                <div class="col-sm-auto">
+                                <div class="col-auto">
                                     <div class="d-flex align-items-center gap-1">
                                         <button type="submit" class="btn btn-icon btn-success">
                                             <i class='ti ti-send'></i>
