@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="page-content">
-    <div class="page-container">
+    <div class="page-container" style="width: 100%; overflow-x: hidden;">
 
         <div class="row">
             <div class="col-12">

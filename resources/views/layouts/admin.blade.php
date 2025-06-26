@@ -173,6 +173,56 @@
         }
     </style>
 
+    <style>
+        @media only screen and (max-width: 767px) {
+            body {
+                width: 100%;
+                overflow-x: hidden !important;
+            }
+
+
+            body {
+                overflow: auto !important;
+                overflow-y: scroll;
+            }
+        }
+
+        body,
+        html {
+            overflow-x: hidden;
+            overflow-y: auto !important;
+            height: 100% !important;
+        }
+
+        body,
+        html {
+            overflow-x: hidden;
+            overflow-y: auto !important;
+            height: 100% !important;
+        }
+
+        /* .wrapper {
+            min-height: 100vh;
+            overflow-y: auto !important;
+        }
+
+        .page-content {
+            overflow-y: auto !important;
+            position: relative;
+        } */
+
+        @media only screen and (max-width: 767px) {
+            .wrapper {
+                overflow-x: hidden !important;
+            }
+
+
+            .page-container {
+                overflow-x: hidden !important;
+            }
+        }
+    </style>
+
 
 
     <div class="support-button-container">

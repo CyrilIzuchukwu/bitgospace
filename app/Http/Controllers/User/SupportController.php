@@ -39,7 +39,7 @@ class SupportController extends Controller
         $request->validate([
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
-            'attachment' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048' // 2MB max
+            'attachment' => 'nullable|file'
         ]);
 
         $attachmentPath = null;
@@ -172,9 +172,18 @@ class SupportController extends Controller
         try {
             $ticket = Ticket::where('reference_id', $reference_id)->firstOrFail();
 
-            if ($ticket->user_id !== Auth::id()) {
-                return response()->json(['success' => false, 'message' => 'Unauthorized.'], 403);
-            }
+            // if ($ticket->user_id !== Auth::id()) {
+            //     return response()->json(['success' => false, 'message' => 'Unauthorized.'], 403);
+            // }
+
+            // if (!Auth::check() || $ticket->user_id != Auth::id()) {
+            //     \Log::warning('Unauthorized ticket access attempt', [
+            //         'auth_id' => Auth::id(),
+            //         'ticket_user_id' => $ticket->user_id,
+            //         'ticket_id' => $ticket->id
+            //     ]);
+            //     return response()->json(['success' => false, 'message' => 'Unauthorized.'], 403);
+            // }
 
             if ($ticket->status !== 'open') {
                 return response()->json(['success' => false, 'message' => 'Ticket is closed.'], 400);
@@ -238,18 +247,4 @@ class SupportController extends Controller
             return response()->json(['success' => false, 'message' => 'Error closing ticket.'], 500);
         }
     }
-
-
-
-    // public function show($reference_id)
-    // {
-    //     $ticket = Ticket::where('reference_id', $reference_id)
-    //         ->where('user_id', Auth::id())
-    //         ->with(['messages' => function ($query) {
-    //             $query->orderBy('created_at', 'asc');
-    //         }])
-    //         ->firstOrFail();
-
-    //     return view('ticket.show', compact('ticket'));
-    // }
 }
