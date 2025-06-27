@@ -89,7 +89,7 @@ class DepositController extends Controller
             'payment_method' => $request->payment_method,
             'status' => 'initiated',
             'expires_at' => Carbon::now()->addHour(),
-            // 'expires_at' => now()->addSeconds(30),
+            // 'expires_at' => now()->addSeconds(90),
         ]);
 
         // Save to session
@@ -141,6 +141,38 @@ class DepositController extends Controller
         $cryptoAmount = $converter->convertToCrypto($deposit->amount, $wallet->symbol);
 
         return view('user.deposits.wallet', compact('deposit', 'wallet', 'cryptoAmount'));
+    }
+
+    public function cancel(Request $request)
+    {
+        $depositId = session('deposit_id');
+
+        if (!$depositId) {
+            return redirect()->route('user.deposit')->with('error', 'No active deposit to cancel.');
+        }
+
+        $deposit = Deposit::find($depositId);
+
+        if (!$deposit) {
+            session()->forget('deposit_id');
+            return redirect()->route('user.deposit')->with('error', 'Deposit not found.');
+        }
+
+        if ($deposit->status !== 'initiated') {
+            session()->forget('deposit_id');
+            return redirect()->route('user.deposit')->with('error', 'This deposit cannot be cancelled.');
+        }
+
+        // Update status and delete
+        $deposit->delete(); // or forceDelete() if you want permanent deletion
+
+        session()->forget('deposit_id');
+
+        return response()->json([
+            'success' => true,
+            'redirect' => route('user.deposit'),
+            'message' => 'Your deposit has been successfully cancelled. You can initiate a new deposit anytime.'
+        ]);
     }
 
 

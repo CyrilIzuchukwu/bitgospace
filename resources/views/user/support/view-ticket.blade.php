@@ -179,7 +179,7 @@
 </div>
 <style>
     .chat-scroll {
-        height: calc(100vh - 130px);
+        height: calc(100vh - 200px);
     }
 
     .bottom-form-chat {

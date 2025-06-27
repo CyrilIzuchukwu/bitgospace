@@ -66,12 +66,18 @@
                                     <p class="btc-value">
                                         <span class="converted" id="converted">
                                             @if($cryptoAmount > 0)
-                                            {{ number_format($cryptoAmount, 8) }}
-                                            @else
-                                            Rate unavailable
-                                            @endif
-                                        </span>
-                                        <span class="currency">{{ $wallet->symbol }}</span>
+                                            @if($cryptoAmount < 0.0001)
+                                                {{ number_format($cryptoAmount, 12) }}
+                                                @elseif($cryptoAmount < 1)
+                                                {{ number_format($cryptoAmount, 8) }}
+                                                @else
+                                                {{ number_format($cryptoAmount, 4) }}
+                                                @endif
+                                                @else
+                                                Rate unavailable
+                                                @endif
+                                                </span>
+                                                <span class="currency">{{ $wallet->symbol }}</span>
                                     </p>
                                 </div>
 
@@ -146,9 +152,14 @@
                             </div>
 
 
-                            <div class="pt-3">
+
+                            <div class="confirm-cancel">
+
                                 <button type="submit" class="submit-btn btn-default">Confirm &amp; Deposit<i class="ti ti-chevron-right ms-1"></i></button>
+                                <button type="button" id="cancelDepositBtn" class="btn btn-danger cancel-button">Cancel Deposit</button>
                             </div>
+
+
 
                         </form>
 
@@ -406,7 +417,95 @@
             transform: rotate(360deg);
         }
     }
+
+    .confirm-cancel {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 10px;
+        margin-top: 40px;
+    }
+
+    @media only screen and (max-width: 767px) {
+        .confirm-cancel {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            row-gap: 10px;
+            margin-top: 40px;
+        }
+    }
 </style>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cancelButton = document.getElementById('cancelDepositBtn');
+
+        if (cancelButton) {
+            cancelButton.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Cancel Deposit',
+                    text: "Are you sure you want to cancel this deposit request?",
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, cancel it!',
+                    cancelButtonText: 'No, keep it',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Show loading state
+                        const originalText = cancelButton.innerHTML;
+                        cancelButton.innerHTML = `
+                        <span class="spinner-border spinner-border-sm" role="status"></span>
+                        Processing...
+                    `;
+                        cancelButton.disabled = true;
+
+                        // Make the API call
+                        fetch('{{ route("cancel.deposit") }}', {
+                                method: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json'
+                                },
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    Swal.fire({
+                                        title: 'Cancelled!',
+                                        text: data.message,
+                                        confirmButtonColor: '#3085d6',
+                                    }).then(() => {
+                                        window.location.href = data.redirect;
+                                    });
+                                } else {
+                                    throw new Error(data.message || 'Failed to cancel deposit');
+                                }
+                            })
+                            .catch(error => {
+                                // Restore button state
+                                cancelButton.innerHTML = originalText;
+                                cancelButton.disabled = false;
+
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: error.message,
+                                    confirmButtonColor: '#3085d6',
+                                });
+                            });
+                    }
+                });
+            });
+        }
+    });
+</script>
 
 
 @endsection

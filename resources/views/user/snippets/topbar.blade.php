@@ -72,21 +72,84 @@
 
             <!-- Language Dropdown -->
             <div class="topbar-item">
-                <!-- <div class="dropdown">
-                    <button class="topbar-link d-flex align-items-center" id="languageButton" data-bs-toggle="dropdown" data-bs-offset="0,25" type="button" aria-haspopup="false" aria-expanded="false">
-                        Language
-                        <i class="ti ti-chevron-down d-none d-lg-block align-middle ms-2"></i>
-                    </button>
-
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown" id="languageDropdownMenu">
-                        <li><a class="dropdown-item language-option" href="#" data-lang="en" data-language="English">English</a></li>
-                        <li><a class="dropdown-item language-option" href="#" data-lang="fr" data-language="French">Français</a></li>
-                        <li><a class="dropdown-item language-option" href="#" data-lang="zh" data-language="Chinese">中文</a></li>
-                        <li><a class="dropdown-item language-option" href="#" data-lang="es" data-language="Spanish">Español</a></li>
-                        <li><a class="dropdown-item language-option" href="#" data-lang="ru" data-language="Russian">Русский</a></li>
-                    </ul>
-                </div> -->
-
+                <div class="language-selector">
+                    <select id="languageSelect" onchange="changeLanguage()">
+                        <option value="en">🇺🇸 English</option>
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="fr">🇫🇷 Français</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                        <option value="it">🇮🇹 Italiano</option>
+                        <option value="pt">🇵🇹 Português</option>
+                        <option value="ru">🇷🇺 Русский</option>
+                        <option value="ja">🇯🇵 日本語</option>
+                        <option value="ko">🇰🇷 한국어</option>
+                        <option value="zh">🇨🇳 中文</option>
+                        <option value="ar">🇸🇦 العربية</option>
+                        <option value="hi">🇮🇳 हिंदी</option>
+                        <option value="th">🇹🇭 ไทย</option>
+                        <option value="vi">🇻🇳 Tiếng Việt</option>
+                        <option value="nl">🇳🇱 Nederlands</option>
+                        <option value="sv">🇸🇪 Svenska</option>
+                        <option value="da">🇩🇰 Dansk</option>
+                        <option value="no">🇳🇴 Norsk</option>
+                        <option value="fi">🇫🇮 Suomi</option>
+                        <option value="pl">🇵🇱 Polski</option>
+                        <option value="tr">🇹🇷 Türkçe</option>
+                        <option value="he">🇮🇱 עברית</option>
+                        <option value="id">🇮🇩 Bahasa Indonesia</option>
+                        <option value="ms">🇲🇾 Bahasa Melayu</option>
+                        <option value="tl">🇵🇭 Filipino</option>
+                        <option value="uk">🇺🇦 Українська</option>
+                        <option value="cs">🇨🇿 Čeština</option>
+                        <option value="hu">🇭🇺 Magyar</option>
+                        <option value="ro">🇷🇴 Română</option>
+                        <option value="bg">🇧🇬 Български</option>
+                        <option value="hr">🇭🇷 Hrvatski</option>
+                        <option value="sk">🇸🇰 Slovenčina</option>
+                        <option value="sl">🇸🇮 Slovenščina</option>
+                        <option value="et">🇪🇪 Eesti</option>
+                        <option value="lv">🇱🇻 Latviešu</option>
+                        <option value="lt">🇱🇹 Lietuvių</option>
+                        <option value="mt">🇲🇹 Malti</option>
+                        <option value="is">🇮🇸 Íslenska</option>
+                        <option value="ga">🇮🇪 Gaeilge</option>
+                        <option value="cy">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Cymraeg</option>
+                        <option value="eu">🏴󠁥󠁳󠁰󠁶󠁿 Euskera</option>
+                        <option value="ca">🏴󠁥󠁳󠁣󠁴󠁿 Català</option>
+                        <option value="gl">🏴󠁥󠁳󠁧󠁡󠁿 Galego</option>
+                        <option value="af">🇿🇦 Afrikaans</option>
+                        <option value="sw">🇰🇪 Kiswahili</option>
+                        <option value="zu">🇿🇦 isiZulu</option>
+                        <option value="xh">🇿🇦 isiXhosa</option>
+                        <option value="yo">🇳🇬 Yorùbá</option>
+                        <option value="ig">🇳🇬 Igbo</option>
+                        <option value="ha">🇳🇬 Hausa</option>
+                        <option value="am">🇪🇹 አማርኛ</option>
+                        <option value="fa">🇮🇷 فارسی</option>
+                        <option value="ur">🇵🇰 اردو</option>
+                        <option value="bn">🇧🇩 বাংলা</option>
+                        <option value="gu">🇮🇳 ગુજરાતી</option>
+                        <option value="kn">🇮🇳 ಕನ್ನಡ</option>
+                        <option value="ml">🇮🇳 മലയാളം</option>
+                        <option value="mr">🇮🇳 मराठी</option>
+                        <option value="ne">🇳🇵 नेपाली</option>
+                        <option value="pa">🇮🇳 ਪੰਜਾਬੀ</option>
+                        <option value="si">🇱🇰 සිංහල</option>
+                        <option value="ta">🇮🇳 தமிழ்</option>
+                        <option value="te">🇮🇳 తెలుగు</option>
+                        <option value="my">🇲🇲 မြန်မာ</option>
+                        <option value="km">🇰🇭 ខ្មែរ</option>
+                        <option value="lo">🇱🇦 ລາວ</option>
+                        <option value="ka">🇬🇪 ქართული</option>
+                        <option value="hy">🇦🇲 Հայերեն</option>
+                        <option value="az">🇦🇿 Azərbaycan</option>
+                        <option value="kk">🇰🇿 Қазақ</option>
+                        <option value="ky">🇰🇬 Кыргыз</option>
+                        <option value="uz">🇺🇿 O'zbek</option>
+                        <option value="tg">🇹🇯 Тоҷикӣ</option>
+                        <option value="mn">🇲🇳 Монгол</option>
+                    </select>
+                </div>
             </div>
 
 

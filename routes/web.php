@@ -181,6 +181,10 @@ Route::middleware(['auth'])->prefix('user')->group(function () {
         Route::get('/deposit', 'deposit')->name('user.deposit');
         Route::post('/deposit', 'store')->name('deposit.store');
         Route::get('/confirm/deposit', 'showWallet')->name('confirm.deposit');
+
+        Route::post('user/deposit/cancel', [DepositController::class, 'cancel'])->name('cancel.deposit');
+
+
         Route::post('/process-deposit', 'processDeposit')->name('process.deposit');
         Route::get('/deposit/success', 'depositSuccess')->name('deposit.success');
         Route::get('/deposit-list', 'depositList')->name('user.deposit-list');
