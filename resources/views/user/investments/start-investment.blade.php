@@ -30,11 +30,11 @@
 
                             <!-- Pricing Title-->
                             <div class="text-center">
-                                <h3 class="mb-2">NEW INVESTMENT</h3>
+                                <h3 class="mb-2">NEW SMART TRADE</h3>
                                 <!-- <p class="mb-2 text-center">Step: 1 of 2</p> -->
 
                                 <p class="text-muted w-100 w-md-50 m-auto">
-                                    You can invest in any plan using your wallet.
+                                    You can trade in any plan using your wallet.
                                 </p>
                             </div>
 
@@ -50,9 +50,9 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label class="form-label">Investment Plan</label>
+                                        <label class="form-label">Smart Trade Plan</label>
                                         <input type="text" name="plan_name" value="{{ $plan->name }}" class="form-control" placeholder="" readonly>
-                                        <small class="info">* Invest for Daily and get profit {{ $plan->interest_rate }}%</small>
+                                        <small class="info">* Trade for Daily and get profit {{ $plan->interest_rate }}%</small>
                                     </div>
                                 </div>
 

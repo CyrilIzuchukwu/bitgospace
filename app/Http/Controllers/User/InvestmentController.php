@@ -81,13 +81,13 @@ class InvestmentController extends Controller
             // Validate amount against plan limits
             if ($validated['amount'] < $plan->minimum_amount) {
                 throw ValidationException::withMessages([
-                    'amount' => 'Minimum investment for this plan is $' . number_format($plan->minimum_amount, 2)
+                    'amount' => 'Minimum trade for this plan is $' . number_format($plan->minimum_amount, 2)
                 ]);
             }
 
             if ($validated['amount'] > $plan->maximum_amount) {
                 throw ValidationException::withMessages([
-                    'amount' => 'Maximum investment for this plan is $' . number_format($plan->maximum_amount, 2)
+                    'amount' => 'Maximum  for trade this plan is $' . number_format($plan->maximum_amount, 2)
                 ]);
             }
 
