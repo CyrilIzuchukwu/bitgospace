@@ -24,7 +24,7 @@
 
                     <!-- Pricing Title-->
                     <div class="text-center">
-                        <h3 class="mb-2">CONFIRM STAKE</h3>
+                        <h3 class="mb-2">CONFIRM SMART TRADE</h3>
                     </div>
 
                 </div>
@@ -34,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header bg-light">
-                        <h5 class="mb-0">Investment Summary</h5>
+                        <h5 class="mb-0">Smart Trade Summary</h5>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -54,7 +54,7 @@
 
                                     <div class="plan-details">
                                         <div class="d-flex justify-content-between py-2 border-bottom">
-                                            <span class="text-muted">Investment Amount:</span>
+                                            <span class="text-muted">Trade Amount:</span>
                                             <span class="fw-medium">${{ number_format($amount, 2) }}</span>
                                         </div>
                                         <div class="d-flex justify-content-between py-2 border-bottom">
@@ -79,7 +79,7 @@
                                             <div>
                                                 <h6 class="mb-1">Important Note</h6>
                                                 <p class="small mb-0">
-                                                    Your investment will start earning returns immediately after confirmation.
+                                                    Your smart trades will start earning returns immediately after confirmation.
                                                     Monitor progress in your dashboard.
                                                 </p>
                                             </div>
