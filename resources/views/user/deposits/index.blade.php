@@ -47,9 +47,9 @@
 
                                 <div class="col-md-12">
                                     <div class="mb-2 mt-2 mt-md-2">
-                                        <label for="InvoicePaymentStatus" class="form-label">Payment Method</label>
+                                        <label for="InvoicePaymentStatus" class="form-label">Payment Processor</label>
                                         <select name="payment_method" class="form-select">
-                                            <option selected disabled>Select Payment Method</option>
+                                            <option selected disabled>Select Payment Processor</option>
                                             @foreach($wallets as $wallet)
                                             <option value="{{ $wallet->name }}" {{ old('payment_method') == $wallet->name ? 'selected' : '' }}>
                                                 {{ $wallet->name }}
