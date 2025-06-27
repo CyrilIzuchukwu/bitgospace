@@ -152,10 +152,6 @@
                 </div>
             </div>
 
-
-
-
-
             <!-- Light/Dark Mode Button -->
             <!-- <div class="topbar-item d-none d-sm-flex">
                 <button class="topbar-link" id="light-dark-mode" type="button">

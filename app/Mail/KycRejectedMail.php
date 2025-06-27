@@ -13,15 +13,15 @@ class KycRejectedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
+    public $userToNotify;
     public $rejectionReason;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($user, $rejectionReason)
+    public function __construct($userToNotify, $rejectionReason)
     {
-        $this->user = $user;
+        $this->userToNotify = $userToNotify;
         $this->rejectionReason = $rejectionReason;
     }
 
@@ -43,7 +43,7 @@ class KycRejectedMail extends Mailable
         return new Content(
             view: 'emails.kyc.kyc_rejected',
             with: [
-                'user' => $this->user,
+                'user' => $this->userToNotify,
                 'rejectionReason' => $this->rejectionReason,
             ],
         );

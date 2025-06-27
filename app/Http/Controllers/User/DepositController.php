@@ -219,7 +219,7 @@ class DepositController extends Controller
         // dd($wallet);
 
         $user = Auth::user();
-        $kycAdminEmail = env('KYC_ADMIN_EMAIL');
+        $kycAdminEmail = env('KYC_ADMIN_EMAIL', 'hello@bitgospace.com');
 
         $reference = 'DEP-' . strtoupper($wallet->symbol) . '-' . now()->format('ymdHis') . '-' . strtoupper(Str::random(5));
 

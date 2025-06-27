@@ -24,6 +24,8 @@ class KycVerification extends Model
         return $this->belongsTo(User::class);
     }
 
+
+
     // Scopes
     public function scopePending($query)
     {

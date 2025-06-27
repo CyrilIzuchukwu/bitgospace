@@ -13,14 +13,14 @@ class KycApprovedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
+    public $userToNotify;
     /**
      * Create a new message instance.
      */
-    public function __construct($user)
+    public function __construct($userToNotify)
     {
         //
-        $this->user = $user;
+        $this->userToNotify = $userToNotify;
     }
 
     /**
@@ -41,7 +41,7 @@ class KycApprovedMail extends Mailable
         return new Content(
             view: 'emails.kyc.kyc_approved',
             with: [
-                'user' => $this->user,
+                'userToNotify' => $this->userToNotify,
             ],
         );
     }

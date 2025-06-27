@@ -35,7 +35,7 @@
                             <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                 <tr>
                                     <td style="background-color: #f8f9fa; padding: 25px; border-radius: 6px; border-left: 4px solid #d32f2f;">
-                                        <h2 style="color: #061f6d; font-size: 18px; font-weight: bold; margin: 0 0 15px;">Hello {{ $user->name ?? 'Valued Customer' }},</h2>
+                                        <h2 style="color: #061f6d; font-size: 18px; font-weight: bold; margin: 0 0 15px;">Hello {{ $userToNotify->name ?? 'Valued Customer' }},</h2>
                                         <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 15px;">
                                             We regret to inform you that your KYC (Know Your Customer) verification has <strong style="color: #d32f2f;">not been approved</strong>.
                                         </p>

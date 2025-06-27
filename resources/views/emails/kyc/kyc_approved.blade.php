@@ -24,7 +24,6 @@
                     <!-- Success Icon and Title -->
                     <tr>
                         <td style="padding: 40px 30px 20px; text-align: center;">
-
                             <h1 style="color: #061f6d; font-size: 28px; font-weight: bold; margin: 0 0 10px; line-height: 1.2;">KYC Verification Approved!</h1>
                             <p style="color: #666666; font-size: 16px; margin: 0; line-height: 1.4;">Congratulations! Your identity verification has been successfully completed.</p>
                         </td>
@@ -36,7 +35,7 @@
                             <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                 <tr>
                                     <td style="background-color: #f8f9fa; padding: 25px; border-radius: 6px; border-left: 4px solid #061f6d;">
-                                        <h2 style="color: #061f6d; font-size: 18px; font-weight: bold; margin: 0 0 15px;">Hello {{ $user->name ?? 'Valued Customer' }},</h2>
+                                        <h2 style="color: #061f6d; font-size: 18px; font-weight: bold; margin: 0 0 15px;">Hello {{ $userToNotify->name ?? 'Valued Customer' }},</h2>
                                         <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 15px;">
                                             We're excited to inform you that your KYC (Know Your Customer) verification has been <strong style="color: #4CAF50;">successfully approved</strong>!
                                         </p>

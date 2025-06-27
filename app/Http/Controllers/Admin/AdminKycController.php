@@ -42,18 +42,88 @@ class AdminKycController extends Controller
     }
 
 
+    // public function approve($id)
+    // {
+    //     DB::beginTransaction();
+
+    //     try {
+    //         $kyc = KycVerification::findOrFail($id);
+    //         $user = $kyc->user;
+
+    //         dd($user);
+
+    //         // ✅ Send email before updating anything
+    //         Mail::to($user->email)->send(new KycApprovedMail($user));
+
+    //         // ✅ Now update KYC status
+    //         $kyc->update([
+    //             'status' => 'approved',
+    //             'reviewed_at' => now(),
+    //         ]);
+
+    //         DB::commit();
+
+    //         return back()->with('success', 'KYC approved successfully.');
+    //     } catch (\Exception $e) {
+    //         DB::rollBack();
+
+    //         return back()->with('error', 'Failed to approve KYC: ' . $e->getMessage());
+    //     }
+    // }
+
+    // public function approve($id)
+    // {
+    //     DB::beginTransaction();
+
+    //     try {
+    //         $kyc = KycVerification::with('user')->findOrFail($id);
+
+    //         dd($kyc);
+    //         $user = $kyc->user;
+
+    //         // dd($user);
+
+    //         // Verify the user is correct before sending email
+    //         if (!$user) {
+    //             throw new \Exception('User not found for this KYC');
+    //         }
+
+    //         // Mail::to($user->email)->send(new KycApprovedMail($user));
+    //         Mail::to($kyc->user->email)->send(new KycApprovedMail($kyc->user));
+
+    //         $kyc->update([
+    //             'status' => 'approved',
+    //             'reviewed_at' => now(),
+    //         ]);
+
+    //         DB::commit();
+
+    //         return back()->with('success', 'KYC approved successfully.');
+    //     } catch (\Exception $e) {
+    //         DB::rollBack();
+    //         return back()->with('error', 'Failed to approve KYC: ' . $e->getMessage());
+    //     }
+    // }
+
+
     public function approve($id)
     {
         DB::beginTransaction();
 
         try {
-            $kyc = KycVerification::findOrFail($id);
-            $user = $kyc->user;
+            $kyc = KycVerification::with('user')->findOrFail($id);
 
-            // ✅ Send email before updating anything
-            Mail::to($user->email)->send(new KycApprovedMail($user));
+            $userToNotify = $kyc->user;
 
-            // ✅ Now update KYC status
+            // dd($userToNotify->name, $userToNotify->email);
+
+            if (!$userToNotify) {
+                throw new \Exception('User not found for this KYC');
+            }
+
+            // ✅ Ensure the correct user is passed
+            Mail::to($userToNotify->email)->send(new KycApprovedMail($userToNotify));
+
             $kyc->update([
                 'status' => 'approved',
                 'reviewed_at' => now(),
@@ -64,10 +134,10 @@ class AdminKycController extends Controller
             return back()->with('success', 'KYC approved successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
-
             return back()->with('error', 'Failed to approve KYC: ' . $e->getMessage());
         }
     }
+
 
     // public function reject(Request $request, $id)
     // {
@@ -98,7 +168,7 @@ class AdminKycController extends Controller
 
         try {
             $kyc = KycVerification::findOrFail($id);
-            $user = $kyc->user;
+            $userToNotify = $kyc->user;
 
             // Update KYC status first
             $kyc->update([
@@ -108,7 +178,7 @@ class AdminKycController extends Controller
             ]);
 
             // Send rejection email
-            Mail::to($user->email)->send(new KycRejectedMail($user, $request->rejection_reason));
+            Mail::to($userToNotify->email)->send(new KycRejectedMail($userToNotify, $request->rejection_reason));
 
             DB::commit();
 

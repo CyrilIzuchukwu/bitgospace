@@ -77,12 +77,11 @@ class User extends Authenticatable
     }
 
 
-    // In User model
+
     public function kycVerifications()
     {
         return $this->hasMany(KycVerification::class);
     }
-
 
     protected $dates = [
         'last_login_at',
