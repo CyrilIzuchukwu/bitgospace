@@ -141,7 +141,7 @@ class InvestmentController extends Controller
         $investmentData = $request->session()->get('investment_data');
 
         if (!$investmentData) {
-            return redirect()->route('user.trades')->with('error', 'Invalid investment session');
+            return redirect()->route('user.trades')->with('error', 'Invalid smart trade session');
         }
 
         $plan = Plan::find($investmentData['plan_id']);
@@ -191,11 +191,11 @@ class InvestmentController extends Controller
             }
 
             if ($request->amount < $plan->minimum_amount) {
-                throw new \Exception('Minimum investment for this plan is $' . number_format($plan->minimum_amount, 2));
+                throw new \Exception('Minimum trade for this plan is $' . number_format($plan->minimum_amount, 2));
             }
 
             if ($request->amount > $plan->maximum_amount) {
-                throw new \Exception('Maximum investment for this plan is $' . number_format($plan->maximum_amount, 2));
+                throw new \Exception('Maximum trade for this plan is $' . number_format($plan->maximum_amount, 2));
             }
 
             if (bccomp($wallet->balance, $request->amount, 2) === -1) {
@@ -251,10 +251,10 @@ class InvestmentController extends Controller
             // Clear the session data
             $request->session()->forget('investment_data');
 
-            return redirect()->route('user.investment-list')->with('success', 'Investment created successfully! Your daily profit will be $' . number_format($dailyProfit, 2));
+            return redirect()->route('user.investment-list')->with('success', 'Smart trade created successfully! Your daily profit will be $' . number_format($dailyProfit, 2));
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Investment processing failed: ' . $e->getMessage(), [
+            return redirect()->back()->with('error', 'Smart trade processing failed: ' . $e->getMessage(), [
                 'user_id' => Auth::id(),
                 'plan_id' => $request->plan_id,
                 'amount' => $request->amount

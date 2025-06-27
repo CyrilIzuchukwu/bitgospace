@@ -150,13 +150,13 @@ Route::middleware(['auth'])->prefix('user')->group(function () {
 
     // Protected investment routes (require KYC)
     Route::middleware(['kyc.verified'])->controller(InvestmentController::class)->group(function () {
-        Route::get('/plans', 'trades')->name('user.trades');
-        Route::get('/investments', 'investmentHistory')->name('user.investment-list');
+        Route::get('/smart-trades', 'trades')->name('user.trades');
+        Route::get('/trades', 'investmentHistory')->name('user.investment-list');
         Route::get('/packages/select/{plan:slug}', 'startInvestment')->name('user.start-investment');
-        Route::get('/investment/checkout', 'checkoutInvestment')->name('user.checkout-investmennt');
+        Route::get('/smart-trades/checkout', 'checkoutInvestment')->name('user.checkout-investmennt');
         Route::post('/investment/validate', 'validateInvestment')->name('user.validate-investment');
-        Route::get('/investment/confirm', 'confirmInvestment')->name('user.confirm-investment');
-        Route::post('/investment/process', 'processInvestment')->name('user.process-investment');
+        Route::get('/smart-trades/confirm', 'confirmInvestment')->name('user.confirm-investment');
+        Route::post('/smart-trades/process', 'processInvestment')->name('user.process-investment');
         Route::post('/investment/{investment}/withdraw', 'withdrawInvestment')->name('user.investment.withdraw');
     });
 

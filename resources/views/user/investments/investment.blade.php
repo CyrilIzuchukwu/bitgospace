@@ -122,7 +122,7 @@
                                         <div class="text-muted">
                                             Showing <span class="fw-semibold">{{ $investments->firstItem() }}</span> to
                                             <span class="fw-semibold">{{ $investments->lastItem() }}</span> of
-                                            <span class="fw-semibold">{{ $investments->total() }}</span> Investments
+                                            <span class="fw-semibold">{{ $investments->total() }}</span> Smart trades
                                         </div>
                                     </div>
                                     <div class="col-sm-auto mt-3 mt-sm-0">

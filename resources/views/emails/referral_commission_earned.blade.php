@@ -37,7 +37,7 @@
                                     <td style="background-color: #f8f9fa; padding: 25px; border-radius: 6px; border-left: 4px solid #4CAF50;">
                                         <h2 style="color: #061f6d; font-size: 18px; font-weight: bold; margin: 0 0 15px;">Hello {{ $referrer->name }},</h2>
                                         <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 15px;">
-                                            Great news! You've earned a <strong style="color: #4CAF50;">Level {{ $level }} referral commission</strong> from {{ $investor->name }}'s recent investment.
+                                            Great news! You've earned a <strong style="color: #4CAF50;">Level {{ $level }} referral commission</strong> from {{ $investor->name }}'s recent smart trades.
                                         </p>
                                         <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0;">
                                             Your commission has been automatically credited to your wallet and is ready to use.
@@ -85,7 +85,7 @@
                                                 <td style="padding: 10px 0; border-bottom: 1px solid #e0e0e0;">
                                                     <table cellpadding="0" cellspacing="0" border="0" width="100%" style="width: 100%; table-layout: fixed;">
                                                         <tr>
-                                                            <td style="color: #666666; font-size: 14px; padding-right: 10px;">Investor:</td>
+                                                            <td style="color: #666666; font-size: 14px; padding-right: 10px;">Trader:</td>
                                                             <td style="color: #333333; font-size: 14px; text-align: right;">{{ $investor->name }}</td>
                                                         </tr>
                                                     </table>
