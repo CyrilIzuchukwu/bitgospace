@@ -253,7 +253,7 @@ Route::middleware(['auth'])->prefix('user')->group(function () {
     });
 
 
-    Route::controller(ForgotPinController::class)->group(function () {
+    Route::middleware(['kyc.verified'])->controller(ForgotPinController::class)->group(function () {
         Route::get('/forgot-pin', 'forgotPin')->name('user.forgot.pin');
         Route::get('/verify-pin/{token}', 'showVerifyOtpForm')->name('user.verify.pin.otp');
 
@@ -265,7 +265,7 @@ Route::middleware(['auth'])->prefix('user')->group(function () {
 
 
 
-    Route::controller(PdfController::class)->group(function () {
+    Route::middleware(['kyc.verified'])->controller(PdfController::class)->group(function () {
         // Route::get('/pdf', 'pdf')->name('user.pdf');
         Route::get('/pdf/{language?}', [PdfController::class, 'pdf'])->name('user.pdf')->where('language', 'english|spanish|french|russian|chinese');
     });
