@@ -24,7 +24,7 @@
 
                     <!-- Pricing Title-->
                     <div class="text-center">
-                        <h3 class="mb-2">CONFIRM INVESTMENT</h3>
+                        <h3 class="mb-2">CONFIRM STAKE</h3>
                     </div>
 
                 </div>
@@ -121,7 +121,7 @@
                                         </div>
 
                                         <button type="submit" class="btn btn-primary w-100 py-3 mb-2">
-                                            <i class="ti ti-checks me-1"></i> Confirm & Invest
+                                            <i class="ti ti-checks me-1"></i> Confirm & Activate
                                         </button>
 
                                         <a href="{{ URL::previous() }}" class="btn btn-outline-secondary w-100">
