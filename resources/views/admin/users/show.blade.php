@@ -186,22 +186,91 @@
                 </div>
             </div>
 
+
+            <!-- Referrals Section -->
+            <!-- Referrals Section - Simple and Clean -->
+            <div class="col-md-12 mt-2">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="card-title mb-0">Referral Information</h4>
+                        <span class="badge bg-primary p-1">Total Referrals: {{ $viewedUser->referrals->count() }}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Who Referred This User -->
+                            <div class="col-md-6">
+                                <div class="border-end pe-3">
+                                    <h5 class="fs-16 mb-3">Referred By</h5>
+                                    @if($viewedUser->referred_by)
+                                    @php $referrer = App\Models\User::find($viewedUser->referred_by); @endphp
+                                    <div class="d-flex align-items-center gap-2">
+                                        <!-- <img src="{{ $referrer->profile_picture ?? asset('dashboard_assets/assets/images/users/user-avatar.jpg') }}"
+                                            class="rounded-circle" width="40" alt="Referrer"> -->
+                                        <div>
+                                            <h6 class="mb-0">{{ $referrer->name }}</h6>
+                                            <small class="text-muted">{{ $referrer->email }}</small>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <a href="{{ route('admin.users.show', $referrer->id) }}" class="btn btn-sm btn-outline-primary">
+                                            View Profile
+                                        </a>
+                                    </div>
+                                    @else
+                                    <div class="text-muted">
+                                        <i class="ti ti-user-off fs-16 me-1"></i> No referrer found
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <!-- Users Referred By This User -->
+                            <div class="col-md-6">
+                                <h5 class="fs-16 mb-3 mt-3 mt-md-0">Users Referred</h5>
+                                @if($viewedUser->referrals->count() > 0)
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-hover">
+                                        <tbody>
+                                            @foreach($viewedUser->referrals as $referral)
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+
+                                                        <div>
+                                                             <h6 class="mb-0 fs-14">{{ $referral->name }}</h6>
+                                                            <small class="text-muted">{{ $referral->email }}</small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-end">
+                                                    <a href="{{ route('admin.users.show', $referral->id) }}" class="btn btn-sm btn-light">
+                                                        View
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                @else
+                                <div class="text-muted">
+                                    <i class="ti ti-users fs-16 me-1"></i> No referrals yet
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <!-- Transactions Card (Full Width Below) -->
             <div class="col-md-12 mt-2">
                 <div class="card">
                     <div class="card-header border-bottom border-dashed">
                         <div class="d-flex justify-content-between align-items-center">
                             <h4 class="card-title mb-0">Transaction History</h4>
-                            <!-- <div class="dropdown">
-                                <button class="btn btn-soft-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                    <i class="ti ti-filter me-1"></i> Filter
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="#">All Transactions</a></li>
-                                    <li><a class="dropdown-item" href="#">Deposits</a></li>
-                                    <li><a class="dropdown-item" href="#">Withdrawals</a></li>
-                                </ul>
-                            </div> -->
+
                         </div>
                     </div>
                     <div class="card-body user-transaction-card">

@@ -183,7 +183,8 @@ class AdminController extends Controller
 
     public function show($id)
     {
-        $viewedUser = User::with('wallet', 'transactions')->findOrFail($id);
+        // $viewedUser = User::with('wallet', 'transactions')->findOrFail($id);
+        $viewedUser = User::with(['wallet', 'transactions', 'referrer', 'referrals'])->findOrFail($id);
         // dd($viewedUser);
 
         $balance = $viewedUser->wallet ? $viewedUser->wallet->balance : 0;

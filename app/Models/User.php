@@ -115,4 +115,18 @@ class User extends Authenticatable
             Deposit::class
         );
     }
+
+
+
+    // Who referred this user
+    public function referrer()
+    {
+        return $this->belongsTo(User::class, 'referred_by');
+    }
+
+    // Who this user has referred
+    public function referrals()
+    {
+        return $this->hasMany(User::class, 'referred_by');
+    }
 }

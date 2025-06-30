@@ -27,6 +27,7 @@
                     <li class="{{ request()->is('contact') ? 'active' : '' }}">
                         <a href="{{ route('contact') }}">Contact Us</a>
                     </li>
+                    
                 </ul>
             </div>
         </div>

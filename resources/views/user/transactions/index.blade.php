@@ -40,12 +40,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header d-flex flex-md-row flex-column justify-content-md-between justify-content-start align-items-md-center align-items-start gap-2">
+                            <div class="card-header  transaction-header-inline">
 
                                 <h4 class="header-title me-auto">All Transactions</h4>
 
-                                <div class="flex align-items-center gap-2">
-                                    <div class="w-auto">
+                                <div class="right">
+                                    <div class="">
                                         <select class="form-select form-select-sm filter-select">
                                             <option value="all" selected>All</option>
                                             <option value="deposit">Deposits</option>
@@ -55,7 +55,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="w-auto">
+                                    <div class="">
                                         <select class="form-select form-select-sm status-select">
                                             <option value="all" selected>All Statuses</option>
                                             <option value="completed">Completed</option>
@@ -273,5 +273,29 @@
         });
     });
 </script>
+
+<style>
+    .transaction-header-inline {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .transaction-header-inline .right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    @media only screen and (max-width: 767px) {
+        .transaction-header-inline {
+            display: flex;
+            justify-content: start;
+            align-items: start;
+            flex-direction: column;
+            gap: 12px;
+        }
+    }
+</style>
 
 @endsection

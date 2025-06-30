@@ -26,6 +26,7 @@
                             <li class="{{ request()->is('contact') ? 'active' : '' }}">
                                 <a href="{{ route('contact') }}">Contact Us</a>
                             </li>
+
                         </ul>
 
                     </nav>
@@ -33,23 +34,25 @@
 
 
                 <div class="header-right">
-                    <div class="header-btn">
-                        @auth
-                        @if (auth()->user()->role === 'admin')
-                        <a class="default-btn" href="{{ route('admin.dashboard') }}">
-                            Admin Dashboard
-                        </a>
-                        @elseif (auth()->user()->role === 'user')
-                        <a class="default-btn" href="{{ route('user.dashboard') }}">
-                            Dashboard
-                        </a>
-                        @endif
-                        @else
-                        <a class="default-btn" href="{{ route('login') }}">
-                            Login
-                        </a>
-                        @endauth
-                    </div>
+                        
+                        <div class="header-btn">
+                            @auth
+                            @if (auth()->user()->role === 'admin')
+                            <a class="default-btn" href="{{ route('admin.dashboard') }}">
+                                Admin Dashboard
+                            </a>
+                            @elseif (auth()->user()->role === 'user')
+                            <a class="default-btn" href="{{ route('user.dashboard') }}">
+                                Dashboard
+                            </a>
+                            @endif
+                            @else
+                            <a class="default-btn" href="{{ route('login') }}">
+                                Login
+                            </a>
+                            @endauth
+                        </div>
+
 
                     <!-- Start Mobile-Menu-Bar -->
                     <div class="mobile-menu-bar ml--5 d-block d-lg-none">

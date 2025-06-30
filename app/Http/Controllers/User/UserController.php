@@ -77,7 +77,7 @@ class UserController extends Controller
             return redirect('/')->with('error', 'Registration requires a referral link');
         }
 
-        $ref = $request->ref; // Just get the code portion, not full URL
+        $ref = $request->ref;
         $referrer = User::where('referral_link', 'like', "%{$ref}%")->first();
 
         if (!$referrer) {
@@ -237,7 +237,7 @@ class UserController extends Controller
         }
     }
 
-    
+
 
     private function maskEmail($email)
     {
@@ -251,9 +251,5 @@ class UserController extends Controller
 
         return $maskedUsername . '@' . $domain;
     }
-
-
-
-
 
 }

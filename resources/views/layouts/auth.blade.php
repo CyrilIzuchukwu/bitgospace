@@ -188,6 +188,90 @@
             }, 800);
         });
     </script>
+
+
+    <div class="languageTranslate" id="google_translate_element">
+    </div>
+
+    <style type="text/css">
+        .languageTranslate {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            content: "";
+            z-index: 999999;
+        }
+
+        .goog-logo-link {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
+            color: transparent !important;
+        }
+
+
+        .goog-te-gadget .goog-te-combo {
+            color: #b5b5b5 !important;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            border: 1px solid #fff !important;
+            padding: 5px !important;
+            padding-left: 10px !important;
+            border-radius: 3px !important;
+            background-color: transparent !important;
+            height: 40px !important;
+            cursor: pointer !important;
+            margin-top: 20px !important;
+
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+        }
+
+        .goog-te-gadget .goog-te-combo:focus {
+            outline: none;
+            background-color: #2a2a2a !important;
+        }
+
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
+
+        #google_translate_element select {
+            font-weight: 400;
+            /* margin-top: 25px; */
+        }
+
+        .VIpgJd-ZVi9od-l4eHX-hSRGPd,
+        .VIpgJd-ZVi9od-l4eHX-hSRGPd:link,
+        .VIpgJd-ZVi9od-l4eHX-hSRGPd:visited,
+        .VIpgJd-ZVi9od-l4eHX-hSRGPd:hover,
+        .VIpgJd-ZVi9od-l4eHX-hSRGPd:active {
+            display: none !important;
+        }
+
+        .goog-te-gadget img {
+            display: none !important;
+        }
+
+        body>.skiptranslate {
+            display: none;
+        }
+
+        body {
+            top: 0px !important;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>
