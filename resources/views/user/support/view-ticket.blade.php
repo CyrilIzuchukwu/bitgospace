@@ -313,11 +313,17 @@
                     body: formData,
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest',
-                        'Accept': 'application/json'
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                     },
                     credentials: 'same-origin'
                 })
-                .then(res => res.json())
+                .then(res => {
+                    if (!res.ok) {
+                        return res.json().then(err => Promise.reject(err));
+                    }
+                    return res.json();
+                })
                 .then(res => {
                     if (res.success) {
                         appendNewMessage(res.data);
@@ -334,7 +340,11 @@
                         alert(res.message);
                     }
                 })
-                .catch(() => alert('An error occurred. Please try again.'))
+                .catch((error) => {
+                    const errorMsg = error.message || 'An error occurred. Please try again.';
+                    console.error('Error details:', error);
+                    alert(errorMsg);
+                })
                 .finally(() => {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<i class="ti ti-send"></i>';
