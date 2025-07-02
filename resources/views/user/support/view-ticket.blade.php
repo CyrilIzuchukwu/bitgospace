@@ -143,7 +143,9 @@
                                     <!-- Attachment input -->
                                     <label class="btn btn-icon btn-soft-primary mb-0" style="cursor:pointer;">
                                         <i class="ri-attachment-line fs-20"></i>
-                                        <input type="file" name="attachment" id="file-input" class="d-none" accept="image/*,.pdf,.doc,.docx,.txt">
+                                        <!-- <input type="file" name="attachment" id="file-input" class="d-none" accept="image/*,.pdf,.doc,.docx,.txt"> -->
+                                        <input type="file" name="attachment" id="file-input" class="d-none" accept="image/*,.pdf,.doc,.docx,.txt,.heic,.heif">
+
                                     </label>
                                 </div>
 
@@ -292,7 +294,7 @@
 
 
 <!-- submit message  -->
-<script>
+<!-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         const chatForm = document.getElementById('chat-form');
 
@@ -407,10 +409,260 @@
             });
         }
 
+
         // Initial bind
         bindAttachmentPreview();
     });
+</script> -->
+
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatForm = document.getElementById('chat-form');
+        if (!chatForm) return;
+
+        chatForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleMessageSubmit(this);
+        });
+
+        // Initialize file input handling if needed
+        const fileInput = document.getElementById('file-input');
+        if (fileInput) {
+            fileInput.addEventListener('change', handleFileSelect);
+        }
+    });
+
+    function handleMessageSubmit(form) {
+        const formData = new FormData(form);
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const messageInput = form.querySelector('input[name="message"]');
+        const currentMessage = messageInput.value; // Store current message for later clearing
+
+        // iOS workaround: Ensure we have the latest CSRF token
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
+        if (!csrfToken) {
+            console.error('CSRF token not found');
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="ti ti-circle-dashed fs-16 animate-spin"></i>';
+
+        // Clear input immediately for better UX (but keep value in case of failure)
+        messageInput.value = '';
+
+        const url = new URL(form.action, window.location.origin);
+        url.searchParams.append('_', Date.now()); // Cache buster for iOS
+
+        fetch(url, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                credentials: 'same-origin',
+                cache: 'no-store'
+            })
+            .then(async response => {
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.message || 'Request failed with status ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    appendNewMessage(data.data);
+                    // Clear file input and preview
+                    clearFileInput(form);
+
+                    // Scroll to bottom
+                    const scrollContainer = document.querySelector('#chat-scroll-container');
+                    if (scrollContainer) {
+                        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+                    }
+                } else {
+                    // Restore message if failed
+                    messageInput.value = currentMessage;
+                    throw new Error(data.message || 'Failed to send message');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast(error.message || 'An error occurred. Please try again.', 'error');
+                // Restore message on error
+                messageInput.value = currentMessage;
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="ti ti-send"></i>';
+            });
+    }
+
+    function clearFileInput(form) {
+        const fileInput = form.querySelector('input[type="file"]');
+        if (fileInput) {
+            fileInput.value = '';
+        }
+
+        const previewContainer = document.getElementById('file-preview-container');
+        if (previewContainer) {
+            previewContainer.style.display = 'none';
+        }
+    }
+
+    // ... rest of your existing functions (appendNewMessage, bindAttachmentPreview, handleFileSelect) ...
+    function appendNewMessage(data) {
+        const chatList = document.querySelector('.chat-list');
+        if (!chatList) return;
+
+        const li = document.createElement('li');
+        li.className = 'chat-group odd';
+
+        li.innerHTML = `
+            ${data.attachment_path ? `
+                <button type="button" class="btn btn-sm btn-outline-primary view-attachment-btn"
+                    data-file="${data.attachment_path}"
+                    data-file-type="${data.attachment_path.split('.').pop().toLowerCase()}">
+                    <i class="ri-attachment-line fs-16 text-white"></i>
+                </button>` : ''
+            }
+            <div class="chat-body">
+                <div>
+                    <h6 class="d-inline-flex">You</h6>
+                    <h6 class="d-inline-flex text-muted">${data.time || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</h6>
+                </div>
+                <div class="chat-message">
+                    <p>${(data.message || '').replace(/\n/g, '<br>')}</p>
+                </div>
+            </div>
+        `;
+
+        chatList.appendChild(li);
+        bindAttachmentPreview();
+    }
+
+
+    // function bindAttachmentPreview() {
+    //     document.querySelectorAll('.view-attachment-btn').forEach(button => {
+    //         button.onclick = function() {
+    //             const fileUrl = this.dataset.file;
+    //             const fileType = this.dataset.fileType.toLowerCase();
+    //             const previewContainer = document.getElementById('attachmentPreviewContent');
+
+    //             // Clear previous content
+    //             previewContainer.innerHTML = '';
+
+    //             if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(fileType)) {
+    //                 previewContainer.innerHTML = `<img src="${fileUrl}" class="img-fluid rounded" alt="Attachment">`;
+    //             } else if (['pdf'].includes(fileType)) {
+    //                 previewContainer.innerHTML = `<iframe src="${fileUrl}" width="100%" height="500px" class="border-0 rounded"></iframe>`;
+    //             } else {
+    //                 previewContainer.innerHTML = `<p>Preview not supported for this file type.<br><a href="${fileUrl}" target="_blank">Download</a></p>`;
+    //             }
+
+    //             // Show modal
+    //             const modal = new bootstrap.Modal(document.getElementById('attachmentModal'));
+    //             modal.show();
+    //         };
+    //     });
+    // }
+
+    function bindAttachmentPreview() {
+        document.querySelectorAll('.view-attachment-btn').forEach(button => {
+            // Remove any existing listeners to prevent duplicates
+            button.onclick = null;
+
+            button.addEventListener('click', function() {
+                const fileUrl = this.dataset.file;
+                const fileType = this.dataset.fileType.toLowerCase();
+                const previewContainer = document.getElementById('attachmentPreviewContent');
+
+                if (!previewContainer) {
+                    console.error('Preview container not found');
+                    return;
+                }
+
+                // Clear previous content
+                previewContainer.innerHTML = '';
+
+                // Create loading state
+                previewContainer.innerHTML = '<div class="text-center py-4"><div class="spinner-border text-primary" role="status"></div></div>';
+
+                // Handle different file types
+                if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(fileType)) {
+                    const img = new Image();
+                    img.src = fileUrl;
+                    img.className = 'img-fluid rounded';
+                    img.alt = 'Attachment';
+                    img.onload = () => {
+                        previewContainer.innerHTML = '';
+                        previewContainer.appendChild(img);
+                    };
+                    img.onerror = () => {
+                        previewContainer.innerHTML = `<p>Failed to load image.<br><a href="${fileUrl}" target="_blank">Download</a></p>`;
+                    };
+                } else if (['pdf'].includes(fileType)) {
+                    previewContainer.innerHTML = `
+                    <div class="ratio ratio-16x9">
+                        <iframe src="${fileUrl}" class="border-0 rounded"></iframe>
+                    </div>
+                    <div class="mt-2">
+                        <a href="${fileUrl}" target="_blank" class="btn btn-primary btn-sm">Open in new tab</a>
+                    </div>
+                `;
+                } else {
+                    previewContainer.innerHTML = `
+                    <div class="text-center p-4">
+                        <i class="ri-download-cloud-2-line fs-1"></i>
+                        <p class="mt-2">Preview not available for this file type</p>
+                        <a href="${fileUrl}" target="_blank" class="btn btn-primary mt-2">
+                            Download File
+                        </a>
+                    </div>
+                `;
+                }
+
+                // Initialize and show modal
+                const modalEl = document.getElementById('attachmentModal');
+                if (modalEl) {
+                    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+                    modal.show();
+                }
+            });
+        });
+    }
+
+
+
+    function handleFileSelect(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const previewContainer = document.getElementById('file-preview-container');
+        const previewIcon = document.getElementById('file-preview-icon');
+        const previewName = document.getElementById('file-preview-name');
+
+        if (previewContainer && previewIcon && previewName) {
+            // Set appropriate icon
+            let iconClass = 'ri-file-line';
+            if (file.type.startsWith('image/')) iconClass = 'ri-image-line';
+            else if (file.type.includes('pdf')) iconClass = 'ri-file-pdf-line';
+            else if (file.type.includes('word')) iconClass = 'ri-file-word-line';
+
+            previewIcon.innerHTML = `<i class="${iconClass}"></i>`;
+            previewName.textContent = file.name;
+            previewContainer.style.display = 'block';
+        }
+    }
 </script>
+
 
 
 

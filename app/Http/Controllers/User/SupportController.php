@@ -119,118 +119,62 @@ class SupportController extends Controller
 
 
 
-    // public function addMessage(Request $request, $reference_id)
-    // {
-    //     $request->validate([
-    //         'message' => 'required|string',
-    //         'attachment' => 'nullable'
-    //     ]);
-
-    //     try {
-    //         $ticket = Ticket::where('reference_id', $reference_id)->firstOrFail();
-
-    //         if ($ticket->status !== 'open') {
-    //             return response()->json(['success' => false, 'message' => 'Ticket is closed.'], 400);
-    //         }
-
-    //         $attachmentPath = $request->hasFile('attachment')
-    //             ? $request->file('attachment')->store('ticket-attachments', 'public')
-    //             : null;
-
-    //         $message = $ticket->messages()->create([
-    //             'user_id' => Auth::id(),
-    //             'message' => $request->message,
-    //             'attachment_path' => $attachmentPath,
-    //             'is_admin' => false,
-    //             'created_at' => now(),
-    //         ]);
-
-    //         return response()->json([
-    //             'success' => true,
-    //             'message' => 'Sent!',
-    //             'data' => [
-    //                 'message' => $message->message,
-    //                 'time' => $message->created_at->format('h:i A'),
-    //                 'user_avatar' => Auth::user()->profile->profile_picture
-    //                     ? asset('storage/profile_pictures/' . Auth::user()->profile->profile_picture)
-    //                     : asset('dashboard_assets/assets/images/users/user-avatar.jpg'),
-    //                 'attachment_path' => $attachmentPath ? asset('storage/' . $attachmentPath) : null
-    //             ]
-    //         ]);
-    //     } catch (\Throwable $e) {
-    //         return response()->json([
-    //             'success' => false,
-    //             'message' => 'Something went wrong.'
-    //         ], 500);
-    //     }
-    // }
-
-
     public function addMessage(Request $request, $reference_id)
     {
         $request->validate([
             'message' => 'required|string',
-            'attachment' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048'
+            'attachment' => 'nullable'
         ]);
 
         try {
             $ticket = Ticket::where('reference_id', $reference_id)->firstOrFail();
 
             if ($ticket->status !== 'open') {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Ticket is closed and cannot accept new messages.'
-                ], 400);
+                return response()->json(['success' => false, 'message' => 'Ticket is closed.'], 400);
             }
 
-            $user = Auth::user();
-            if ($ticket->user_id !== $user->id) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Unauthorized access to this ticket.'
-                ], 403);
-            }
-
-            $attachmentPath = null;
-            if ($request->hasFile('attachment')) {
-                try {
-                    $attachmentPath = $request->file('attachment')->store('ticket-attachments', 'public');
-                } catch (\Exception $e) {
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'Failed to upload attachment: ' . $e->getMessage()
-                    ], 500);
-                }
-            }
+            $attachmentPath = $request->hasFile('attachment')
+                ? $request->file('attachment')->store('ticket-attachments', 'public')
+                : null;
 
             $message = $ticket->messages()->create([
-                'user_id' => $user->id,
+                'user_id' => Auth::id(),
                 'message' => $request->message,
                 'attachment_path' => $attachmentPath,
                 'is_admin' => false,
                 'created_at' => now(),
             ]);
 
+            // return response()->json([
+            //     'success' => true,
+            //     'message' => 'Sent!',
+            //     'data' => [
+            //         'message' => $message->message,
+            //         'time' => $message->created_at->format('h:i A'),
+            //         'user_avatar' => Auth::user()->profile->profile_picture
+            //             ? asset('storage/profile_pictures/' . Auth::user()->profile->profile_picture)
+            //             : asset('dashboard_assets/assets/images/users/user-avatar.jpg'),
+            //         'attachment_path' => $attachmentPath ? asset('storage/' . $attachmentPath) : null
+            //     ]
+            // ]);
+
             return response()->json([
                 'success' => true,
-                'message' => 'Message sent successfully!',
+                'message' => 'Sent!',
                 'data' => [
                     'message' => $message->message,
                     'time' => $message->created_at->format('h:i A'),
-                    'user_avatar' => $user->profile->profile_picture
-                        ? asset('storage/profile_pictures/' . $user->profile->profile_picture)
+                    'user_avatar' => Auth::user()->profile->profile_picture
+                        ? asset('storage/profile_pictures/' . Auth::user()->profile->profile_picture)
                         : asset('dashboard_assets/assets/images/users/user-avatar.jpg'),
                     'attachment_path' => $attachmentPath ? asset('storage/' . $attachmentPath) : null,
                     'attachment_extension' => $attachmentPath ? pathinfo($attachmentPath, PATHINFO_EXTENSION) : null
                 ]
             ]);
         } catch (\Throwable $e) {
-            \Log::error('Add message error: ' . $e->getMessage() . "\n" . $e->getTraceAsString());
-
             return response()->json([
                 'success' => false,
-                'message' => 'Error: ' . $e->getMessage(),
-                'error_details' => env('APP_DEBUG') ? $e->getTraceAsString() : null
+                'message' => 'Something went wrong.'
             ], 500);
         }
     }
