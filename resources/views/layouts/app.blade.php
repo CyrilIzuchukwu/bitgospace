@@ -4,12 +4,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-style-mode" content="1"> <!-- 0 == light, 1 == dark -->
 
-    <title>Bit-Go-Space</title>
+    <!-- <title>BitGoSpace | AI-Powered Crypto Arbitrage Trading Platform</title> -->
+    <title>BitGoSpace | AI-Powered Crypto Investing with Jarden</title>
+    <meta name="description" content="At BitGoSpace, we simplify crypto earnings by using advanced AI to scan global exchanges for the best price differences — so you can earn passively through smart, automatic trades. Jarden does the hard work; you enjoy the returns..">
+    <meta name="theme-style-mode" content="1">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.bitgospace.com/">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.bitgospace.com/">
+    <meta property="og:title" content="BitGoSpace | AI-Powered Crypto Arbitrage Trading Platform">
+
+    <meta property="og:description" content="At BitGoSpace, we simplify crypto earnings by using advanced AI to scan global exchanges for the best price differences — so you can earn passively through smart, automatic trades. Jarden does the hard work; you enjoy the returns.">
+    <meta property="og:image" content="https://www.bitgospace.com/assets/images/logo/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+
+    <meta name="google-site-verification" content="ErJsMbwiF245k2p5tzpJFI45r2Bi810lR4Th3dAwVzM" />
+
+
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.png') }}">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.png') }}">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}g">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon.png') }}">
+
+
+    <!-- Primary Favicon (32x32) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.bitgospace.com/assets/images/favicon.png">
+
+    <!-- Apple Touch Icon (180x180 for iOS) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+    <!-- Legacy ICO Format (16x16, for old browsers) -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+
+    <!-- Structured Data / Schema Markup -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "BitGoSpace",
+            "url": "https://www.bitgospace.com",
+            "logo": "https://www.bitgospace.com/assets/images/logo/logo.png",
+            "image": "https://www.bitgospace.com/assets/images/logo/logo.png",
+            "description": "AI-powered crypto arbitrage trading platform",
+
+        }
+    </script>
+
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="keywords" content="crypto arbitrage, AI trading bot, passive crypto income, Jarden trading bot, cryptocurrency automation, bitcoin arbitrage, ethereum trading, automated crypto trading">
+    <meta name="author" content="BitGoSpace">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+
+
+
+
     <!-- CSS ============================================ -->
     <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/animation.css') }}">
