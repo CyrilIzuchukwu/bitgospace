@@ -76,7 +76,7 @@
                                     <!-- @if(!$isAdmin)
                                     <img src="{{ $userPhotoUrl }}" style="width: 30px; height: 30px;" class="avatar-sm rounded-circle" alt="avatar-1" />
                                     @endif -->
-                                    @if(!$isAdmin)
+                                    <!-- @if(!$isAdmin)
                                     @if($message->attachment_path)
                                     <button type="button" class="btn btn-sm btn-outline-primary view-attachment-btn"
                                         data-file="{{ asset('storage/' . $message->attachment_path) }}"
@@ -84,6 +84,14 @@
                                         <i class="ri-attachment-line fs-16 text-white"></i>
                                     </button>
                                     @endif
+                                    @endif -->
+
+                                    @if($message->attachment_path)
+                                    <button type="button" class="btn btn-sm btn-outline-primary view-attachment-btn"
+                                        data-file="{{ asset('storage/' . $message->attachment_path) }}"
+                                        data-file-type="{{ pathinfo($message->attachment_path, PATHINFO_EXTENSION) }}">
+                                        <i class="ri-attachment-line fs-16 text-white"></i>
+                                    </button>
                                     @endif
 
 
@@ -288,136 +296,10 @@
             scrollContainer.scrollTop = scrollContainer.scrollHeight;
         }
 
+        bindAttachmentPreview();
+
     });
 </script>
-
-
-
-<!-- submit message  -->
-<!-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const chatForm = document.getElementById('chat-form');
-
-        if (!chatForm) return;
-
-        chatForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const formData = new FormData(chatForm);
-            const submitBtn = chatForm.querySelector('button[type="submit"]');
-            const messageInput = chatForm.querySelector('input[name="message"]');
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="ti ti-circle-dashed fs-16 animate-spin"></i>';
-
-            fetch(chatForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'Accept': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                    },
-                    credentials: 'same-origin'
-                })
-                .then(res => {
-                    if (!res.ok) {
-                        return res.json().then(err => Promise.reject(err));
-                    }
-                    return res.json();
-                })
-                .then(res => {
-                    if (res.success) {
-                        appendNewMessage(res.data);
-                        messageInput.value = '';
-                        document.getElementById('file-input').value = '';
-                        document.getElementById('file-preview-container').style.display = 'none';
-
-                        const scrollContainer = document.querySelector('#chat-scroll-container');
-                        if (scrollContainer) scrollContainer.scrollTop = scrollContainer.scrollHeight;
-
-                        // Re-attach attachment button listeners
-                        bindAttachmentPreview();
-                    } else {
-                        alert(res.message);
-                    }
-                })
-                .catch((error) => {
-                    const errorMsg = error.message || 'An error occurred. Please try again.';
-                    console.error('Error details:', error);
-                    alert(errorMsg);
-                })
-                .finally(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="ti ti-send"></i>';
-                });
-        });
-
-        function appendNewMessage(data) {
-            const chatList = document.querySelector('.chat-list');
-            if (!chatList) return;
-
-            const li = document.createElement('li');
-            li.className = 'chat-group odd';
-
-            li.innerHTML = `
-                ${data.attachment_path ? `
-                    <button type="button" class="btn btn-sm btn-outline-primary view-attachment-btn"
-                        data-file="${data.attachment_path}"
-                        data-file-type="${data.attachment_extension}">
-                        <i class="ri-attachment-line fs-16 text-white"></i>
-                    </button>` : ''
-                }
-
-                <div class="chat-body">
-                    <div>
-                        <h6 class="d-inline-flex">You</h6>
-                        <h6 class="d-inline-flex text-muted">${data.time}</h6>
-                    </div>
-                    <div class="chat-message">
-                        <p>${data.message.replace(/\n/g, '<br>')}</p>
-                    </div>
-                </div>
-            `;
-
-            chatList.appendChild(li);
-        }
-
-        // 🧠 DRY: bind attachment preview logic in one place
-        function bindAttachmentPreview() {
-            document.querySelectorAll('.view-attachment-btn').forEach(button => {
-                button.onclick = function() {
-                    const fileUrl = this.dataset.file;
-                    const fileType = this.dataset.fileType.toLowerCase();
-                    const previewContainer = document.getElementById('attachmentPreviewContent');
-
-                    // Clear previous content
-                    previewContainer.innerHTML = '';
-
-                    if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(fileType)) {
-                        previewContainer.innerHTML = `<img src="${fileUrl}" class="img-fluid rounded" alt="Attachment">`;
-                    } else if (['pdf'].includes(fileType)) {
-                        previewContainer.innerHTML = `<iframe src="${fileUrl}" width="100%" height="500px" class="border-0 rounded"></iframe>`;
-                    } else {
-                        previewContainer.innerHTML = `<p>Preview not supported for this file type.<br><a href="${fileUrl}" target="_blank">Download</a></p>`;
-                    }
-
-                    // Show modal
-                    const modal = new bootstrap.Modal(document.getElementById('attachmentModal'));
-                    modal.show();
-                };
-            });
-        }
-
-
-        // Initial bind
-        bindAttachmentPreview();
-    });
-</script> -->
-
-
-
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -549,30 +431,6 @@
     }
 
 
-    // function bindAttachmentPreview() {
-    //     document.querySelectorAll('.view-attachment-btn').forEach(button => {
-    //         button.onclick = function() {
-    //             const fileUrl = this.dataset.file;
-    //             const fileType = this.dataset.fileType.toLowerCase();
-    //             const previewContainer = document.getElementById('attachmentPreviewContent');
-
-    //             // Clear previous content
-    //             previewContainer.innerHTML = '';
-
-    //             if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(fileType)) {
-    //                 previewContainer.innerHTML = `<img src="${fileUrl}" class="img-fluid rounded" alt="Attachment">`;
-    //             } else if (['pdf'].includes(fileType)) {
-    //                 previewContainer.innerHTML = `<iframe src="${fileUrl}" width="100%" height="500px" class="border-0 rounded"></iframe>`;
-    //             } else {
-    //                 previewContainer.innerHTML = `<p>Preview not supported for this file type.<br><a href="${fileUrl}" target="_blank">Download</a></p>`;
-    //             }
-
-    //             // Show modal
-    //             const modal = new bootstrap.Modal(document.getElementById('attachmentModal'));
-    //             modal.show();
-    //         };
-    //     });
-    // }
 
     function bindAttachmentPreview() {
         document.querySelectorAll('.view-attachment-btn').forEach(button => {

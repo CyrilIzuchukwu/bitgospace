@@ -208,6 +208,29 @@
 </div>
 
 <script>
+    // ✅ Define the function globally (before DOMContentLoaded)
+    function bindAttachmentPreviewButtons() {
+        document.querySelectorAll('.view-attachment-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const fileUrl = this.dataset.file;
+                const fileType = this.dataset.fileType.toLowerCase();
+                const previewContainer = document.getElementById('attachmentPreviewContent');
+
+                previewContainer.innerHTML = '';
+
+                if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(fileType)) {
+                    previewContainer.innerHTML = `<img src="${fileUrl}" class="img-fluid rounded" alt="Attachment">`;
+                } else if (['pdf'].includes(fileType)) {
+                    previewContainer.innerHTML = `<iframe src="${fileUrl}" width="100%" height="500px" class="border-0 rounded"></iframe>`;
+                } else {
+                    previewContainer.innerHTML = `<p>Preview not supported for this file type.<br><a href="${fileUrl}" target="_blank">Download</a></p>`;
+                }
+
+                const modal = new bootstrap.Modal(document.getElementById('attachmentModal'));
+                modal.show();
+            });
+        });
+    }
     document.addEventListener('DOMContentLoaded', function() {
         // File preview functionality
         const fileInput = document.getElementById('file-input');
@@ -355,6 +378,8 @@
             }
         }
 
+        bindAttachmentPreviewButtons();
+
 
         // Close ticket
         document.querySelectorAll('.close-ticket-btn').forEach(button => {
@@ -419,6 +444,8 @@
                 });
             });
         });
+
+
     });
 </script>
 @endsection

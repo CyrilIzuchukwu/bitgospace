@@ -144,12 +144,12 @@ class KycController extends Controller
 
         // Validate uploaded files
         $validator = Validator::make($request->all(), [
-            'document_front' => 'required|image|mimes:jpeg,png,jpg|max:5120', // 5MB max
-            'profile_photo' => 'required|image|mimes:jpeg,png,jpg|max:5120',  // 5MB max
+            'document_front' => 'required',
+            'profile_photo' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('error', 'Please upload valid image files (JPEG, PNG, JPG) under 5MB.');
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
         try {
@@ -203,7 +203,7 @@ class KycController extends Controller
             return redirect()->route('user.kyc.status')->with('success', 'KYC verification submitted successfully! We will review your documents within 5 - 15 minutes.');
         } catch (\Exception $e) {
             // Log the error
-            dd('KYC Document Upload Error: ' . $e->getMessage());
+            // dd('KYC Document Upload Error: ' . $e->getMessage());
 
             return redirect()->back()->with('error', $e->getMessage());
         }

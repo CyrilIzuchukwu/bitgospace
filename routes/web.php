@@ -64,6 +64,10 @@ Route::get('terms', function () {
 })->name('terms');
 
 
+// Route::get('/test-419', function () {
+//     abort(419);
+// });
+
 // routes/web.php
 // Route::get('/test-investment', function () {
 
