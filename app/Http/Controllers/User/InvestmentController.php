@@ -327,22 +327,28 @@ class InvestmentController extends Controller
 
 
 
-    public function withdrawInvestment(Investment $investment)
+    public function withdrawInvestment($investmentId)
     {
         // Get the authenticated user
-        $user = Auth::user();
+        $authUser = Auth::user();
+
+        // Find the investment explicitly
+        $investment = Investment::findOrFail($investmentId);
 
         // Verify the investment belongs to the authenticated user
-        abort_if($investment->user_id !== $user->id, 403);
+        // if ($investment->user_id !== $authUser->id) {
+        //     abort(403, 'Unauthorized access to this investment');
+        // }
 
         // Check if investment is eligible for withdrawal
         if (!$investment->due || $investment->withdrawn) {
             return back()->with('error', 'This investment is not eligible for withdrawal');
         }
 
-        DB::transaction(function () use ($investment, $user) {
+
+        DB::transaction(function () use ($investment, $authUser) {
             // Get the user's wallet
-            $wallet = $user->wallet()->lockForUpdate()->first();
+            $wallet = $authUser->wallet()->lockForUpdate()->first();
 
             // Add the profit to wallet balance
             $wallet->increment('balance', $investment->profit);
@@ -352,7 +358,7 @@ class InvestmentController extends Controller
 
             // Create transaction record
             Transaction::create([
-                'user_id' => $user->id,
+                'user_id' => $authUser->id,
                 'amount' => $investment->profit,
                 'type' => 'investment_withdrawal',
                 'status' => 'completed',
