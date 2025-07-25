@@ -101,6 +101,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
 </head>
 
@@ -187,6 +189,7 @@
             max-width: 400px;
             z-index: 9999;
             display: none;
+            font-size: 13px;
         }
 
         .progress-bar {
@@ -232,19 +235,14 @@
                     alertBox.style.opacity = "0";
                     setTimeout(() => {
                         alertBox.remove();
-                    }, 500); // Fade-out effect
-                }, 7000); // 3 seconds
+                    }, 500);
+                }, 7000);
             }
         });
     </script>
 
 
     <script>
-        // window.addEventListener('load', function() {
-        //     const preloader = document.getElementById('preloader');
-        //     preloader.style.display = 'none';
-        // });
-
 
         window.addEventListener('load', function() {
             const preloader = document.getElementById('preloader');
@@ -262,7 +260,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @if(session('success') || session('error') || session('info'))
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             Swal.fire({
                 toast: true,
@@ -278,7 +276,7 @@
                 }
             });
         });
-    </script>
+    </script> --}}
     @endif
 
 

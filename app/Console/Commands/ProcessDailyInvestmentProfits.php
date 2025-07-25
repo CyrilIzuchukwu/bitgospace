@@ -126,7 +126,7 @@ class ProcessDailyInvestmentProfits extends Command
         $activeInvestmentsCount = Investment::where('status', true)
             ->where('due', false)
             ->where('withdrawn', false)
-            ->where('end_date', '>', $today)
+            ->where('end_date', '>=', $today)
             ->count();
 
         $this->info("Found {$activeInvestmentsCount} active investments for daily profit processing");
@@ -140,7 +140,7 @@ class ProcessDailyInvestmentProfits extends Command
             ->where('status', true)
             ->where('due', false)
             ->where('withdrawn', false)
-            ->where('end_date', '>', $today)
+            ->where('end_date', '>=', $today)
             ->chunkById(100, function ($investments) use ($today, &$processedCount, &$totalProfitAdded) {
                 foreach ($investments as $investment) {
                     $profitAdded = $this->processDailyProfit($investment);

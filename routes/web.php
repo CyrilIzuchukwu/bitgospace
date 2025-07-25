@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\WalletAddressController;
 use App\Http\Controllers\Admin\WithdrawalAddressController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\DepositController;
@@ -103,7 +104,7 @@ Route::get('terms', function () {
 //     return redirect('user/investments');
 // });
 
-
+Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit')->middleware('throttle:20,10');
 
 
 Route::post('/admin/register', [UserController::class, 'createAdmin'])->name('admin.create');

@@ -373,7 +373,7 @@
                                                 It finds profitable trades fast, and I don't need to babysit it. I’ve seen consistent returns with zero stress.
                                             </p>
                                             <div class="client-info">
-                                                <h4 class="title">Sergio Romero Delgado</h4>
+                                                <h4 class="title">Sergio D.</h4>
                                                 <h6 class="rating">
                                                     <i class="ri-star-s-fill"></i>
                                                     <i class="ri-star-s-fill"></i>
