@@ -170,7 +170,7 @@
                         </a>
                     </li> --}}
 
-                    <li class="side-nav-item">
+                    {{-- <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#leaderboard" aria-expanded="false"
                             aria-controls="leaderboard" class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-trophy"></i></span>
@@ -197,7 +197,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
 
                     <li class="side-nav-item">

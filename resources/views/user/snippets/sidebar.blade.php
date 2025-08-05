@@ -159,14 +159,14 @@
                         </div>
                     </li>
 
-                   
 
-                       <li class="side-nav-item">
+
+                    {{-- <li class="side-nav-item">
                         <a href="{{ route('user.leaderboard') }}" class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-trophy"></i></span>
                             <span class="menu-text"> Leaderboard </span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="side-nav-title mt-3">Settings</li>
                     <li class="side-nav-item">
