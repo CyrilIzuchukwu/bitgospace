@@ -19,11 +19,13 @@ class ProcessDailyInvestmentProfits extends Command
         $today = Carbon::now();
         $this->info("Starting daily profit processing for {$today->toDateString()}");
 
+        // Then process daily profits for active investments
+        $this->processDailyProfits($today);
+
+
         // Process completed investments first
         $this->processCompletedInvestments($today);
 
-        // Then process daily profits for active investments
-        $this->processDailyProfits($today);
 
         $this->info('Successfully processed daily investment profits.');
     }
@@ -35,7 +37,7 @@ class ProcessDailyInvestmentProfits extends Command
         // Get completed investments without chunking to avoid transaction issues
         $completedInvestments = Investment::with(['plan', 'user'])
             ->where('status', true)
-            ->where('due', false) // Use boolean instead of string
+            ->where('due', false)
             ->where('withdrawn', false)
             ->where('end_date', '<=', $today)
             ->get();
@@ -63,6 +65,7 @@ class ProcessDailyInvestmentProfits extends Command
 
             // Log current state before update
             $this->info("Before update - Investment {$freshInvestment->id}: status={$freshInvestment->status}, due={$freshInvestment->due}, withdrawn={$freshInvestment->withdrawn}, end_date={$freshInvestment->end_date}");
+
             Log::info("Processing investment completion - Investment {$freshInvestment->id}: status={$freshInvestment->status}, due={$freshInvestment->due}, end_date={$freshInvestment->end_date}");
 
             // Mark investment as completed using fresh instance
@@ -108,6 +111,16 @@ class ProcessDailyInvestmentProfits extends Command
             // Send completion email
             // Mail::to($freshInvestment->user->email)->send(new InvestmentCompleted($freshInvestment));
 
+
+            $remainingProfit = $freshInvestment->roi - $freshInvestment->profit;
+
+            if ($remainingProfit > 0) {
+                $freshInvestment->increment('profit', $remainingProfit);
+                $this->info("Added remaining profit of {$remainingProfit} to Investment ID {$freshInvestment->id} before marking complete.");
+                Log::info("Remaining profit {$remainingProfit} added before completion for Investment ID {$freshInvestment->id}");
+            }
+
+
             DB::commit();
 
             $this->info("Investment completed, capital returned to wallet. Investment ID: {$freshInvestment->id}");
@@ -126,7 +139,7 @@ class ProcessDailyInvestmentProfits extends Command
         $activeInvestmentsCount = Investment::where('status', true)
             ->where('due', false)
             ->where('withdrawn', false)
-            ->where('end_date', '>=', $today)
+            ->where('end_date', '>', $today)
             ->count();
 
         $this->info("Found {$activeInvestmentsCount} active investments for daily profit processing");
@@ -140,7 +153,7 @@ class ProcessDailyInvestmentProfits extends Command
             ->where('status', true)
             ->where('due', false)
             ->where('withdrawn', false)
-            ->where('end_date', '>=', $today)
+            ->where('end_date', '>', $today)
             ->chunkById(100, function ($investments) use ($today, &$processedCount, &$totalProfitAdded) {
                 foreach ($investments as $investment) {
                     $profitAdded = $this->processDailyProfit($investment);
