@@ -3,7 +3,8 @@
             <!-- Brand Logo -->
             <a href="/" class="logo">
                 <span class="logo-light">
-                    <span class="logo-lg"><img src="{{ asset('assets/images/logo/logo.png') }}" width="150" alt="logo"></span>
+                    <span class="logo-lg"><img src="{{ asset('assets/images/logo/logo.png') }}" width="150"
+                            alt="logo"></span>
                     <span class="logo-sm"><img src="{{ asset('assets/images/favicon.png') }}" alt="small logo"></span>
                 </span>
 
@@ -40,7 +41,8 @@
 
                     <li class="side-nav-title mt-3">STAKES</li>
                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#investement" aria-expanded="false" aria-controls="investement" class="side-nav-link">
+                        <a data-bs-toggle="collapse" href="#investement" aria-expanded="false"
+                            aria-controls="investement" class="side-nav-link">
                             <span class="menu-icon">
                                 <i class="ti ti-stack"></i>
                             </span>
@@ -69,7 +71,8 @@
                     <li class="side-nav-title mt-3">Transactions</li>
 
                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#deposits" aria-expanded="false" aria-controls="deposits" class="side-nav-link">
+                        <a data-bs-toggle="collapse" href="#deposits" aria-expanded="false" aria-controls="deposits"
+                            class="side-nav-link">
                             <span class="menu-icon">
                                 <i class="ti ti-credit-card"></i>
 
@@ -94,7 +97,8 @@
                     </li>
 
                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#withdraw" aria-expanded="false" aria-controls="withdraw" class="side-nav-link">
+                        <a data-bs-toggle="collapse" href="#withdraw" aria-expanded="false" aria-controls="withdraw"
+                            class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-currency-dollar"></i></span>
                             <span class="menu-text"> Withdrawals</span>
                             <span class="menu-arrow"></span>
@@ -125,10 +129,9 @@
 
                     <li class="side-nav-title mt-3">Jarden link</li>
 
-
-
                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#referrals" aria-expanded="false" aria-controls="referrals" class="side-nav-link">
+                        <a data-bs-toggle="collapse" href="#referrals" aria-expanded="false"
+                            aria-controls="referrals" class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-users"></i></span>
                             <span class="menu-text"> Referrals </span>
                             <span class="menu-arrow"></span>
@@ -156,9 +159,19 @@
                         </div>
                     </li>
 
+                   
+
+                       <li class="side-nav-item">
+                        <a href="{{ route('user.leaderboard') }}" class="side-nav-link">
+                            <span class="menu-icon"><i class="ti ti-trophy"></i></span>
+                            <span class="menu-text"> Leaderboard </span>
+                        </a>
+                    </li>
+
                     <li class="side-nav-title mt-3">Settings</li>
                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="settings" class="side-nav-link">
+                        <a data-bs-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="settings"
+                            class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-settings"></i></span>
                             <span class="menu-text"> Settings</span>
                             <span class="menu-arrow"></span>
@@ -207,7 +220,8 @@
                     <li class="side-nav-title mt-3">Markets & Apps</li>
 
                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#markets" aria-expanded="false" aria-controls="markets" class="side-nav-link">
+                        <a data-bs-toggle="collapse" href="#markets" aria-expanded="false" aria-controls="markets"
+                            class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-medical-cross"></i></span>
                             <span class="menu-text"> Markets</span>
                             <span class="menu-arrow"></span>
@@ -232,7 +246,9 @@
 
 
                     <li class="side-nav-item">
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form2').submit();" class="side-nav-link text-danger">
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form2').submit();"
+                            class="side-nav-link text-danger">
                             <span class="menu-icon"> <i class="ti ti-logout fs-17 align-middle"></i></span>
                             <span class="menu-text"> Logout </span>
                         </a>

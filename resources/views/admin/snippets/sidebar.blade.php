@@ -3,7 +3,8 @@
             <!-- Brand Logo -->
             <a href="/" class="logo">
                 <span class="logo-light">
-                    <span class="logo-lg"><img src="{{ asset('assets/images/logo/logo.png') }}" width="150" alt="logo"></span>
+                    <span class="logo-lg"><img src="{{ asset('assets/images/logo/logo.png') }}" width="150"
+                            alt="logo"></span>
                     <span class="logo-sm"><img src="{{ asset('assets/images/favicon.png') }}" alt="small logo"></span>
                 </span>
 
@@ -46,7 +47,8 @@
                     </li>
 
                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#plans" aria-expanded="false" aria-controls="plans" class="side-nav-link">
+                        <a data-bs-toggle="collapse" href="#plans" aria-expanded="false" aria-controls="plans"
+                            class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-briefcase"></i></span>
                             <span class="menu-text">Plans</span>
                             <span class="menu-arrow"></span>
@@ -69,7 +71,8 @@
 
 
                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#wallets" aria-expanded="false" aria-controls="wallets" class="side-nav-link">
+                        <a data-bs-toggle="collapse" href="#wallets" aria-expanded="false" aria-controls="wallets"
+                            class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-wallet"></i></span>
                             <span class="menu-text">Deposit Address</span>
                             <span class="menu-arrow"></span>
@@ -92,7 +95,8 @@
 
 
                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#withdrawaladdress" aria-expanded="false" aria-controls="withdrawaladdress" class="side-nav-link">
+                        <a data-bs-toggle="collapse" href="#withdrawaladdress" aria-expanded="false"
+                            aria-controls="withdrawaladdress" class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-building-bank"></i></span>
                             <span class="menu-text">Withdrawal Address</span>
                             <span class="menu-arrow"></span>
@@ -159,11 +163,46 @@
                         </a>
                     </li>
 
+                    {{-- <li class="side-nav-item">
+                        <a href="{{ route('admin.leaderboard.index') }}" class="side-nav-link">
+                            <span class="menu-icon"><i class="ti ti-trophy"></i></span>
+                            <span class="menu-text">Leaderboard Stages</span>
+                        </a>
+                    </li> --}}
 
+                    <li class="side-nav-item">
+                        <a data-bs-toggle="collapse" href="#leaderboard" aria-expanded="false"
+                            aria-controls="leaderboard" class="side-nav-link">
+                            <span class="menu-icon"><i class="ti ti-trophy"></i></span>
+                            <span class="menu-text">Leaderboard</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="leaderboard">
+                            <ul class="sub-menu">
+
+                                 <li class="side-nav-item">
+                                    <a href="{{ route('admin.leaderboard.create') }}" class="side-nav-link">
+                                        <span class="menu-text">Create Stage</span>
+                                    </a>
+                                </li>
+                                <li class="side-nav-item">
+                                    <a href="{{ route('admin.leaderboard.index') }}" class="side-nav-link">
+                                        <span class="menu-text">Stages</span>
+                                    </a>
+                                </li>
+                                <li class="side-nav-item">
+                                    <a href="" class="side-nav-link">
+                                        <span class="menu-text">User Progress</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
 
                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#media" aria-expanded="false" aria-controls="v" class="side-nav-link">
+                        <a data-bs-toggle="collapse" href="#media" aria-expanded="false" aria-controls="v"
+                            class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-photo-video"></i></span>
                             <span class="menu-text">Media</span>
                             <span class="menu-arrow"></span>
@@ -186,7 +225,8 @@
                     </li>
 
                     <li class="side-nav-item">
-                        <a href="{{ route('admin.kyc') }}" aria-expanded="false" aria-controls="kyc" class="side-nav-link">
+                        <a href="{{ route('admin.kyc') }}" aria-expanded="false" aria-controls="kyc"
+                            class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-id"></i></span>
                             <span class="menu-text"> KYC</span>
                         </a>
@@ -194,7 +234,8 @@
 
 
                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#pdf" aria-expanded="false" aria-controls="pdf" class="side-nav-link">
+                        <a data-bs-toggle="collapse" href="#pdf" aria-expanded="false" aria-controls="pdf"
+                            class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-file-type-pdf"></i></span>
                             <span class="menu-text">PDF Documents</span>
                             <span class="menu-arrow"></span>
@@ -217,7 +258,9 @@
                     </li>
 
                     <li class="side-nav-item">
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form2').submit();" class="side-nav-link">
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form2').submit();"
+                            class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-logout"></i></span>
                             <span class="menu-text"> Logout </span>
                         </a>

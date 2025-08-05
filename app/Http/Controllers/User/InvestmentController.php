@@ -9,6 +9,8 @@ use App\Models\Plan;
 use App\Models\ReferralCommission;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Services\ReferralInvestmentService;
+use App\Services\ReferralInvestmentTracker;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -248,6 +250,12 @@ class InvestmentController extends Controller
             // Process referral commissions (NEW CODE)
             $this->processReferralCommissions($user, $request->amount, $reference, $investment);
 
+            // After DB::commit();
+            $tracker = new ReferralInvestmentTracker();
+            $tracker->updateUserLeaderboardProgress($user);  // Update referrer's progress
+            if ($user->referred_by) {
+                $tracker->updateUserLeaderboardProgress(User::find($user->referred_by)); // Update referrer's progress
+            }
             // Clear the session data
             $request->session()->forget('investment_data');
 

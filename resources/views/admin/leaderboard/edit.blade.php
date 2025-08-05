@@ -1,0 +1,91 @@
+@extends('layouts.admin')
+@section('content')
+
+<div class="page-content">
+    <div class="page-container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card position-relative deposit-wrapper">
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-md-12">
+                            <!-- Title -->
+                            <div class="text-center">
+                                <h3 class="mb-2">EDIT LEADERBOARD STAGE</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                      <form method="POST" action="{{ route('admin.leaderboard.update', $leaderboard->id) }}" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label>Stage Name</label>
+                                        <input type="text" name="name" placeholder="Stage name" value="{{ old('name', $leaderboard->name) }}" class="form-control" required>
+                                        <span class="text-danger">@error('name') {{ $message }} @enderror</span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label>Description</label>
+                                        <textarea name="description" placeholder="Stage description" class="form-control" rows="3">{{ old('description', $leaderboard->description) }}</textarea>
+                                        <span class="text-danger">@error('description') {{ $message }} @enderror</span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label>Image</label>
+                                        @if($leaderboard->image)
+                                        <div class="mb-2">
+                                            <img src="{{ asset('storage/'.$leaderboard->image) }}" alt="Current image" width="80" class="img-thumbnail">
+                                            <div class="form-check mt-2">
+                                                <input class="form-check-input" type="checkbox" name="remove_image" id="remove_image">
+                                                <label class="form-check-label text-danger" for="remove_image">
+                                                    Remove current image
+                                                </label>
+                                            </div>
+                                        </div>
+                                        @endif
+                                        <input type="file" style="height: 45px;" name="image" accept="image/*" class="form-control">
+                                        <span class="text-danger">@error('image') {{ $message }} @enderror</span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label>Target Amount</label>
+                                        <input type="number" step="0.01" name="target_amount" placeholder="Target amount" value="{{ old('target_amount', $leaderboard->target_amount) }}" class="form-control" required>
+                                        <span class="text-danger">@error('target_amount') {{ $message }} @enderror</span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label>Status</label>
+                                        <select name="status" class="form-control" required>
+                                            <option value="active" {{ old('status', $leaderboard->status) === 'active' ? 'selected' : '' }}>Active</option>
+                                            <option value="inactive" {{ old('status', $leaderboard->status) === 'inactive' ? 'selected' : '' }}>Inactive</option>
+                                        </select>
+                                        <span class="text-danger">@error('status') {{ $message }} @enderror</span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label>Order (Stage)</label>
+                                        <input type="number" name="order" placeholder="Display order" value="{{ old('order', $leaderboard->order) }}" class="form-control">
+                                        <span class="text-danger">@error('order') {{ $message }} @enderror</span>
+                                    </div>
+
+                                    <div class="pt-2 d-flex">
+                                        <button type="submit" class="submit-btn btn-default">Update Stage<i class="ti ti-chevron-right ms-1"></i></button>
+                                        <a href="{{ route('admin.leaderboard.index') }}" class="btn btn-secondary ms-2">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @include('admin.snippets.footer')
+</div>
+
+@endsection

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminMediaController;
 use App\Http\Controllers\Admin\AdminPdfController;
 use App\Http\Controllers\Admin\AdminSupportController;
 use App\Http\Controllers\Admin\AdminWithdrawalController;
+use App\Http\Controllers\Admin\LeaderboardStageController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\WalletAddressController;
 use App\Http\Controllers\Admin\WithdrawalAddressController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\User\DepositController;
 use App\Http\Controllers\User\ForgotPinController;
 use App\Http\Controllers\User\InvestmentController;
 use App\Http\Controllers\User\KycController;
+use App\Http\Controllers\User\LeaderboardController;
 use App\Http\Controllers\User\MarketController;
 use App\Http\Controllers\User\NowPaymentsController;
 use App\Http\Controllers\User\PdfController;
@@ -293,6 +295,9 @@ Route::middleware(['auth'])->prefix('user')->group(function () {
 
         Route::delete('/ticket-messages/{message}', [SupportController::class, 'deleteMessage'])->name('user.ticket.message.delete');
     });
+
+
+    Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('user.leaderboard');
 });
 
 
@@ -417,4 +422,18 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
         // Close ticket
         Route::post('/ticket/{reference_id}/close', 'closeTicket')->name('admin.ticket.close');
     });
+
+
+    // leaderboard
+    Route::resource('leaderboard', LeaderboardStageController::class)
+        ->names([
+            'index' => 'admin.leaderboard.index',
+            'create' => 'admin.leaderboard.create',
+            'store' => 'admin.leaderboard.store',
+            'show' => 'admin.leaderboard.show',
+            'edit' => 'admin.leaderboard.edit',
+            'update' => 'admin.leaderboard.update',
+            'destroy' => 'admin.leaderboard.destroy',
+            'leaderboard_progress' => 'admin.leaderboard.progress',
+        ]);
 });
