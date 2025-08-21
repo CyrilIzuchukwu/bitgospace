@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\LeaderboardStage;
+use App\Models\User;
+use App\Services\ReferralInvestmentTracker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -16,7 +18,7 @@ class LeaderboardStageController extends Controller
      */
     public function index()
     {
-        $stages = LeaderboardStage::ordered()->paginate(2);
+        $stages = LeaderboardStage::ordered()->paginate(10);
         return view('admin.leaderboard.index', compact('stages'));
     }
 

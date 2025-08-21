@@ -22,7 +22,8 @@
     <link href="{{ asset('dashboard_assets/assets/css/vendor.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- App css -->
-    <link href="{{ asset('dashboard_assets/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
+    <link href="{{ asset('dashboard_assets/assets/css/app.min.css') }}" rel="stylesheet" type="text/css"
+        id="app-style" />
 
     <!-- Icons css -->
     <link href="{{ asset('dashboard_assets/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
@@ -34,7 +35,12 @@
     <link href="{{ asset('dashboard_assets/assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- custom responsiveness -->
-    <link href="{{ asset('dashboard_assets/assets/css/custom-responsiveness.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('dashboard_assets/assets/css/custom-responsiveness.css') }}" rel="stylesheet"
+        type="text/css" />
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -62,8 +68,10 @@
                     <div class="card mb-1">
                         <div class="px-3 py-2 d-flex flex-row align-items-center" id="top-search">
                             <i class="ti ti-search fs-22"></i>
-                            <input type="search" class="form-control border-0" id="search-modal-input" placeholder="Search for actions, people,">
-                            <button type="button" class="btn p-0" data-bs-dismiss="modal" aria-label="Close">[esc]</button>
+                            <input type="search" class="form-control border-0" id="search-modal-input"
+                                placeholder="Search for actions, people,">
+                            <button type="button" class="btn p-0" data-bs-dismiss="modal"
+                                aria-label="Close">[esc]</button>
                         </div>
                     </div>
                 </div>
@@ -109,28 +117,28 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    @if(session('success') || session('error') || session('info'))
-    <script>
-        // Wait for window to fully load including all resources
-        window.addEventListener('load', function() {
-            // Small additional delay to ensure everything is ready
-            setTimeout(function() {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: @json(session('success') ? 'success' : (session('error') ? 'error' : 'info')),
-                    title: @json(session('success') ?? session('error') ?? session('info')),
-                    showConfirmButton: false,
-                    timer: 5000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer);
-                        toast.addEventListener('mouseleave', Swal.resumeTimer);
-                    }
-                });
-            }, 200); // 100ms delay after load event
-        });
-    </script>
+    @if (session('success') || session('error') || session('info'))
+        <script>
+            // Wait for window to fully load including all resources
+            window.addEventListener('load', function() {
+                // Small additional delay to ensure everything is ready
+                setTimeout(function() {
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: @json(session('success') ? 'success' : (session('error') ? 'error' : 'info')),
+                        title: @json(session('success') ?? (session('error') ?? session('info'))),
+                        showConfirmButton: false,
+                        timer: 5000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer);
+                            toast.addEventListener('mouseleave', Swal.resumeTimer);
+                        }
+                    });
+                }, 200); // 100ms delay after load event
+            });
+        </script>
     @endif
 
     <style>
@@ -226,7 +234,8 @@
 
 
     <div class="support-button-container">
-        <a href="{{ route('admin.support.tickets') }}" id="supportButton" class="btn btn-primary rounded-circle p-3 shadow-lg">
+        <a href="{{ route('admin.support.tickets') }}" id="supportButton"
+            class="btn btn-primary rounded-circle p-3 shadow-lg">
             <i class="ri-customer-service-2-line fs-4"></i>
         </a>
     </div>
@@ -291,6 +300,48 @@
 
         }
     </style>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+    <style>
+        .note-btn-group .note-btn {
+            font-size: 10px !important;
+            background-color: #1e1f27 !important;
+        }
+
+          .note-btn-group .note-btn {
+            font-size: 12px !important;
+            padding: 2px 8px !important;
+            /* background-color: #fff !important;
+            border: 1px solid #dee2e6 !important; */
+            border-radius: 3px !important;
+        }
+    </style>
+       <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                placeholder: 'Message',
+                height: 200,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ],
+                callbacks: {
+                    onPaste: function(e) {
+                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                        e.preventDefault();
+                        document.execCommand('insertText', false, bufferText);
+                    }
+                }
+            });
+        });
+    </script>
 
 
 </body>

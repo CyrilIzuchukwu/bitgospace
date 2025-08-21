@@ -1,21 +1,33 @@
 @extends('layouts.admin')
 @section('content')
-
-<div class="page-content">
-    <div class="page-container">
-        <div class="row">
-            <div class="col-12">
-                <div class="card position-relative deposit-wrapper">
-                    <div class="row justify-content-center mt-3">
-                        <div class="col-md-12">
-                            <!-- Title -->
-                            <div class="text-center">
-                                <h3 class="mb-2">CREATE LEADERBOARD STAGE</h3>
+    <div class="page-content">
+        <div class="page-container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card position-relative deposit-wrapper">
+                        <div class="row justify-content-center mt-3">
+                            <div class="col-md-12">
+                                <!-- Title -->
+                                <div class="text-center">
+                                    <h3 class="mb-2">CREATE LEADERBOARD STAGE</h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <form action="{{ route('admin.leaderboard.store') }}" method="POST" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="alert alert-warning text-center">
+                                        <i class="ti ti-lock me-2"></i>
+                                        <strong>Subscription Required</strong><br>
+                                        You haven't subscribed to access the Leaderboard package.
+                                        Please subscribe and unlock this feature.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- <form action="{{ route('admin.leaderboard.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="card-body">
@@ -66,13 +78,12 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
+                    </div>
                 </div>
             </div>
         </div>
+
+        @include('admin.snippets.footer')
     </div>
-
-    @include('admin.snippets.footer')
-</div>
-
 @endsection

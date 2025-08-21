@@ -33,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
             return new CryptoConverter();
         });
 
+        
+
         View::composer('*', function ($view) {
 
             if (Auth::check()) {

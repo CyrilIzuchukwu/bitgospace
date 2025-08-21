@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class ReferralInvestmentTracker
 {
+
     public function calculateTotalReferralInvestments(User $user): float
     {
         return (float) Investment::whereHas('user', function ($query) use ($user) {

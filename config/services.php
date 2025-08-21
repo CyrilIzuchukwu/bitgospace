@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'mailjet' => [
+        'key' => env('MAILJET_API_KEY'),
+        'secret' => env('MAILJET_SECRET_KEY'),
+        'version' => env('MAILJET_VERSION', 'v3.1'),
+    ],
+
 ];

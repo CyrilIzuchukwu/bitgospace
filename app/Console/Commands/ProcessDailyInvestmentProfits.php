@@ -112,7 +112,8 @@ class ProcessDailyInvestmentProfits extends Command
             // Mail::to($freshInvestment->user->email)->send(new InvestmentCompleted($freshInvestment));
 
 
-            $remainingProfit = $freshInvestment->roi - $freshInvestment->profit;
+            // $remainingProfit = $freshInvestment->roi - $freshInvestment->profit;
+            $remainingProfit = round($freshInvestment->roi - $freshInvestment->profit, 2);
 
             if ($remainingProfit > 0) {
                 $freshInvestment->increment('profit', $remainingProfit);
@@ -168,6 +169,30 @@ class ProcessDailyInvestmentProfits extends Command
         Log::info("Daily profit processing completed: {$processedCount} investments processed, total profit added: {$totalProfitAdded}");
     }
 
+    // private function processDailyProfit($investment)
+    // {
+    //     try {
+    //         $dailyProfit = $investment->amount * ($investment->plan->interest_rate / 100);
+    //         $remainingProfit = $investment->roi - $investment->profit;
+
+    //         if ($remainingProfit > 0) {
+    //             $profitToAdd = min($dailyProfit, $remainingProfit);
+    //             $investment->increment('profit', $profitToAdd);
+
+    //             $this->info("Daily profit added - Investment ID: {$investment->id}, Amount: {$profitToAdd}, Remaining: " . ($remainingProfit - $profitToAdd));
+    //             Log::info("Daily profit added - Investment ID: {$investment->id}, Profit: {$profitToAdd}, New total: " . ($investment->profit + $profitToAdd));
+
+    //             return $profitToAdd;
+    //         }
+
+    //         return 0;
+    //     } catch (\Throwable $e) {
+    //         $this->error("Error processing daily profit for investment ID {$investment->id}: {$e->getMessage()}");
+    //         Log::error("Error processing daily profit for investment ID {$investment->id}: {$e->getMessage()}");
+    //         return 0;
+    //     }
+    // }
+
     private function processDailyProfit($investment)
     {
         try {
@@ -175,7 +200,18 @@ class ProcessDailyInvestmentProfits extends Command
             $remainingProfit = $investment->roi - $investment->profit;
 
             if ($remainingProfit > 0) {
+                // Add precision handling to avoid floating point issues
                 $profitToAdd = min($dailyProfit, $remainingProfit);
+
+                // Round to avoid floating point precision errors
+                $profitToAdd = round($profitToAdd, 2);
+
+                // Ensure we don't exceed the total ROI due to rounding
+                if (($investment->profit + $profitToAdd) > $investment->roi) {
+                    $profitToAdd = $investment->roi - $investment->profit;
+                    $profitToAdd = round($profitToAdd, 2);
+                }
+
                 $investment->increment('profit', $profitToAdd);
 
                 $this->info("Daily profit added - Investment ID: {$investment->id}, Amount: {$profitToAdd}, Remaining: " . ($remainingProfit - $profitToAdd));

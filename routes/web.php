@@ -8,8 +8,10 @@ use App\Http\Controllers\Admin\AdminMediaController;
 use App\Http\Controllers\Admin\AdminPdfController;
 use App\Http\Controllers\Admin\AdminSupportController;
 use App\Http\Controllers\Admin\AdminWithdrawalController;
+use App\Http\Controllers\Admin\AltLeadController;
 use App\Http\Controllers\Admin\LeaderboardStageController;
 use App\Http\Controllers\Admin\PlanController;
+use App\Http\Controllers\Admin\SendMailController;
 use App\Http\Controllers\Admin\WalletAddressController;
 use App\Http\Controllers\Admin\WithdrawalAddressController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -312,6 +314,7 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
 
 
     Route::get('/user/{user}', [AdminController::class, 'show'])->name('admin.users.show');
+
     Route::post('/user/{user}/fund-wallet', [AdminController::class, 'fundWallet'])->name('admin.users.fund-wallet');
     Route::post('/user/{user}/deduct-wallet', [AdminController::class, 'deductWallet'])->name('admin.users.deduct-wallet');
 
@@ -319,9 +322,23 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
     Route::post('/users/{user}/wallet-deactivate', [AdminController::class, 'deactivateWallet'])->name('admin.users.wallet.deactivate');
 
 
+    // email
+    Route::get('/admin/users/{id}/email', [AdminController::class, 'emailForm'])->name('admin.users.email.form');
+    Route::post('/admin/users/{id}/email', [AdminController::class, 'sendEmail'])->name('admin.users.email.send');
+
+
+
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/transaction-audits', 'transactions')->name('admin.transactions.audits');
     });
+
+    Route::controller(SendMailController::class)->group(function () {
+        Route::get('/send-mail', 'sendMail')->name('admin.mail.send');
+
+        Route::post('/admin/send-bulk-email', 'sendToAllUsers')->name('admin.users.email.bulk');
+    });
+
+
 
     Route::controller(PlanController::class)->group(function () {
         Route::get('/plans', 'index')->name('plans.index');
@@ -434,6 +451,8 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
             'edit' => 'admin.leaderboard.edit',
             'update' => 'admin.leaderboard.update',
             'destroy' => 'admin.leaderboard.destroy',
-            'leaderboard_progress' => 'admin.leaderboard.progress',
         ]);
+
+    Route::get('learderboard/user-progress', [AltLeadController::class, 'userProgress'])
+        ->name('admin.leaderboard.progress');
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\UserNotificationEmail;
 use App\Models\DepositTransaction;
 use App\Models\Investment;
 use App\Models\KycVerification;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Mail;
 
 class AdminController extends Controller
 {
@@ -317,6 +319,50 @@ class AdminController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->with('error', 'Deactivation failed: ' . $e->getMessage());
+        }
+    }
+
+
+
+    public function emailForm($id)
+    {
+
+
+        $userEmail = User::findOrFail($id);
+        // dd($userEmail);
+
+        return view('admin.users.email', compact('userEmail'));
+    }
+
+
+    public function sendEmail(Request $request, $id)
+    {
+        $recipient = User::findOrFail($id);
+
+        $request->validate([
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+            'attachments.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx,txt|max:10240',
+        ]);
+
+        try {
+            $emailData = [
+                'recipient_email' => $recipient->email,
+                'recipient_name' => $recipient->name,
+                'subject' => $request->subject,
+                'message' => $request->message,
+                'attachments' => $request->file('attachments'),
+            ];
+
+            
+            $mail = new UserNotificationEmail($emailData);
+
+            Mail::to($emailData['recipient_email'])->send($mail);
+
+            return redirect()->route('admin.users.show', $recipient->id)
+                ->with('success', 'Email sent successfully to ' . $emailData['recipient_email']);
+        } catch (\Exception $e) {
+            return back()->with('error', 'Failed to send email: ' . $e->getMessage());
         }
     }
 }

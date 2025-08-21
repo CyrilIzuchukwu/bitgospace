@@ -47,6 +47,13 @@
                     </li>
 
                     <li class="side-nav-item">
+                        <a href="{{ route('admin.mail.send') }}" class="side-nav-link">
+                            <span class="menu-icon"><i class="ti ti-mail"></i></span>
+                            <span class="menu-text"> Send Mail </span>
+                        </a>
+                    </li>
+
+                    <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#plans" aria-expanded="false" aria-controls="plans"
                             class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-briefcase"></i></span>
@@ -144,18 +151,6 @@
                     </li>
 
 
-
-
-
-                    <!-- <li class="side-nav-item">
-                        <a href="dashboard-wallet.html" class="side-nav-link">
-                            <span class="menu-icon"><i class="ti ti-wallet"></i></span>
-                            <span class="menu-text"> Referrals </span>
-                        </a>
-                    </li> -->
-
-
-
                     <li class="side-nav-item">
                         <a href="{{ route('admin.transactions.audits') }}" class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-activity"></i></span>
@@ -163,14 +158,9 @@
                         </a>
                     </li>
 
-                    {{-- <li class="side-nav-item">
-                        <a href="{{ route('admin.leaderboard.index') }}" class="side-nav-link">
-                            <span class="menu-icon"><i class="ti ti-trophy"></i></span>
-                            <span class="menu-text">Leaderboard Stages</span>
-                        </a>
-                    </li> --}}
 
-                    {{-- <li class="side-nav-item">
+
+                    <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#leaderboard" aria-expanded="false"
                             aria-controls="leaderboard" class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-trophy"></i></span>
@@ -180,7 +170,7 @@
                         <div class="collapse" id="leaderboard">
                             <ul class="sub-menu">
 
-                                 <li class="side-nav-item">
+                                <li class="side-nav-item">
                                     <a href="{{ route('admin.leaderboard.create') }}" class="side-nav-link">
                                         <span class="menu-text">Create Stage</span>
                                     </a>
@@ -190,14 +180,14 @@
                                         <span class="menu-text">Stages</span>
                                     </a>
                                 </li>
-                                <li class="side-nav-item">
-                                    <a href="" class="side-nav-link">
+                                {{-- <li class="side-nav-item">
+                                    <a href="{{ route('admin.leaderboard.progress') }}" class="side-nav-link">
                                         <span class="menu-text">User Progress</span>
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
-                    </li> --}}
+                    </li>
 
 
                     <li class="side-nav-item">
