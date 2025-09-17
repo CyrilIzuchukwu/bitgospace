@@ -118,11 +118,12 @@ class InvestmentController extends Controller
 
             return redirect()->route('user.confirm-investment');
         } catch (ValidationException $e) {
+
             DB::rollBack();
-            return back()->withErrors($e->validator)->withInput();
+            return redirect()->back()->with('error', $e->getMessage());
         } catch (ModelNotFoundException $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'The requested plan or wallet could not be found');
+            return redirect()->back()->with('error', $e->getMessage());
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Investment validation failed: ' . $e->getMessage(), [
@@ -130,7 +131,7 @@ class InvestmentController extends Controller
                 'plan_id' => $request->plan_id,
                 'amount' => $request->amount
             ]);
-            return redirect()->back()->with('error', 'An unexpected error occurred. Please try again.');
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
@@ -275,6 +276,62 @@ class InvestmentController extends Controller
     /**
      * Process 3-level referral commissions
      */
+    // protected function processReferralCommissions($investingUser, $investmentAmount, $reference, Investment $investment)
+    // {
+    //     $commissionLevels = [
+    //         1 => 0.06,  // 6% for level 1 (direct referral)
+    //         2 => 0.025, // 2.5% for level 2
+    //         3 => 0.01,  // 1% for level 3
+    //     ];
+
+    //     $currentUser = $investingUser;
+    //     $level = 1;
+
+    //     while ($level <= 3 && $currentUser->referred_by) {
+    //         $referrer = User::lockForUpdate()->find($currentUser->referred_by);
+
+    //         if (!$referrer) {
+    //             break;
+    //         }
+
+    //         $referrerWallet = $referrer->wallet()->lockForUpdate()->first();
+
+    //         if ($referrerWallet) {
+    //             $commission = $investmentAmount * $commissionLevels[$level];
+
+    //             // Credit referrer's wallet
+    //             $referrerWallet->increment('balance', $commission);
+
+    //             // Create commission transaction
+    //             Transaction::create([
+    //                 'user_id' => $referrer->id,
+    //                 'amount' => $commission,
+    //                 'type' => 'referral_commission',
+    //                 'status' => 'completed',
+    //                 'description' => 'Level ' . $level . ' referral commission from ' . $investingUser->name,
+    //                 'reference' => 'COM-' . $reference,
+    //             ]);
+
+    //             // Create referral commission record (you might want to track this separately)
+    //             ReferralCommission::create([
+    //                 'referrer_id' => $referrer->id,
+    //                 'investor_id' => $investingUser->id,
+    //                 'investment_id' => $investment->id,
+    //                 'level' => $level,
+    //                 'amount' => $commission,
+    //                 'percentage' => $commissionLevels[$level] * 100,
+    //             ]);
+
+
+    //             // ✅ Send email to the referrer
+    //             Mail::to($referrer->email)->send(new ReferralCommissionEarnedMail($referrer, $investingUser, $commission, $level));
+    //         }
+
+    //         $currentUser = $referrer;
+    //         $level++;
+    //     }
+    // }
+
     protected function processReferralCommissions($investingUser, $investmentAmount, $reference, Investment $investment)
     {
         $commissionLevels = [
@@ -298,6 +355,9 @@ class InvestmentController extends Controller
             if ($referrerWallet) {
                 $commission = $investmentAmount * $commissionLevels[$level];
 
+                // ✅ Generate unique reference for each commission transaction
+                $commissionReference = 'COM-' . $level . '-' . $reference;
+
                 // Credit referrer's wallet
                 $referrerWallet->increment('balance', $commission);
 
@@ -308,10 +368,10 @@ class InvestmentController extends Controller
                     'type' => 'referral_commission',
                     'status' => 'completed',
                     'description' => 'Level ' . $level . ' referral commission from ' . $investingUser->name,
-                    'reference' => 'COM-' . $reference,
+                    'reference' => $commissionReference, // Use unique reference
                 ]);
 
-                // Create referral commission record (you might want to track this separately)
+                // Create referral commission record
                 ReferralCommission::create([
                     'referrer_id' => $referrer->id,
                     'investor_id' => $investingUser->id,
@@ -320,7 +380,6 @@ class InvestmentController extends Controller
                     'amount' => $commission,
                     'percentage' => $commissionLevels[$level] * 100,
                 ]);
-
 
                 // ✅ Send email to the referrer
                 Mail::to($referrer->email)->send(new ReferralCommissionEarnedMail($referrer, $investingUser, $commission, $level));

@@ -128,6 +128,11 @@ class UserController extends Controller
 
             $user->save();
 
+            // Create wallet with status false
+            $user->wallet()->create([
+                'status' => false, // Wallet created but not activated
+            ]);
+
             // Clear the referrer session
             session()->forget('referrer');
 

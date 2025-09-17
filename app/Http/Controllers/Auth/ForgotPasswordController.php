@@ -11,6 +11,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class ForgotPasswordController extends Controller
@@ -35,32 +36,45 @@ class ForgotPasswordController extends Controller
     }
 
 
-    // Handle the forgot password form submission
     public function submitForgotPassword(Request $request)
     {
         $request->validate(['email' => 'required|email']);
 
-        $user = User::where('email', $request->email)->first();
+        try {
+            DB::beginTransaction();
 
+            $user = User::where('email', $request->email)->first();
 
+            if (!$user) {
+                return back()->withErrors(['email' => 'We could not find a user with that email address.']);
+            }
 
-        if (!$user) {
-            return back()->withErrors(['email' => 'We could not find a user with that email address.']);
+            // Generate a password reset token and OTP
+            $resetToken = Str::random(40);
+            $otp = rand(100000, 999999);
+
+            $user->password_reset_token = $resetToken;
+            $user->password_reset_otp = $otp;
+            $user->password_reset_token_expires_at = now()->addMinutes(30); // Token expires in 30 minutes
+            $user->save();
+
+            // Send password reset OTP email
+            Mail::to($user->email)->send(new PasswordResetOtpMail($otp));
+
+            DB::commit();
+
+            return redirect()
+                ->route('confirm.code', ['token' => $resetToken])
+                ->with('status', 'We have sent a password reset OTP to your email.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Forgot password error: ' . $e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
+                'email' => $request->email,
+            ]);
+
+            return redirect()->back()->with('error', 'Something went wrong. Please try again later.');
         }
-
-        // Generate a password reset token and OTP
-        $resetToken = Str::random(40);
-        $otp = rand(100000, 999999);
-
-        $user->password_reset_token = $resetToken;
-        $user->password_reset_otp = $otp;
-        $user->password_reset_token_expires_at = now()->addMinutes(30); // Token expires in 30 minutes
-        $user->save();
-
-        // Send password reset OTP email
-        Mail::to($user->email)->send(new PasswordResetOtpMail($otp));
-
-        return redirect()->route('confirm.code', ['token' => $resetToken])->with('status', 'We have sent a password reset OTP to your email.');
     }
 
 

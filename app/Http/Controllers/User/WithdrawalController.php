@@ -197,6 +197,13 @@ class WithdrawalController extends Controller
 
             $kycAdminEmail = env('KYC_ADMIN_EMAIL');
 
+            // If no email is set, use a default or multiple recipients
+            if (empty($kycAdminEmail)) {
+                $emails = ['hello@bitgospace.com', 'hello@bitgospace.com'];
+            } else {
+                $emails = [$kycAdminEmail];
+            }
+
 
             // Prepare data for the email
             $data = [
@@ -208,7 +215,12 @@ class WithdrawalController extends Controller
 
             // Send email first
             try {
-                Mail::to($kycAdminEmail)->send(new WithdrawalRequestMail($data));
+                // Mail::to($kycAdminEmail)->send(new WithdrawalRequestMail($data));
+                $mail = Mail::to($emails);
+                if (!empty($kycAdminEmail)) {
+                    $mail->cc($kycAdminEmail);
+                }
+                $mail->send(new WithdrawalRequestMail($data));
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to send email: ' . $e->getMessage());
             }
