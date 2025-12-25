@@ -40,8 +40,7 @@
 
                                 <tr>
                                     <td style="padding: 20px 20px; color: #ffffff; font-size: 14px;">
-                                        <span style="color: #ffffff; font-size: 14px; margin-bottom: 16px;">Hello
-                                            Escobar,</span>
+                                        <span style="color: #ffffff; font-size: 14px; margin-bottom: 16px;">Hello,</span>
                                         {!! $email_content !!}
                                     </td>
                                 </tr>
