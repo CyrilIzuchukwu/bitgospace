@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="about-banner">
-                    <img src="{{ asset('assets/images/banner/about-banner.png') }}" alt="">
+                    <img src="{{ asset('assets/images/banner/about-banner.png') }}" alt="" loading="lazy">
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
 
                 <div class="mission-content">
                     <div class="left-content">
-                        <img src="{{ asset('assets/images/banner/mission-img.png') }}" alt="Mision image">
+                        <img src="{{ asset('assets/images/banner/mission-img.png') }}" alt="Mision image" loading="lazy">
                     </div>
                     <div class="right-content">
                         <h2>To empower anyone anywhere to earn passively through secure, intelligent crypto automation.</h2>
@@ -90,17 +90,17 @@
                         </div>
                     </div>
                     <div class="right-cell">
-                        <img src="{{ asset('assets/images/vision/right-img.png') }}" alt="">
+                        <img src="{{ asset('assets/images/vision/right-img.png') }}" alt="" loading="lazy">
 
                     </div>
 
                     <div class="first-image">
-                        <img src="{{ asset('assets/images/vision/image1.png') }}" alt="">
+                        <img src="{{ asset('assets/images/vision/image1.png') }}" alt="" loading="lazy">
                     </div>
 
                     <div class="pink vision-writeup">
                         <div class="vision-icon">
-                            <img src="{{ asset('assets/images/vision/visionicon1.png') }}" alt="">
+                            <img src="{{ asset('assets/images/vision/visionicon1.png') }}" alt="" loading="lazy">
                         </div>
                         <p>A world where anyone can earn from crypto</p>
                         <span>We’re building tools that remove the barriers and simplify automated trading for everyday people.</span>
@@ -115,7 +115,7 @@
                 <div class="vision-grid-section">
                     <div class="vision-writeup">
                         <div class="vision-icon">
-                            <img src="{{ asset('assets/images/vision/visionicon2.png') }}" alt="">
+                            <img src="{{ asset('assets/images/vision/visionicon2.png') }}" alt="" loading="lazy">
                         </div>
                         <p>To redefine crypto trading through trust and transparency</p>
                         <span>BitGoSpace is setting a new standard where users stay in control and profits are made smartly.</span>
@@ -123,7 +123,7 @@
 
                     <div class="pink vision-writeup">
                         <div class="vision-icon">
-                            <img src="{{ asset('assets/images/vision/visionicon3.png') }}" alt="">
+                            <img src="{{ asset('assets/images/vision/visionicon3.png') }}" alt="" loading="lazy">
                         </div>
                         <p>To make passive income from crypto easily</p>
                         <span>From funding your wallet to activating your bot, we make the entire journey seamless.</span>
@@ -131,7 +131,7 @@
 
                     <div class="pink vision-writeup">
                         <div class="vision-icon">
-                            <img src="{{ asset('assets/images/vision/visionicon4.png') }}" alt="">
+                            <img src="{{ asset('assets/images/vision/visionicon4.png') }}" alt="" loading="lazy">
                         </div>
                         <p>To empower global users to trade with confidence using AI</p>
                         <span>Our bots don’t panic or hesitate. They analyze, act, and earn 24/7. No emotions, just logic and results.</span>
@@ -151,13 +151,11 @@
                     <div class="video-popup icon-center">
                         <div class="overlay-content">
                             <div class="thumbnail">
-                                <img src="{{ asset('assets/images/banner/video-banner.png') }}" alt="Video banner">
+                                <img src="{{ asset('assets/images/banner/video-banner.png') }}" alt="Video banner" loading="lazy">
                             </div>
 
                             <div class="video-icon">
-                                <!-- <a class="play-button rounded-player popup-video" href="https://www.youtube.com/watch?v=tj9-MGHCs38">
-                                    <span><i class="ri-play-large-line"></i></span>
-                                </a> -->
+                              
 
                                 <a class="play-button rounded-player popup-video" href="https://www.youtube.com/watch?v=u3T110SCl88">
                                     <span><i class="ri-play-large-line"></i></span>

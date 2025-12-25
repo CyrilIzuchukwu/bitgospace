@@ -61,20 +61,21 @@
                     <div class="marquee-slider-container">
                         <div class="marquee-slider-track">
                             <div class="marquee-slide">
-                                <img src="{{ asset('assets/images/brand/brand1.png') }}" alt="Brand 1">
+                                <img src="{{ asset('assets/images/brand/brand1.png') }}" alt="Brand 1" loading="lazy">
                             </div>
                             <div class="marquee-slide">
-                                <img src="{{ asset('assets/images/brand/brand2.png') }}" alt="Brand 2">
+                                <img src="{{ asset('assets/images/brand/brand2.png') }}" alt="Brand 2" loading="lazy">
                             </div>
                             <div class="marquee-slide">
-                                <img src="{{ asset('assets/images/brand/brand3.png') }}" alt="Brand 3">
+                                <img src="{{ asset('assets/images/brand/brand3.png') }}" alt="Brand 3" loading="lazy">
                             </div>
                             <div class="marquee-slide">
-                                <img src="{{ asset('assets/images/brand/brand4.png') }}" alt="Brand 4">
+                                <img src="{{ asset('assets/images/brand/brand4.png') }}" alt="Brand 4" loading="lazy">
                             </div>
                             <div class="marquee-slide">
-                                <img src="{{ asset('assets/images/brand/brand3.png') }}" alt="Brand 5">
+                                <img src="{{ asset('assets/images/brand/brand3.png') }}" alt="Brand 5" loading="lazy">
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -109,7 +110,7 @@
 
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="about-app-thumbnail">
-                        <img class="" src="{{ asset('assets/images/banner/ai.png') }}" alt="Robot image">
+                        <img class="" src="{{ asset('assets/images/banner/ai.png') }}" alt="Robot image"  loading="lazy">
                     </div>
                 </div>
 
@@ -143,7 +144,7 @@
                     <div class="why-us-content">
                         <div class="left">
                             <div class="left-image">
-                                <img src="{{ asset('assets/images/banner/why-us-img.png') }}" alt="">
+                                <img src="{{ asset('assets/images/banner/why-us-img.png') }}" alt="Why us Image"  loading="lazy">
                             </div>
                         </div>
                         <div class="right-content">
@@ -345,17 +346,17 @@
                         <!-- Left Column -->
                         <div class="left-column">
                             <div class="feature-card ">
-                                <img src="{{ asset('assets/images/banner/smart1.png') }}" alt="smart card 1">
+                                <img src="{{ asset('assets/images/banner/smart1.png') }}" alt="smart card 1"  loading="lazy">
                             </div>
                             <div class="feature-card">
-                                <img src="{{ asset('assets/images/banner/smart2.png') }}" alt="smart card 2">
+                                <img src="{{ asset('assets/images/banner/smart2.png') }}" alt="smart card 2"  loading="lazy">
                             </div>
                         </div>
 
                         <!-- Right Column -->
                         <div class="right-column">
                             <div class="feature-card orange-card">
-                                <img src="{{ asset('assets/images/banner/smart3.png') }}" alt="smart card 3">
+                                <img src="{{ asset('assets/images/banner/smart3.png') }}" alt="smart card 3"  loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -395,7 +396,7 @@
                                             <div class="thumbnail">
                                                 <img class=""
                                                     src="{{ asset('assets/images/testimonial/testimonial1.jpg') }}"
-                                                    alt="Testimonial image">
+                                                    alt="Testimonial image"  loading="lazy">
                                             </div>
                                         </div>
                                         <div class="col-lg-8">
@@ -403,7 +404,7 @@
                                                 <span class="form">
                                                     Spain
                                                     <img src="https://flagcdn.com/w20/es.png" alt="Spain Flag"
-                                                        width="20" height="15" style=" vertical-align: middle;">
+                                                        width="20" height="15" style=" vertical-align: middle;"  loading="lazy">
 
                                                 </span>
                                                 <p class="description">I’ve used other bots before, but
@@ -433,7 +434,7 @@
                                         <div class="col-lg-4 col-md-4">
                                             <div class="thumbnail"><img class="w-100"
                                                     src="{{ asset('assets/images/testimonial/testimonial2.jpg') }}"
-                                                    alt="Corporate Template"></div>
+                                                    alt="Corporate Template"  loading="lazy"></div>
                                         </div>
                                         <div class="col-lg-6 col-md-8">
                                             <div class="content mt_sm--40">
@@ -469,7 +470,7 @@
                                         <div class="col-md-4">
                                             <div class="thumbnail"><img class="w-100"
                                                     src="{{ asset('assets/images/testimonial/testimonial3.jpg') }}"
-                                                    alt="Corporate Template"></div>
+                                                    alt="Corporate Template"  loading="lazy"></div>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="content mt_sm--40">

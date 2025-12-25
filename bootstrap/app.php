@@ -26,6 +26,7 @@ return Application::configure(basePath: dirname(__DIR__))
         \App\Console\Commands\SendDailyEmails::class,
         \App\Console\Commands\CheckExpiredDeposits::class,
         \App\Console\Commands\ProcessDailyInvestmentProfits::class,
+        \App\Console\Commands\ProcessEmailQueue::class,
     ])
     ->withExceptions(function (Exceptions $exceptions) {
         //

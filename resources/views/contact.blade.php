@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-md-5">
                             <div class="resused-side">
-                                <img src="{{ asset('assets/images/star.png') }}" alt="">
+                                <img src="{{ asset('assets/images/star.png') }}" alt="" loading="lazy">
                                 <h3 class="theme-gradient">We're here to help — anytime.</h3>
                             </div>
                         </div>

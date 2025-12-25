@@ -9,7 +9,7 @@
             <div class="col-md-12">
 
                 <div class="jarden-hero-image">
-                    <img src="{{ asset('assets/images/jarden/jarden-banner.png') }}" alt="">
+                    <img src="{{ asset('assets/images/jarden/jarden-banner.png') }}" alt="" loading="lazy">
                 </div>
 
                 <div class="section-header-text">
@@ -146,16 +146,16 @@
         <div class="smart-jarden-grid">
             <div class="item itemone">
                 <div class="top-layer">
-                    <img src="{{ asset('assets/images/jarden/top-layer.png') }}" alt="Image">
+                    <img src="{{ asset('assets/images/jarden/top-layer.png') }}" alt="Image" loading="lazy">
                 </div>
 
                 <div class="abs abs1">
-                    <img src="{{ asset('assets/images/jarden/abs1.png') }}" alt="Smart Image">
+                    <img src="{{ asset('assets/images/jarden/abs1.png') }}" alt="Smart Image" loading="lazy">
                 </div>
 
                 <div class="text-content">
                     <div class="icon">
-                        <img src="{{ asset('assets/images/jarden/icon1.png') }}" alt="icon">
+                        <img src="{{ asset('assets/images/jarden/icon1.png') }}" alt="icon" loading="lazy">
                     </div>
                     <p>Ultra-Fast Trading Engine</p>
                     <span>Executes hundreds of trades daily</span>
@@ -164,16 +164,16 @@
 
             <div class="item itemtwo">
                 <div class="top-layer">
-                    <img src="{{ asset('assets/images/jarden/top-layer.png') }}" alt="Image">
+                    <img src="{{ asset('assets/images/jarden/top-layer.png') }}" alt="Image" loading="lazy">
                 </div>
 
                 <div class="abs abs2">
-                    <img src="{{ asset('assets/images/jarden/abs2.png') }}" alt="Smart Image">
+                    <img src="{{ asset('assets/images/jarden/abs2.png') }}" alt="Smart Image" loading="lazy">
                 </div>
 
                 <div class="text-content">
                     <div class="icon">
-                        <img src="{{ asset('assets/images/jarden/icon2.png') }}" alt="icon">
+                        <img src="{{ asset('assets/images/jarden/icon2.png') }}" alt="icon" loading="lazy">
                     </div>
                     <p>Emotion-Free Decisions</p>
                     <span>Pure logic, no stress, no panic</span>
@@ -182,16 +182,16 @@
 
             <div class="item itemthree">
                 <div class="top-layer">
-                    <img src="{{ asset('assets/images/jarden/top-layer.png') }}" alt="Image">
+                    <img src="{{ asset('assets/images/jarden/top-layer.png') }}" alt="Image" loading="lazy">
                 </div>
 
                 <div class="abs abs3">
-                    <img src="{{ asset('assets/images/jarden/abs3.png') }}" alt="Smart Image">
+                    <img src="{{ asset('assets/images/jarden/abs3.png') }}" alt="Smart Image" loading="lazy">
                 </div>
 
                 <div class="text-content">
                     <div class="icon">
-                        <img src="{{ asset('assets/images/jarden/icon3.png') }}" alt="icon">
+                        <img src="{{ asset('assets/images/jarden/icon3.png') }}" alt="icon" loading="lazy">
                     </div>
                     <p>Bank-Level Security</p>
                     <span>Your funds stay in your control</span>
@@ -200,16 +200,16 @@
 
             <div class="item itemfour">
                 <div class="top-layer">
-                    <img src="{{ asset('assets/images/jarden/top-layer.png') }}" alt="Image">
+                    <img src="{{ asset('assets/images/jarden/top-layer.png') }}" alt="Image" loading="lazy">
                 </div>
 
                 <div class="abs abs4">
-                    <img src="{{ asset('assets/images/jarden/abs4.png') }}" alt="Smart Image">
+                    <img src="{{ asset('assets/images/jarden/abs4.png') }}" alt="Smart Image" loading="lazy">
                 </div>
 
                 <div class="text-content">
                     <div class="icon">
-                        <img src="{{ asset('assets/images/jarden/icon4.png') }}" alt="icon">
+                        <img src="{{ asset('assets/images/jarden/icon4.png') }}" alt="icon" loading="lazy">
                     </div>
                     <p>Full Transparency</p>
                     <span>Track every move Jarden makes</span>
@@ -248,7 +248,7 @@
             </div>
 
             <div class="ts-image">
-                <img src="{{ asset('assets/images/jarden/ts-img.png') }}" alt="AI Bot">
+                <img src="{{ asset('assets/images/jarden/ts-img.png') }}" alt="AI Bot" loading="lazy">
             </div>
         </div>
     </div>
@@ -277,7 +277,7 @@
                 <div class="video-popup icon-center">
                     <div class="overlay-content">
                         <div class="thumbnail">
-                            <img class="radius-small" src="assets/images/jarden/side-video-img.png" alt="Image Overlay">
+                            <img class="radius-small" src="assets/images/jarden/side-video-img.png" alt="Image Overlay" loading="lazy">
                         </div>
                         <div class="video-icon">
                             <a class=" play-button rounded-player popup-video" href="https://www.youtube.com/watch?v=iZbd9uWO820">

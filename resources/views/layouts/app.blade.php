@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- <title>BitGoSpace | AI-Powered Crypto Arbitrage Trading Platform</title> -->
     <title>BitGoSpace | AI-Powered Crypto Investing with Jarden</title>
     <meta name="description" content="At BitGoSpace, we simplify crypto earnings by using advanced AI to scan global exchanges for the best price differences — so you can earn passively through smart, automatic trades. Jarden does the hard work; you enjoy the returns..">
     <meta name="theme-style-mode" content="1">
 
-    <!-- Canonical URL -->
+  
     <link rel="canonical" href="https://www.bitgospace.com/">
 
-    <!-- Open Graph / Social Media Meta Tags -->
+ 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.bitgospace.com/">
     <meta property="og:title" content="BitGoSpace | AI-Powered Crypto Arbitrage Trading Platform">
@@ -27,28 +26,21 @@
     <meta name="google-site-verification" content="ErJsMbwiF245k2p5tzpJFI45r2Bi810lR4Th3dAwVzM" />
 
 
-    <!-- Favicon -->
-    <!-- <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.png') }}">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}g">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon.png') }}">
 
 
-    <!-- Primary Favicon (32x32) -->
     <link rel="icon" type="image/png" sizes="32x32" href="https://www.bitgospace.com/assets/images/favicon.png">
 
-    <!-- Apple Touch Icon (180x180 for iOS) -->
+
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
 
-    <!-- Legacy ICO Format (16x16, for old browsers) -->
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
 
-    <!-- Structured Data / Schema Markup -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -63,7 +55,6 @@
     </script>
 
 
-    <!-- Additional SEO Meta Tags -->
     <meta name="keywords" content="crypto arbitrage, AI trading bot, passive crypto income, Jarden trading bot, cryptocurrency automation, bitcoin arbitrage, ethereum trading, automated crypto trading">
     <meta name="author" content="BitGoSpace">
     <meta name="robots" content="index, follow">
@@ -71,8 +62,6 @@
 
 
 
-
-    <!-- CSS ============================================ -->
     <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/animation.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/feature.css') }}">
@@ -92,11 +81,9 @@
 
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 
-    <!--  -->
+
     <link rel="preload" href="{{ asset('assets/fonts/cabinet/CabinetGrotesk-Extrabold.otf') }}" as="font" type="font/otf" crossorigin>
 
-
-    <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -116,9 +103,6 @@
         </div>
         <!-- End Theme Style  -->
 
-        <!-- <div id="preloader">
-            <div class="loader"></div>
-        </div> -->
         @include('partials.preloader')
 
         @include('snippets.header')
@@ -135,8 +119,7 @@
 
     </main>
 
-    <!-- All Scripts  -->
-    <!-- Start Top To Bottom Area  -->
+    <!-- All Scripts  -->>
     <div class="rainbow-back-top">
         <i class="ri-arrow-up-line"></i>
     </div>
@@ -148,33 +131,32 @@
 
         .rainbow-back-top {
             transition: opacity 0.3s ease;
-            /* Other styles... */
         }
     </style>
-    <!-- JS
-============================================ -->
+    <!-- JS -->
 
-    <script src="{{ asset('assets/js/vendor/modernizr.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/waypoint.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/wow.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/counterup.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/feather.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/sal.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/masonry.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/imageloaded.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/magnify.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/lightbox.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/slick.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/easypie.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/text-type.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/jquery.style.swicher.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/js.cookie.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/jquery-one-page-nav.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/modernizr.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/jquery.min.js') }}" defer></script>
+
+    <script src="{{ asset('assets/js/vendor/bootstrap.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/popper.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/waypoint.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/wow.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/counterup.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/feather.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/sal.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/masonry.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/imageloaded.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/magnify.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/lightbox.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/slick.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/easypie.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/text-type.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/jquery.style.swicher.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/js.cookie.js') }}" defer></script>
+    <script src="{{ asset('assets/js/vendor/jquery-one-page-nav.js') }}" defer></script>
     <!-- Main JS -->
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}" defer></script>
 
 
 
@@ -260,23 +242,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @if(session('success') || session('error') || session('info'))
-    {{-- <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: @json(session('success') ? 'success' : (session('error') ? 'error' : 'info')),
-                title: @json(session('success') ?? session('error') ?? session('info')),
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer);
-                    toast.addEventListener('mouseleave', Swal.resumeTimer);
-                }
-            });
-        });
-    </script> --}}
+ 
     @endif
 
 
@@ -324,6 +290,8 @@
 
     <div class="languageTranslate" id="google_translate_element">
     </div>
+
+
 
     <style type="text/css">
         .languageTranslate {

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminSupportController;
 use App\Http\Controllers\Admin\AdminWithdrawalController;
 use App\Http\Controllers\Admin\AltLeadController;
 use App\Http\Controllers\Admin\LeaderboardStageController;
+use App\Http\Controllers\Admin\ManageEmailController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\SendMailController;
 use App\Http\Controllers\Admin\WalletAddressController;
@@ -36,8 +37,7 @@ use App\Http\Controllers\User\WithdrawalController;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-
+use Illuminate\Support\Manager;
 
 Route::get('/', function () {
     return view('welcome');
@@ -323,8 +323,8 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
 
 
     // email
-    Route::get('/admin/users/{id}/email', [AdminController::class, 'emailForm'])->name('admin.users.email.form');
-    Route::post('/admin/users/{id}/email', [AdminController::class, 'sendEmail'])->name('admin.users.email.send');
+    Route::get('/admin/users/{id}/email', [ManageEmailController::class, 'emailForm'])->name('admin.users.email.form');
+    Route::post('/admin/users/{id}/email', [ManageEmailController::class, 'sendEmail'])->name('admin.users.email.send');
 
 
 
@@ -333,9 +333,9 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
     });
 
     Route::controller(SendMailController::class)->group(function () {
-        Route::get('/send-mail', 'sendMail')->name('admin.mail.send');
+        Route::get('/send-email', 'create')->name('admin.email.create');
 
-        Route::post('/admin/send-bulk-email', 'sendToAllUsers')->name('admin.users.email.bulk');
+        Route::post('/admin/emails/store', 'store')->name('admin.emails.store');
     });
 
 

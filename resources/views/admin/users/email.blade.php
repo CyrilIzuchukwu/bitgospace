@@ -9,89 +9,197 @@
                             <div class="col-md-12">
                                 <div class="text-center">
                                     <h3 class="mb-2">SEND EMAIL TO USER</h3>
+                                    <p class="text-muted">{{ $userEmail->name }} ({{ $userEmail->email }})</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="alert alert-warning text-center">
-                                        <i class="ti ti-lock me-2"></i>
-                                        <strong>Subscription Required</strong><br>
-                                        You haven't subscribed to send email to user.
-                                        Please subscribe and unlock this feature.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- <form action="{{ route('admin.users.email.send', $userEmail->id) }}" method="POST"
-                            enctype="multipart/form-data">
-
+                        <form action="{{ route('admin.users.email.send', $userEmail->id) }}" method="POST"
+                            enctype="multipart/form-data" id="singleUserEmailForm">
                             @csrf
 
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <label>Recipient Email</label>
+                                    <label class="form-label">Recipient Email</label>
                                     <input type="email" name="email" value="{{ $userEmail->email }}"
                                         class="form-control" readonly>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label>Subject</label>
-                                    <input type="text" name="subject" placeholder="Email subject"
-                                        value="{{ old('subject') }}" class="form-control" required>
-                                    <span class="text-danger">
-                                        @error('subject')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
+                                    <label class="form-label">Email Title <span class="text-danger">*</span></label>
+                                    <input type="text" name="email_title" placeholder="Email title"
+                                        value="{{ old('email_title') }}" 
+                                        class="form-control @error('email_title') is-invalid @enderror" required>
+                                    @error('email_title')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
-
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Message</label>
-                                    <textarea id="summernote" name="message" class=" form-control bg-transparent" rows="5"
-                                        placeholder="Enter text ...">{{ old('message') }}</textarea>
-
-                                    <span class="text-danger">
-                                        @error('message')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
+                                    <label class="form-label">Email Content <span class="text-danger">*</span></label>
+                                    <textarea id="summernote" name="email_content" class="form-control bg-transparent" rows="5"
+                                        placeholder="Enter text ...">{{ old('email_content') }}</textarea>
+                                    @error('email_content')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
-
                                 <div class="mb-3">
-                                    <label for="attachments" class="form-label">Attachments (Optional)</label>
-                                    <input type="file" name="attachments[]" id="attachments" class="form-control"
-                                        multiple>
-                                    <small class="text-muted">You can select multiple files</small>
-                                    <span class="text-danger">
-                                        @error('attachments.*')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
+                                    <label class="form-label">Attachment (Optional)</label>
+                                    <div class="drag-drop-area" id="dragDropArea">
+                                        <input type="file" name="attachment" id="attachmentInput" class="d-none"
+                                            accept=".jpg,.jpeg,.png,.pdf">
+                                        <div class="drag-drop-content text-center py-4">
+                                            <i class="ti ti-cloud-upload" style="font-size: 2rem; color: #6c757d;"></i>
+                                            <p class="mb-1">Drag and drop file or <span class="text-primary"
+                                                    style="cursor: pointer;"
+                                                    onclick="document.getElementById('attachmentInput').click()">browse</span>
+                                            </p>
+                                            <small class="text-muted">JPG, PNG or PDF format • Max 5MB</small>
+                                        </div>
+                                        <div id="filePreview" class="mt-3" style="display: none;">
+                                            <div class="d-flex align-items-center justify-content-between border rounded p-2">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="ti ti-file me-2"></i>
+                                                    <span id="fileName"></span>
+                                                </div>
+                                                <button type="button" class="btn btn-sm btn-danger"
+                                                    onclick="removeFile()">
+                                                    <i class="ti ti-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @error('attachment')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="pt-2">
-                                    <button type="submit" class="submit-btn btn-default">Send Email <i
-                                            class="ti ti-chevron-right ms-1"></i></button>
+                                    <button type="submit" class="submit-btn btn-default" id="sendEmailBtn">
+                                        Send Email <i class="ti ti-chevron-right ms-1"></i>
+                                    </button>
                                 </div>
                             </div>
-                        </form> --}}
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        {{-- <style>
-        .note-btn-group .note-btn {
-            font-size: 10px !important;
-            background-color: #1e1f27 !important;
-        }
-    </style> --}}
 
         @include('user.snippets.footer')
     </div>
+
+    <style>
+        .drag-drop-area {
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .drag-drop-area.dragover {
+            border-color: #0d6efd;
+            background: #e7f1ff;
+        }
+
+        .drag-drop-content {
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        
+
+            // Drag and Drop functionality
+            const dragDropArea = document.getElementById('dragDropArea');
+            const attachmentInput = document.getElementById('attachmentInput');
+            const filePreview = document.getElementById('filePreview');
+            const fileName = document.getElementById('fileName');
+
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dragDropArea.addEventListener(eventName, preventDefaults, false);
+                document.body.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dragDropArea.addEventListener(eventName, () => {
+                    dragDropArea.classList.add('dragover');
+                }, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dragDropArea.addEventListener(eventName, () => {
+                    dragDropArea.classList.remove('dragover');
+                }, false);
+            });
+
+            dragDropArea.addEventListener('drop', function(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+
+                if (files.length > 0) {
+                    attachmentInput.files = files;
+                    handleFileSelect(files[0]);
+                }
+            });
+
+            attachmentInput.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    handleFileSelect(this.files[0]);
+                }
+            });
+
+            function handleFileSelect(file) {
+                const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+                const maxSize = 5 * 1024 * 1024;
+
+                if (!validTypes.includes(file.type)) {
+                    alert('Invalid file type. Please upload JPG, PNG or PDF files only.');
+                    attachmentInput.value = '';
+                    return;
+                }
+
+                if (file.size > maxSize) {
+                    alert('File size exceeds 5MB. Please choose a smaller file.');
+                    attachmentInput.value = '';
+                    return;
+                }
+
+                fileName.textContent = file.name;
+                filePreview.style.display = 'block';
+            }
+
+            window.removeFile = function() {
+                attachmentInput.value = '';
+                filePreview.style.display = 'none';
+            }
+
+            // Handle form submission
+            const form = document.getElementById('singleUserEmailForm');
+            const submitButton = document.getElementById('sendEmailBtn');
+
+            form.addEventListener('submit', function(e) {
+                // Validate Summernote content
+                const content = $('#summernote').summernote('code');
+                const textContent = $('<div>').html(content).text().trim();
+
+                if (textContent.length === 0) {
+                    e.preventDefault();
+                    alert('Please enter email content.');
+                    return false;
+                }
+
+                // Show loading state
+                submitButton.innerHTML = '<i class="ti ti-loader ti-spin me-1"></i>Sending Email...';
+                submitButton.disabled = true;
+            });
+        });
+    </script>
 @endsection

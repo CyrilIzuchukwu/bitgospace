@@ -47,9 +47,9 @@
                     </li>
 
                     <li class="side-nav-item">
-                        <a href="{{ route('admin.mail.send') }}" class="side-nav-link">
+                        <a href="{{ route('admin.email.create') }}" class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-mail"></i></span>
-                            <span class="menu-text"> Send Mail </span>
+                            <span class="menu-text"> Compose Email </span>
                         </a>
                     </li>
 

@@ -41,6 +41,8 @@
 
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('dashboard_assets/assets/css/quill.snow.css') }}">
 </head>
 
 <body>
@@ -78,15 +80,9 @@
             </div>
         </div>
 
-        <!-- ============================================================== -->
-        <!-- Start Page Content here -->
-        <!-- ============================================================== -->
 
         @yield('content')
 
-        <!-- ============================================================== -->
-        <!-- End Page content -->
-        <!-- ============================================================== -->
 
     </div>
     <!-- END wrapper -->
@@ -116,6 +112,9 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="{{ asset('dashboard_assets/assets/js/quill-editor.js') }}"></script>
+    <script src="{{ asset('dashboard_assets/assets/js/quill.js') }}"></script>
 
     @if (session('success') || session('error') || session('info'))
         <script>
@@ -310,7 +309,7 @@
             background-color: #1e1f27 !important;
         }
 
-          .note-btn-group .note-btn {
+        .note-btn-group .note-btn {
             font-size: 12px !important;
             padding: 2px 8px !important;
             /* background-color: #fff !important;
@@ -318,7 +317,7 @@
             border-radius: 3px !important;
         }
     </style>
-       <script>
+    <script>
         $(document).ready(function() {
             $('#summernote').summernote({
                 placeholder: 'Message',
@@ -334,7 +333,8 @@
                 ],
                 callbacks: {
                     onPaste: function(e) {
-                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData)
+                            .getData('Text');
                         e.preventDefault();
                         document.execCommand('insertText', false, bufferText);
                     }
