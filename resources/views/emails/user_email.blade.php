@@ -8,16 +8,16 @@
 </head>
 
 <body style="margin: 0; padding: 0; background-color: #000000; font-family: Arial, sans-serif;">
-    <!-- Main Container -->
+
     <table width="100%" cellpadding="0" cellspacing="0" border="0"
         style="background-color: #000000; padding: 40px 20px;">
         <tr>
             <td align="center">
-                <!-- Email Content Wrapper (max-width: 600px) -->
+
                 <table width="600" cellpadding="0" cellspacing="0" border="0"
                     style="max-width: 600px; width: 100%;">
 
-                    <!-- Logo Section -->
+
                     <tr>
                         <td style="padding-bottom: 20px;">
                             <table width="100%" cellpadding="0" cellspacing="0" border="0"
@@ -32,7 +32,6 @@
                         </td>
                     </tr>
 
-                    <!-- Content Section -->
                     <tr>
                         <td>
                             <table width="100%" cellpadding="0" cellspacing="0" border="0"
@@ -52,7 +51,7 @@
                                             style="background-color: #E4EFFF; border-radius: 12px;">
                                             <tr>
                                                 <td style="padding: 20px; color: #0049AE; font-size: 14px;">
-                                                    <!-- Your blue box content here -->
+
                                                     <p style="margin: 0; color: #0049AE;">
                                                         With Jorden, trading is easier<br>
                                                         Faster, and fully handled for you.
@@ -73,7 +72,7 @@
                             <table width="100%" cellpadding="0" cellspacing="0" border="0"
                                 style="background-color: #1E1E1E; border-radius: 12px;">
 
-                                {{-- Button Row --}}
+
                                 <tr>
                                     <td style="padding: 20px 20px 0 20px;">
                                         <table cellpadding="0" cellspacing="0" border="0"
@@ -88,7 +87,6 @@
                                     </td>
                                 </tr>
 
-                                {{-- Robot Image Row --}}
                                 <tr>
                                     <td style="padding: 20px;">
                                         <table width="100%" cellpadding="0" cellspacing="0" border="0"
@@ -104,7 +102,7 @@
                                     </td>
                                 </tr>
 
-                                {{-- Description Text Row --}}
+
                                 <tr>
                                     <td
                                         style="padding: 0 20px 20px 20px; color: #CCCCCC; font-size: 14px; line-height: 1.6;">
@@ -129,13 +127,12 @@
                     </tr>
 
 
-                    {{-- Refer and Earn Section --}}
                     <tr>
                         <td style="padding-top: 20px;">
                             <table width="100%" cellpadding="0" cellspacing="0" border="0"
                                 style="background-color: #1E1E1E; border-radius: 12px;">
 
-                                {{-- Button Row --}}
+
                                 <tr>
                                     <td style="padding: 20px 20px 0 20px;">
                                         <table cellpadding="0" cellspacing="0" border="0"
@@ -189,9 +186,7 @@
                                             The more people you refer, the more Jorden works for you. <br>
                                             Start sharing, start earning, and let Jorden do the rest.
                                         </p>
-                                        {{-- <p style="margin: 0;">
-
-                                        </p> --}}
+                                       
                                     </td>
                                 </tr>
 
