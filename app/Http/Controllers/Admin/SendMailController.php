@@ -94,8 +94,8 @@ class SendMailController extends Controller
                 );
             }
 
-            // ✅ TRIGGER IMMEDIATE PROCESSING
-            $this->processQueueImmediately();
+            //TRIGGER IMMEDIATE PROCESSING
+            // $this->processQueueImmediately();
 
             $recipientCount = count($recipients);
 
@@ -114,36 +114,6 @@ class SendMailController extends Controller
     }
 
 
-    /**
-     * PROCESS QUEUE IMMEDIATELY IN BACKGROUND
-     *
-     * This triggers the queue worker right after dispatching jobs
-     * The worker runs in the background and doesn't block the HTTP response
-     */
-    private function processQueueImmediately()
-    {
-        try {
-            // Get the artisan path
-            $artisanPath = base_path('artisan');
-            $phpPath = PHP_BINARY; // Use current PHP executable
-
-            // Build the command
-            $command = "{$phpPath} {$artisanPath} queue:work --stop-when-empty --tries=3 --max-time=60";
-
-            // Run in background based on OS
-            if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-                // Windows: Use start /B to run in background
-                pclose(popen("start /B {$command}", "r"));
-            } else {
-                // Linux/Unix/Mac: Use & to run in background
-                exec("{$command} > /dev/null 2>&1 &");
-            }
-        } catch (\Exception $e) {
-            // Log error but don't stop the process
-            \Log::warning('Failed to trigger immediate queue processing: ' . $e->getMessage());
-            // The cron job will pick it up anyway
-        }
-    }
 
     /**
      * Get recipients based on user type
