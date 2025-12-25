@@ -89,11 +89,10 @@
 
                                 <tr>
                                     <td style="padding: 20px;">
-                                        <table width="100%" cellpadding="0" cellspacing="0" border="0"
-                                            style="background-color: #FFFFFF; border-radius: 12px;">
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
                                             <tr>
                                                 <td align="center">
-                                                    <img src="https://res.cloudinary.com/dpfcntrwo/image/upload/v1234567890/robot.png"
+                                                    <img src="https://res.cloudinary.com/dpfcntrwo/image/upload/v1766626856/bot1_prdsxn.png"
                                                         alt="Jorden AI Trading Bot"
                                                         style="max-width: 100%; height: auto; display: block; width: 100%;">
                                                 </td>
@@ -150,11 +149,10 @@
 
                                 <tr>
                                     <td style="padding: 20px;">
-                                        <table width="100%" cellpadding="0" cellspacing="0" border="0"
-                                            style="background-color: #FFFFFF; border-radius: 12px;">
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
                                             <tr>
                                                 <td align="center">
-                                                    <img src="https://res.cloudinary.com/dpfcntrwo/image/upload/v1234567890/robot.png"
+                                                    <img src="https://res.cloudinary.com/dpfcntrwo/image/upload/v1766627024/temp_gvvdxi.png"
                                                         alt="Jorden AI Trading Bot"
                                                         style="max-width: 100%; height: auto; display: block; width: 100%;">
                                                 </td>
@@ -186,7 +184,7 @@
                                             The more people you refer, the more Jorden works for you. <br>
                                             Start sharing, start earning, and let Jorden do the rest.
                                         </p>
-                                       
+
                                     </td>
                                 </tr>
 

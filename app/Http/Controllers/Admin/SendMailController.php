@@ -94,8 +94,6 @@ class SendMailController extends Controller
                 );
             }
 
-            //TRIGGER IMMEDIATE PROCESSING
-            // $this->processQueueImmediately();
 
             $recipientCount = count($recipients);
 
