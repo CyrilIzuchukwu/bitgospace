@@ -35,6 +35,11 @@
                                                 {{ $viewedUser->active ? 'Active' : 'Banned' }}
                                             </span>
                                         </div>
+                                        @if ($viewedUser->is_ambassador)
+                                            <span class="badge bg-info px-2 py-1 fs-12 ms-1">
+                                                <i class="ti ti-award me-1"></i> Ambassador
+                                            </span>
+                                        @endif
                                     </div>
 
                                     <div class="mt-4">
@@ -147,7 +152,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
+                                    <div class="d-flex justify-content-center flex-wrap align-items-center gap-3 mt-4">
 
                                         {{-- Wallet Activate / Deactivate --}}
                                         @if ($viewedUser->wallet)
@@ -198,6 +203,25 @@
                                                 </form>
                                             @endif
                                         </div>
+
+                                        {{-- Make/Remove Ambassador --}}
+                                        <div>
+                                            <form action="{{ route('admin.users.toggle-ambassador', $viewedUser->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @if ($viewedUser->is_ambassador)
+                                                    <button type="submit"
+                                                        class="btn btn-warning w-100 user-action-btn remove-ambassador-btn">
+                                                        <i class="ti ti-award-off me-1"></i> Remove Ambassador
+                                                    </button>
+                                                @else
+                                                    <button type="submit"
+                                                        class="btn btn-info w-100 user-action-btn make-ambassador-btn">
+                                                        <i class="ti ti-award me-1"></i> Make Ambassador
+                                                    </button>
+                                                @endif
+                                            </form>
+                                        </div>
                                     </div>
 
 
@@ -227,7 +251,7 @@
                                             @php $referrer = App\Models\User::find($viewedUser->referred_by); @endphp
                                             <div class="d-flex align-items-center gap-2">
                                                 <!-- <img src="{{ $referrer->profile_picture ?? asset('dashboard_assets/assets/images/users/user-avatar.jpg') }}"
-                                                class="rounded-circle" width="40" alt="Referrer"> -->
+                                                            class="rounded-circle" width="40" alt="Referrer"> -->
                                                 <div>
                                                     <h6 class="mb-0">{{ $referrer->name }}</h6>
                                                     <small class="text-muted">{{ $referrer->email }}</small>
@@ -455,6 +479,17 @@
                 actionText: 'deactivate this wallet',
                 confirmText: 'Yes, Deactivate!',
                 loadingText: 'Deactivating...'
+            },
+
+            'make-ambassador-btn': {
+                actionText: 'make this user an ambassador',
+                confirmText: 'Yes, Make Ambassador!',
+                loadingText: 'Processing...'
+            },
+            'remove-ambassador-btn': {
+                actionText: 'remove ambassador status from this user',
+                confirmText: 'Yes, Remove!',
+                loadingText: 'Processing...'
             }
         };
 

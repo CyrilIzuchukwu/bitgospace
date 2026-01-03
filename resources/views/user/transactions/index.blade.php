@@ -14,7 +14,7 @@
                 </ol>
             </div>
         </div>
-
+        </div>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="text-center mb-4">
@@ -159,7 +159,7 @@
                 </div>
                 @endif
             </div>
-        </div>
+
     </div>
 
     @include('user.snippets.footer')

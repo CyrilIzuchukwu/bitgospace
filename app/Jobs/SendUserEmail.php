@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Log;
 
 /**
  * SEND USER EMAIL JOB
- * 
+ *
  * This job handles sending a single email to one recipient
  * It runs in the background via the queue system
- * 
+ *
  * WHY USE A JOB?
  * - Sends emails in background (user doesn't wait)
  * - Automatically retries if sending fails
@@ -32,17 +32,17 @@ class SendUserEmail implements ShouldQueue
 
     /**
      * RETRY CONFIGURATION
-     * 
+     *
      * $tries = 3
      *   - If sending fails, Laravel will retry 3 times
      *   - Retry delays: immediate, 1 minute, 5 minutes
      *   - Handles temporary issues (SMTP timeout, network glitch)
-     * 
+     *
      * $timeout = 120
      *   - Maximum execution time: 2 minutes (120 seconds)
      *   - If sending takes longer, Laravel kills the job
      *   - Prevents stuck jobs from blocking the queue
-     * 
+     *
      * $backoff = [60, 300]
      *   - First retry: wait 60 seconds
      *   - Second retry: wait 300 seconds (5 minutes)
@@ -54,7 +54,7 @@ class SendUserEmail implements ShouldQueue
 
     /**
      * PROPERTIES
-     * 
+     *
      * These store the email details
      * They're serialized and saved in the 'jobs' table
      * When the job runs, these values are restored
@@ -62,33 +62,35 @@ class SendUserEmail implements ShouldQueue
     protected $recipientEmail;
     protected $emailTitle;
     protected $emailContent;
-    protected $attachmentFilename;
+    protected $attachmentFilenames;
 
     /**
      * CONSTRUCTOR
-     * 
+     *
      * Called when you dispatch the job:
      * SendUserEmail::dispatch('user@example.com', 'Subject', 'Body', 'file.pdf')
-     * 
+     *
      * Saves all parameters so they can be used later when the job runs
      */
     public function __construct(
         string $recipientEmail,
         string $emailTitle,
         string $emailContent,
-        ?string $attachmentFilename = null
+        $attachmentFilenames = null
+
     ) {
         $this->recipientEmail = $recipientEmail;
         $this->emailTitle = $emailTitle;
         $this->emailContent = $emailContent;
-        $this->attachmentFilename = $attachmentFilename;
+        // Ensure it's always an array
+        $this->attachmentFilenames = is_array($attachmentFilenames) ? $attachmentFilenames : [];
     }
 
     /**
      * HANDLE METHOD
-     * 
+     *
      * This is the main method that executes when the queue worker processes this job
-     * 
+     *
      * EXECUTION FLOW:
      * 1. Queue worker picks up job from 'jobs' table
      * 2. Restores job with saved parameters
@@ -100,42 +102,37 @@ class SendUserEmail implements ShouldQueue
     public function handle(): void
     {
         try {
-            // Send the email using your existing UserEmail Mailable
             Mail::to($this->recipientEmail)->send(
                 new UserEmail(
                     $this->emailTitle,
                     $this->emailContent,
-                    $this->attachmentFilename
+                    $this->attachmentFilenames // Pass array
                 )
             );
 
-            // Log success (helps with debugging and monitoring)
             Log::info("Email sent successfully", [
                 'recipient' => $this->recipientEmail,
                 'subject' => $this->emailTitle,
+                'attachments_count' => count($this->attachmentFilenames),
                 'time' => now(),
             ]);
         } catch (\Exception $e) {
-            // Log the error with full details
             Log::error("Failed to send email", [
                 'recipient' => $this->recipientEmail,
                 'subject' => $this->emailTitle,
                 'error' => $e->getMessage(),
-                'attempt' => $this->attempts(), // Which retry attempt (1, 2, or 3)
+                'attempt' => $this->attempts(),
             ]);
 
-            // Re-throw the exception so Laravel knows the job failed
-            // This triggers the retry mechanism
             throw $e;
         }
     }
-
     /**
      * FAILED METHOD
-     * 
+     *
      * Called when all retry attempts have been exhausted (after 3 tries)
      * The job is moved from 'jobs' table to 'failed_jobs' table
-     * 
+     *
      * USE CASES:
      * - Log permanent failures for investigation
      * - Send alert to admin about failed emails

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('email_content');
             $table->enum('user_type', ['all', 'single']);
             $table->string('recipient_email')->nullable(); // For single user
-            $table->string('attachment')->nullable();
+            $table->json('attachments')->nullable();
             $table->unsignedBigInteger('sent_by');
             $table->timestamp('sent_at')->nullable();
             $table->timestamps();

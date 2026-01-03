@@ -47,6 +47,22 @@
                     </li>
 
                     <li class="side-nav-item">
+                        <a class="side-nav-link" href="{{ route('admin.ambassador.requests') }}">
+                            <i class="ti ti-award"></i>
+                            <span>Ambassador Requests</span>
+                            @php
+                                $pendingCount = \App\Models\User::where(
+                                    'ambassador_request_status',
+                                    'pending',
+                                )->count();
+                            @endphp
+                            @if ($pendingCount > 0)
+                                <span class="badge bg-danger ms-auto">{{ $pendingCount }}</span>
+                            @endif
+                        </a>
+                    </li>
+
+                    <li class="side-nav-item">
                         <a href="{{ route('admin.email.create') }}" class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-mail"></i></span>
                             <span class="menu-text"> Compose Email </span>

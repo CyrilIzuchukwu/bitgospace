@@ -14,12 +14,13 @@ class Email extends Model
         'email_content',
         'user_type',
         'recipient_email',
-        'attachment',
+        'attachments',
         'sent_by',
         'sent_at',
     ];
 
     protected $casts = [
+        'attachments' => 'array',
         'sent_at' => 'datetime',
     ];
 

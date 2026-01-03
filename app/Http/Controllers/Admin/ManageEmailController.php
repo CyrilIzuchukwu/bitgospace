@@ -13,10 +13,8 @@ use App\Models\Email;
 use App\Models\User;
 use App\Mail\UserEmail;
 
-
 class ManageEmailController extends Controller
 {
-
     public function emailForm($id)
     {
         $userEmail = User::findOrFail($id);
@@ -30,12 +28,14 @@ class ManageEmailController extends Controller
         $validator = Validator::make($request->all(), [
             'email_title' => 'required|string|max:255',
             'email_content' => 'required|string',
-            'attachment' => 'nullable|file|mimes:jpeg,jpg,png,pdf|max:5120', // 5MB max
+            'attachments' => 'nullable|array|max:5', // Max 5 files
+            'attachments.*' => 'file|mimes:jpeg,jpg,png,pdf|max:5120', // 5MB per file
         ], [
             'email_title.required' => 'Email title is required.',
             'email_content.required' => 'Email content is required.',
-            'attachment.mimes' => 'Attachment must be JPG, PNG or PDF format.',
-            'attachment.max' => 'Attachment size must not exceed 5MB.',
+            'attachments.max' => 'You can upload a maximum of 5 files.',
+            'attachments.*.mimes' => 'Attachments must be JPG, PNG or PDF format.',
+            'attachments.*.max' => 'Each attachment must not exceed 5MB.',
         ]);
 
         if ($validator->fails()) {
@@ -45,12 +45,14 @@ class ManageEmailController extends Controller
         $validated = $validator->validated();
 
         try {
-            // Handle file upload
-            $filename = null;
-            if ($request->hasFile('attachment')) {
-                $file = $request->file('attachment');
-                $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
-                $file->storeAs('attachments', $filename, 'public');
+            // Handle multiple file uploads
+            $filenames = [];
+            if ($request->hasFile('attachments')) {
+                foreach ($request->file('attachments') as $file) {
+                    $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+                    $file->storeAs('attachments', $filename, 'public');
+                    $filenames[] = $filename;
+                }
             }
 
             // Save email record
@@ -59,7 +61,7 @@ class ManageEmailController extends Controller
                 'email_content' => $validated['email_content'],
                 'user_type' => 'single',
                 'recipient_email' => $recipient->email,
-                'attachment' => $filename,
+                'attachments' => $filenames, // Store as JSON array
                 'sent_by' => Auth::user()->id,
                 'sent_at' => now(),
             ]);
@@ -69,16 +71,26 @@ class ManageEmailController extends Controller
                 new UserEmail(
                     $validated['email_title'],
                     $validated['email_content'],
-                    $filename
+                    $filenames // Pass array of filenames
                 )
             );
 
+            $attachmentCount = count($filenames);
+            $message = 'Email sent successfully to ' . $recipient->email;
+            if ($attachmentCount > 0) {
+                $message .= ' with ' . $attachmentCount . ' attachment(s)';
+            }
+
             return redirect()->route('admin.users.show', $recipient->id)
-                ->with('success', 'Email sent successfully to ' . $recipient->email);
+                ->with('success', $message);
         } catch (\Exception $e) {
-            // Clean up uploaded file if email sending fails
-            if ($filename && Storage::disk('public')->exists('attachments/' . $filename)) {
-                Storage::disk('public')->delete('attachments/' . $filename);
+            // Clean up uploaded files if email sending fails
+            if (!empty($filenames)) {
+                foreach ($filenames as $filename) {
+                    if (Storage::disk('public')->exists('attachments/' . $filename)) {
+                        Storage::disk('public')->delete('attachments/' . $filename);
+                    }
+                }
             }
 
             return redirect()->back()

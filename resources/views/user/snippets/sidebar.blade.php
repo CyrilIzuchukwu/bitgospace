@@ -159,6 +159,13 @@
                         </div>
                     </li>
 
+                    <li class="side-nav-item">
+                        <a href="{{ route('user.ambassador') }}" class="side-nav-link">
+                            <span class="menu-icon"><i class="ti ti-award"></i></span>
+                            <span class="menu-text"> Ambassador Reward </span>
+                        </a>
+                    </li>
+
 
 
                     {{-- <li class="side-nav-item">

@@ -17,17 +17,18 @@ class UserEmail extends Mailable
 
     public string $email_title;
     public string $email_content;
-    public ?string $attachmentFilename;
+    public array $attachmentFilenames;
 
 
     /**
      * Create a new message instance.
      */
-    public function __construct(string $email_title, string $email_content, ?string $attachmentFilename = null)
+    public function __construct(string $email_title, string $email_content, $attachmentFilenames = null)
     {
         $this->email_title = $email_title;
         $this->email_content = $email_content;
-        $this->attachmentFilename = $attachmentFilename;
+        // $this->attachmentFilenames = $attachmentFilenames ?? [];
+        $this->attachmentFilenames = is_array($attachmentFilenames) ? $attachmentFilenames : [];
     }
 
     /**
@@ -61,16 +62,16 @@ class UserEmail extends Mailable
      */
     public function attachments(): array
     {
-        if ($this->attachmentFilename) {
-            $fullPath = 'attachments/' . $this->attachmentFilename;
+        $attachments = [];
+
+        foreach ($this->attachmentFilenames as $filename) {
+            $fullPath = 'attachments/' . $filename;
 
             if (Storage::disk('public')->exists($fullPath)) {
-                return [
-                    Attachment::fromStorageDisk('public', $fullPath)
-                ];
+                $attachments[] = Attachment::fromStorageDisk('public', $fullPath);
             }
         }
 
-        return [];
+        return $attachments;
     }
 }

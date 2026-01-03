@@ -323,4 +323,18 @@ class AdminController extends Controller
     }
 
 
+
+    public function toggleAmbassador(User $user)
+    {
+        $newStatus = !$user->is_ambassador;
+
+        $user->update([
+            'is_ambassador' => $newStatus,
+            'ambassador_request_status' => $newStatus ? 'approved' : 'none'
+        ]);
+
+        $status = $user->is_ambassador ? 'promoted to' : 'removed from';
+
+        return redirect()->back()->with('success', "User has been {$status} ambassador status successfully.");
+    }
 }

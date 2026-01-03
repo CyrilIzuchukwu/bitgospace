@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminAmbassadorController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminDepositController;
 use App\Http\Controllers\Admin\AdminInvestmentController;
@@ -31,6 +32,7 @@ use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\ReferralController;
 use App\Http\Controllers\User\SupportController;
 use App\Http\Controllers\User\TransactionController;
+use App\Http\Controllers\User\UserAmbassadorController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\UserMediaController;
 use App\Http\Controllers\User\WithdrawalController;
@@ -273,6 +275,11 @@ Route::middleware(['auth'])->prefix('user')->group(function () {
     });
 
 
+    Route::middleware(['kyc.verified'])->controller(UserAmbassadorController::class)->group(function () {
+        Route::get('/ambassador', 'ambassador')->name('user.ambassador');
+        Route::post('/ambassador/request',  'requestAmbassadorship')->name('ambassador.request');
+    });
+
 
     Route::middleware(['kyc.verified'])->controller(PdfController::class)->group(function () {
         // Route::get('/pdf', 'pdf')->name('user.pdf');
@@ -320,6 +327,10 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
 
     Route::post('/users/{user}/wallet-activate', [AdminController::class, 'activateWallet'])->name('admin.users.wallet.activate');
     Route::post('/users/{user}/wallet-deactivate', [AdminController::class, 'deactivateWallet'])->name('admin.users.wallet.deactivate');
+
+    // toggle ambassador
+    Route::post('/users/{user}/toggle-ambassador', [AdminController::class, 'toggleAmbassador'])
+    ->name('admin.users.toggle-ambassador');
 
 
     // email
@@ -455,4 +466,12 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
 
     Route::get('learderboard/user-progress', [AltLeadController::class, 'userProgress'])
         ->name('admin.leaderboard.progress');
+});
+
+
+Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
+    // Ambassador Routes
+    Route::get('/ambassador/requests', [AdminAmbassadorController::class, 'requests'])->name('ambassador.requests');
+    Route::post('/ambassador/{user}/approve', [AdminAmbassadorController::class, 'approveRequest'])->name('ambassador.approve');
+    Route::post('/ambassador/{user}/reject', [AdminAmbassadorController::class, 'rejectRequest'])->name('ambassador.reject');
 });

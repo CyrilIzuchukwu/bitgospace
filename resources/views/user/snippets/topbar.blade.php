@@ -26,39 +26,12 @@
             </button>
 
             <!-- Button Trigger Search Modal -->
-            <div class="topbar-search text-muted d-none d-xl-flex gap-2 align-items-center" data-bs-toggle="modal" data-bs-target="#searchModal" type="button">
+            <div class="topbar-search text-muted d-none d-xl-flex gap-2 align-items-center" data-bs-toggle="modal"
+                data-bs-target="#searchModal" type="button">
                 <i class="ti ti-link fs-18"></i>
                 <span class="me-2">Referral Link</span>
             </div>
 
-            <!-- Mega Menu Dropdown -->
-            <!-- <div class="topbar-item d-none d-md-flex">
-                <div class="dropdown">
-                    <a href="#" class="topbar-link btn btn-link px-2 dropdown-toggle drop-arrow-none fw-medium" data-bs-toggle="dropdown" data-bs-trigger="hover" data-bs-offset="0,17" aria-haspopup="false" aria-expanded="false">
-                        Pages <i class="ti ti-chevron-down ms-1"></i>
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-md p-0">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <div class="p-3">
-                                    <h5 class="mb-2 fw-semibold">UI Components</h5>
-                                    <ul class="list-unstyled megamenu-list">
-                                        <li>
-                                            <a href="#!">Widgets</a>
-                                        </li>
-                                        <li>
-                                            <a href="extended-dragula.html">Dragula</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
 
         <div class="d-flex align-items-center gap-2">
@@ -76,23 +49,20 @@
                 </div>
             </div>
 
-            <!-- Light/Dark Mode Button -->
-            <!-- <div class="topbar-item d-none d-sm-flex">
-                <button class="topbar-link" id="light-dark-mode" type="button">
-                    <i class="ti ti-moon fs-22"></i>
-                </button>
-            </div> -->
+
 
             <!-- User Dropdown -->
             <div class="topbar-item nav-user">
                 <div class="dropdown">
-                    <a class="topbar-link dropdown-toggle drop-arrow-none px-2" data-bs-toggle="dropdown" data-bs-offset="0,19" type="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="topbar-link dropdown-toggle drop-arrow-none px-2" data-bs-toggle="dropdown"
+                        data-bs-offset="0,19" type="button" aria-haspopup="false" aria-expanded="false">
 
                         @php
-                        $profilePicture = $user->profile->profile_picture ?? null;
+                            $profilePicture = $user->profile->profile_picture ?? null;
                         @endphp
 
-                        <img src="{{ $profilePicture ? asset('storage/profile_pictures/' . $profilePicture) : asset('dashboard_assets/assets/images/users/user-avatar.jpg') }}" width="40" class="rounded-circle me-lg-2 d-flex image-profile" alt="user-image">
+                        <img src="{{ $profilePicture ? asset('storage/profile_pictures/' . $profilePicture) : asset('dashboard_assets/assets/images/users/user-avatar.jpg') }}"
+                            width="40" class="rounded-circle me-lg-2 d-flex image-profile" alt="user-image">
                         <span class="d-lg-flex flex-column gap-1 d-none">
                             <h5 class="my-0">{{ Auth::user()->name }}</h5>
                             <h6 class="my-0 fw-normal">{{ Auth::user()->email }}</h6>
@@ -114,7 +84,8 @@
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item">
                             <i class="ti ti-wallet me-1 fs-17 align-middle"></i>
-                            <span class="align-middle">Wallet : <span class="fw-semibold text-success">${{ $walletBalance ?? '0.00' }}</span></span>
+                            <span class="align-middle">Wallet : <span
+                                    class="fw-semibold text-success">${{ $walletBalance ?? '0.00' }}</span></span>
                         </a>
 
 
@@ -125,22 +96,40 @@
                             <span class="align-middle">
                                 KYC
                                 @if (!$userKyc)
-                                <span class="badge p-1 fs-10 bg-secondary ms-2" style="font-size: 10px">Not Submitted</span>
+                                    <span class="badge p-1 fs-10 bg-secondary ms-2" style="font-size: 10px">Not
+                                        Submitted</span>
                                 @elseif ($userKyc->status === 'pending' || $userKyc->status === 'in_review')
-                                <span class="badge p-1 text-warning-subtle bg-warning ms-2" style="font-size: 10px">Under Review</span>
+                                    <span class="badge p-1 text-warning-subtle bg-warning ms-2"
+                                        style="font-size: 10px">Under Review</span>
                                 @elseif ($userKyc->status === 'approved')
-                                <span class="badge p-1 fs-10 bg-success ms-2" style="font-size: 10px">Verified</span>
+                                    <span class="badge p-1 fs-10 bg-success ms-2"
+                                        style="font-size: 10px">Verified</span>
                                 @elseif ($userKyc->status === 'rejected')
-                                <span class="badge p-1 fs-10 bg-danger ms-2" style="font-size: 10px">Rejected</span>
+                                    <span class="badge p-1 fs-10 bg-danger ms-2" style="font-size: 10px">Rejected</span>
                                 @endif
                             </span>
                         </a>
+
+                        @if (Auth::user()->is_ambassador)
+                            <!-- item-->
+                            <a href="javascript:void(0)" class="dropdown-item">
+                                <i class="ti ti-award me-1 fs-17 align-middle"></i>
+                                <span class="align-middle">
+                                    Status
+                                    <span class="badge p-1 fs-10 bg-info ms-2" style="font-size: 10px">
+                                        <i class="ti ti-sparkles"></i> Ambassador
+                                    </span>
+                                </span>
+                            </a>
+                        @endif
 
                         <div class="dropdown-divider"></div>
 
 
                         <!-- item-->
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item active fw-semibold text-danger">
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            class="dropdown-item active fw-semibold text-danger">
                             <i class="ti ti-logout me-1 fs-17 align-middle"></i>
                             <span class="align-middle">Sign Out</span>
                         </a>

@@ -7,17 +7,13 @@ use App\Jobs\SendUserEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Models\Email;
 use App\Models\User;
-use App\Mail\UserEmail;
-
 
 class SendMailController extends Controller
 {
-    // For compose email (all users or single user)
     public function create()
     {
         return view('admin.emails.create');
@@ -31,15 +27,17 @@ class SendMailController extends Controller
             'email_content' => 'required|string',
             'user_type' => 'required|in:all,single',
             'recipient_email' => 'required_if:user_type,single|nullable|email',
-            'attachment' => 'nullable|file|mimes:jpeg,jpg,png,pdf|max:5120', // 5MB max
+            'attachments' => 'nullable|array|max:5', // Max 5 files
+            'attachments.*' => 'file|mimes:jpeg,jpg,png,pdf|max:5120', // 5MB per file
         ], [
             'email_title.required' => 'Email title is required.',
             'email_content.required' => 'Email content is required.',
             'user_type.required' => 'Please select user type.',
             'recipient_email.required_if' => 'Recipient email is required for single user.',
             'recipient_email.email' => 'Please provide a valid email address.',
-            'attachment.mimes' => 'Attachment must be JPG, PNG or PDF format.',
-            'attachment.max' => 'Attachment size must not exceed 5MB.',
+            'attachments.max' => 'You can upload a maximum of 5 files.',
+            'attachments.*.mimes' => 'Attachments must be JPG, PNG or PDF format.',
+            'attachments.*.max' => 'Each attachment must not exceed 5MB.',
         ]);
 
         if ($validator->fails()) {
@@ -49,12 +47,14 @@ class SendMailController extends Controller
         $validated = $validator->validated();
 
         try {
-            // Handle file upload
-            $filename = null;
-            if ($request->hasFile('attachment')) {
-                $file = $request->file('attachment');
-                $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
-                $file->storeAs('attachments', $filename, 'public');
+            // Handle multiple file uploads
+            $filenames = [];
+            if ($request->hasFile('attachments')) {
+                foreach ($request->file('attachments') as $file) {
+                    $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+                    $file->storeAs('attachments', $filename, 'public');
+                    $filenames[] = $filename;
+                }
             }
 
             // Save email record
@@ -63,7 +63,7 @@ class SendMailController extends Controller
                 'email_content' => $validated['email_content'],
                 'user_type' => $validated['user_type'],
                 'recipient_email' => $validated['recipient_email'] ?? null,
-                'attachment' => $filename,
+                'attachments' => $filenames, // Stored as JSON array
                 'sent_by' => Auth::user()->id,
                 'sent_at' => now(),
             ]);
@@ -74,35 +74,28 @@ class SendMailController extends Controller
                 $validated['recipient_email'] ?? null
             );
 
-            // Send emails
-            // foreach ($recipients as $recipient) {
-            //     Mail::to($recipient)->send(
-            //         new UserEmail(
-            //             $validated['email_title'],
-            //             $validated['email_content'],
-            //             $filename
-            //         )
-            //     );
-            // }
-
+            // Dispatch jobs for each recipient
             foreach ($recipients as $recipient) {
                 SendUserEmail::dispatch(
                     $recipient,
                     $validated['email_title'],
                     $validated['email_content'],
-                    $filename
+                    $filenames // Pass array of filenames
                 );
             }
-
 
             $recipientCount = count($recipients);
 
             return redirect()->route('admin.email.create')
                 ->with('success', "Email queued successfully for {$recipientCount} recipient(s). They will be sent within 1-2 minutes.");
         } catch (\Exception $e) {
-            // Clean up uploaded file if email sending fails
-            if ($filename && Storage::disk('public')->exists('attachments/' . $filename)) {
-                Storage::disk('public')->delete('attachments/' . $filename);
+            // Clean up uploaded files if email sending fails
+            if (!empty($filenames)) {
+                foreach ($filenames as $filename) {
+                    if (Storage::disk('public')->exists('attachments/' . $filename)) {
+                        Storage::disk('public')->delete('attachments/' . $filename);
+                    }
+                }
             }
 
             return redirect()->back()
@@ -111,11 +104,6 @@ class SendMailController extends Controller
         }
     }
 
-
-
-    /**
-     * Get recipients based on user type
-     */
     protected function getRecipients(string $userType, ?string $recipientEmail)
     {
         if ($userType === 'all') {

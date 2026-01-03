@@ -77,34 +77,28 @@
                                         @enderror
                                     </div>
 
-                                    <!-- Attachment Section -->
+                                    <!-- Multiple Attachments Section -->
                                     <div class="col-md-12 mb-3">
-                                        <label class="form-label">Attachment (Optional)</label>
+                                        <label class="form-label">Attachments (Optional) <span class="text-muted">- Max 5 files</span></label>
                                         <div class="drag-drop-area" id="dragDropArea">
-                                            <input type="file" name="attachment" id="attachmentInput" class="d-none"
-                                                accept=".jpg,.jpeg,.png,.pdf">
+                                            <input type="file" name="attachments[]" id="attachmentInput" class="d-none"
+                                                accept=".jpg,.jpeg,.png,.pdf" multiple>
                                             <div class="drag-drop-content text-center py-4">
                                                 <i class="ti ti-cloud-upload" style="font-size: 2rem; color: #6c757d;"></i>
-                                                <p class="mb-1">Drag and drop file or <span class="text-primary"
+                                                <p class="mb-1">Drag and drop files or <span class="text-primary"
                                                         style="cursor: pointer;"
                                                         onclick="document.getElementById('attachmentInput').click()">browse</span>
                                                 </p>
-                                                <small class="text-muted">JPG, PNG or PDF format • Max 5MB</small>
+                                                <small class="text-muted">JPG, PNG or PDF format • Max 5MB per file • Max 5 files</small>
                                             </div>
-                                            <div id="filePreview" class="mt-3" style="display: none;">
-                                                <div class="d-flex align-items-center justify-content-between border rounded p-2">
-                                                    <div class="d-flex align-items-center">
-                                                        <i class="ti ti-file me-2"></i>
-                                                        <span id="fileName"></span>
-                                                    </div>
-                                                    <button type="button" class="btn btn-sm btn-danger"
-                                                        onclick="removeFile()">
-                                                        <i class="ti ti-trash"></i>
-                                                    </button>
-                                                </div>
+                                            <div id="filePreviewContainer" class="mt-3" style="display: none;">
+                                                <!-- File previews will be added here dynamically -->
                                             </div>
                                         </div>
-                                        @error('attachment')
+                                        @error('attachments')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        @error('attachments.*')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -141,11 +135,21 @@
         .drag-drop-content {
             cursor: pointer;
         }
+
+        .file-preview-item {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 8px;
+        }
     </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-         
+            let selectedFiles = [];
+            const maxFiles = 5;
+            const maxFileSize = 5 * 1024 * 1024; // 5MB
 
             // Toggle single email input
             const userTypeSelect = document.getElementById('userType');
@@ -159,11 +163,10 @@
                 } else {
                     singleEmailContainer.style.display = 'none';
                     recipientEmail.required = false;
-                    recipientEmail.value = ''; // Clear the input
+                    recipientEmail.value = '';
                 }
             });
 
-            // Initialize on page load if single is selected
             if (userTypeSelect.value === 'single') {
                 singleEmailContainer.style.display = 'block';
                 recipientEmail.required = true;
@@ -172,8 +175,7 @@
             // Drag and Drop functionality
             const dragDropArea = document.getElementById('dragDropArea');
             const attachmentInput = document.getElementById('attachmentInput');
-            const filePreview = document.getElementById('filePreview');
-            const fileName = document.getElementById('fileName');
+            const filePreviewContainer = document.getElementById('filePreviewContainer');
 
             ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
                 dragDropArea.addEventListener(eventName, preventDefaults, false);
@@ -199,43 +201,87 @@
 
             dragDropArea.addEventListener('drop', function(e) {
                 const dt = e.dataTransfer;
-                const files = dt.files;
-
-                if (files.length > 0) {
-                    attachmentInput.files = files;
-                    handleFileSelect(files[0]);
-                }
+                const files = Array.from(dt.files);
+                handleFiles(files);
             });
 
             attachmentInput.addEventListener('change', function() {
-                if (this.files.length > 0) {
-                    handleFileSelect(this.files[0]);
-                }
+                const files = Array.from(this.files);
+                handleFiles(files);
             });
 
-            function handleFileSelect(file) {
+            function handleFiles(files) {
+                if (selectedFiles.length + files.length > maxFiles) {
+                    alert(`You can only upload a maximum of ${maxFiles} files.`);
+                    return;
+                }
+
                 const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
-                const maxSize = 5 * 1024 * 1024;
 
-                if (!validTypes.includes(file.type)) {
-                    alert('Invalid file type. Please upload JPG, PNG or PDF files only.');
-                    attachmentInput.value = '';
-                    return;
+                for (let file of files) {
+                    if (!validTypes.includes(file.type)) {
+                        alert(`Invalid file type: ${file.name}. Please upload JPG, PNG or PDF files only.`);
+                        continue;
+                    }
+
+                    if (file.size > maxFileSize) {
+                        alert(`File size exceeds 5MB: ${file.name}. Please choose a smaller file.`);
+                        continue;
+                    }
+
+                    selectedFiles.push(file);
                 }
 
-                if (file.size > maxSize) {
-                    alert('File size exceeds 5MB. Please choose a smaller file.');
-                    attachmentInput.value = '';
-                    return;
-                }
-
-                fileName.textContent = file.name;
-                filePreview.style.display = 'block';
+                updateFileList();
+                updateInputFiles();
             }
 
-            window.removeFile = function() {
-                attachmentInput.value = '';
-                filePreview.style.display = 'none';
+            function updateFileList() {
+                if (selectedFiles.length === 0) {
+                    filePreviewContainer.style.display = 'none';
+                    return;
+                }
+
+                filePreviewContainer.style.display = 'block';
+                filePreviewContainer.innerHTML = '';
+
+                selectedFiles.forEach((file, index) => {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-preview-item d-flex align-items-center justify-content-between';
+                    fileItem.innerHTML = `
+                        <div class="d-flex align-items-center">
+                            <i class="ti ti-file me-2"></i>
+                            <span>${file.name}</span>
+                            <small class="text-muted ms-2">(${formatFileSize(file.size)})</small>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-danger" onclick="removeFile(${index})">
+                            <i class="ti ti-trash"></i>
+                        </button>
+                    `;
+                    filePreviewContainer.appendChild(fileItem);
+                });
+            }
+
+            function updateInputFiles() {
+                const dataTransfer = new DataTransfer();
+                selectedFiles.forEach(file => {
+                    dataTransfer.items.add(file);
+                });
+                attachmentInput.files = dataTransfer.files;
+            }
+
+            window.removeFile = function(index) {
+                selectedFiles.splice(index, 1);
+                updateFileList();
+                updateInputFiles();
+            }
+
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
             }
 
             // Handle form submission
@@ -243,7 +289,6 @@
             const submitButton = document.getElementById('sendEmailBtn');
 
             form.addEventListener('submit', function(e) {
-                // Validate Summernote content
                 const content = $('#summernote').summernote('code');
                 const textContent = $('<div>').html(content).text().trim();
 
@@ -253,12 +298,11 @@
                     return false;
                 }
 
-                // Show loading state
-                submitButton.innerHTML = '<i class="ti ti-loader ti-spin me-1"></i>Sending Email...';
+                submitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Sending Email...';
                 submitButton.disabled = true;
             });
 
-            // Auto-dismiss alerts after 5 seconds
+            // Auto-dismiss alerts
             const alerts = document.querySelectorAll('.alert');
             alerts.forEach(alert => {
                 setTimeout(() => {
