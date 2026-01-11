@@ -21,15 +21,19 @@
 
                                     <!-- Pricing Title-->
                                     <div class="text-left">
-                                        <h3 class="mb-2 text-white">Ambassador Performance based incentive</h3>
-                                        <p class="mb-2 text-left fs-18">The Ambassador shall be entitled to the following
-                                            benefits upon achieving verified active referral milestones:</p>
+                                        <h3 class="mb-2 text-white incentive-header-title">Ambassador Performance based
+                                            incentive</h3>
+                                        <p class="mb-2 text-left ambassador-text">
+                                            The Ambassador shall be entitled to the following
+                                            benefits upon achieving verified active referral milestones:
+                                        </p>
                                     </div>
 
                                     <!-- Incentive Card -->
                                     <div class="incentive-card">
                                         <div class="incentive-card-icon">
-                                            <!-- Empty icon placeholder -->
+                                            <img src="{{ asset('dashboard_assets/assets/images/amb/2k.png') }}"
+                                                alt="Award image">
                                         </div>
 
                                         <div class="incentive-card-content">
@@ -61,7 +65,8 @@
 
                                     <div class="incentive-card">
                                         <div class="incentive-card-icon">
-                                            <!-- Empty icon placeholder -->
+                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag2.png') }}"
+                                                alt="Award image">
                                         </div>
 
                                         <div class="incentive-card-content">
@@ -93,7 +98,8 @@
 
                                     <div class="incentive-card">
                                         <div class="incentive-card-icon">
-                                            <!-- Empty icon placeholder -->
+                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag3.png') }}"
+                                                alt="Award image">
                                         </div>
 
                                         <div class="incentive-card-content">
@@ -124,8 +130,9 @@
                                     </div>
 
                                     <div class="incentive-card">
-                                        <div class="incentive-card-icon">
-                                            <!-- Empty icon placeholder -->
+                                        <div class="incentive-card-icon no-image ">
+                                            <img src="{{ asset('dashboard_assets/assets/images/amb/no-image.png') }}"
+                                                alt="Award image">
                                         </div>
 
                                         <div class="incentive-card-content">
@@ -157,8 +164,9 @@
                                     </div>
 
                                     <div class="incentive-card">
-                                        <div class="incentive-card-icon">
-                                            <!-- Empty icon placeholder -->
+                                          <div class="incentive-card-icon no-image ">
+                                            <img src="{{ asset('dashboard_assets/assets/images/amb/no-image.png') }}"
+                                                alt="Award image">
                                         </div>
 
                                         <div class="incentive-card-content">
@@ -190,7 +198,8 @@
 
                                     <div class="incentive-card">
                                         <div class="incentive-card-icon">
-                                            <!-- Empty icon placeholder -->
+                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag6.png') }}"
+                                                alt="Award image">
                                         </div>
 
                                         <div class="incentive-card-content">
@@ -222,7 +231,8 @@
 
                                     <div class="incentive-card">
                                         <div class="incentive-card-icon">
-                                            <!-- Empty icon placeholder -->
+                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag7.png') }}"
+                                                alt="Award image">
                                         </div>
 
                                         <div class="incentive-card-content">
@@ -254,7 +264,8 @@
 
                                     <div class="incentive-card">
                                         <div class="incentive-card-icon">
-                                            <!-- Empty icon placeholder -->
+                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag8.png') }}"
+                                                alt="Award image">
                                         </div>
 
                                         <div class="incentive-card-content">
@@ -286,7 +297,8 @@
 
                                     <div class="incentive-card">
                                         <div class="incentive-card-icon">
-                                            <!-- Empty icon placeholder -->
+                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag9.png') }}"
+                                                alt="Award image">
                                         </div>
 
                                         <div class="incentive-card-content">
@@ -317,8 +329,9 @@
                                     </div>
 
                                     <div class="incentive-card">
-                                        <div class="incentive-card-icon">
-                                            <!-- Empty icon placeholder -->
+                                         <div class="incentive-card-icon no-image ">
+                                            <img src="{{ asset('dashboard_assets/assets/images/amb/no-image.png') }}"
+                                                alt="Award image">
                                         </div>
 
                                         <div class="incentive-card-content">
@@ -351,11 +364,7 @@
                                 </div>
 
                                 {{-- request button  --}}
-                                {{-- <div class="mt-4">
-                                    <a href="" class="submit-btn btn-default d-inline-block">
-                                        Request for Ambassadorship
-                                    </a>
-                                </div> --}}
+                               
                                 {{-- request button  --}}
                                 <div class="mt-4">
                                     @if (auth()->user()->is_ambassador)
@@ -391,6 +400,10 @@
         <!-- end Footer -->
 
         <style>
+            .ambassador-text {
+                font-size: 18px;
+            }
+
             .incentive-card {
                 display: flex;
                 align-items: center;
@@ -401,9 +414,34 @@
             .incentive-card-icon {
                 width: 100px;
                 height: 100px;
-                background: white;
+                /* background: white; */
                 border-radius: 12px;
                 flex-shrink: 0;
+                overflow: hidden;
+            }
+
+            .incentive-card-icon.no-image {
+                background: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+
+
+            .incentive-card-icon img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .incentive-card-icon.no-image img {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                object-fit: contain !important;
             }
 
             .incentive-card-content {
@@ -477,7 +515,91 @@
             .avatar-img:first-child {
                 margin-left: 0;
             }
+
+            @media only screen and (max-width: 767px) {
+                .incentive-header-title {
+                    font-size: 18px;
+                    line-height: 24px;
+                }
+
+                .ambassador-text {
+                    font-size: 14px;
+                }
+
+                .incentive-card {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: stretch;
+                    gap: 15px;
+                    margin-top: 20px;
+                }
+
+                .incentive-card-icon {
+                    width: 100%;
+                    height: 90px;
+                    background: white;
+                    border-radius: 12px;
+                    flex-shrink: 0;
+                }
+
+                .incentive-card-content {
+                    display: flex;
+                    background: #FFFFFF;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    padding: 16px;
+                    height: auto;
+                    border-radius: 12px;
+                    width: 100%;
+                    gap: 16px;
+                }
+
+                .content-section {
+                    width: 100%;
+                }
+
+                .divider-line {
+                    width: 100%;
+                    height: 1px;
+                    background: repeating-linear-gradient(to right,
+                            #d0d0d0 0,
+                            #d0d0d0 4px,
+                            transparent 4px,
+                            transparent 8px);
+                }
+
+                .avatar-section {
+                    width: 100%;
+                    margin-left: 0;
+                }
+
+                .incentive-title {
+                    font-size: 18px;
+                }
+
+                .incentive-reward {
+                    font-size: 13px;
+                }
+
+                .incentive-description {
+                    font-size: 11px;
+                    margin-top: 10px;
+                }
+
+                .incentive-card-avatars {
+                    padding-right: 0;
+                    justify-content: flex-start;
+                }
+
+                .avatar-img {
+                    width: 32px;
+                    height: 32px;
+                    border: 2px solid #f8f9fa;
+                }
+            }
         </style>
+
 
     </div>
 
