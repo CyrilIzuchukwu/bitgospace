@@ -130,8 +130,8 @@
                                     </div>
 
                                     <div class="incentive-card">
-                                        <div class="incentive-card-icon no-image ">
-                                            <img src="{{ asset('dashboard_assets/assets/images/amb/no-image.png') }}"
+                                        <div class="incentive-card-icon">
+                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag4.png') }}"
                                                 alt="Award image">
                                         </div>
 
@@ -164,8 +164,8 @@
                                     </div>
 
                                     <div class="incentive-card">
-                                          <div class="incentive-card-icon no-image ">
-                                            <img src="{{ asset('dashboard_assets/assets/images/amb/no-image.png') }}"
+                                          <div class="incentive-card-icon ">
+                                             <img src="{{ asset('dashboard_assets/assets/images/amb/tag5.png') }}"
                                                 alt="Award image">
                                         </div>
 
@@ -297,7 +297,7 @@
 
                                     <div class="incentive-card">
                                         <div class="incentive-card-icon">
-                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag9.png') }}"
+                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag99.png') }}"
                                                 alt="Award image">
                                         </div>
 
@@ -329,8 +329,8 @@
                                     </div>
 
                                     <div class="incentive-card">
-                                         <div class="incentive-card-icon no-image ">
-                                            <img src="{{ asset('dashboard_assets/assets/images/amb/no-image.png') }}"
+                                         <div class="incentive-card-icon">
+                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag10.png') }}"
                                                 alt="Award image">
                                         </div>
 
@@ -364,7 +364,7 @@
                                 </div>
 
                                 {{-- request button  --}}
-                               
+
                                 {{-- request button  --}}
                                 <div class="mt-4">
                                     @if (auth()->user()->is_ambassador)
