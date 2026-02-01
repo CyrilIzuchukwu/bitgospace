@@ -78,10 +78,8 @@
                                     <p class="text-white-50 mb-0">Track your progress and active referrals</p>
                                 </div>
 
-
-                                {{-- miltestone progress bar section  --}}
+                                {{-- milestone progress bar section --}}
                                 <div class="d-flex align-items-center justify-content-center">
-                                   
                                     <div class="milestone-circle" style="--progress: {{ $progress_percentage }};">
                                         <div class="milestone-center">
                                             <img src="{{ asset('dashboard_assets/assets/images/amb/point' . $current_milestone_level . '.png') }}"
@@ -97,26 +95,43 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Current Milestone Status Alert -->
             @else
-                <div class="alert alert-success border-0 mb-4"
-                    style="background: linear-gradient(135deg, rgba(52, 211, 153, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%); border-left: 4px solid #10b981 !important;">
-                    <div class="d-flex align-items-center">
-                        <i class="ti ti-crown fs-3 text-success me-3"></i>
-                        <div>
-                            <h5 class="alert-heading mb-1 text-white">🎉 Congratulations!</h5>
-                            <p class="mb-0 text-white-50">You've achieved all available milestones! You're a true champion!
-                            </p>
+                {{-- Check if there are ANY milestones in the system --}}
+                @php
+                    $total_milestones = \App\Models\AmbassadorReward::where('status', 'active')->count();
+                @endphp
+
+                @if ($total_milestones > 0)
+                    {{-- User has completed all milestones --}}
+                    <div class="alert alert-success border-0 mb-4"
+                        style="background: linear-gradient(135deg, rgba(52, 211, 153, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%); border-left: 4px solid #10b981 !important;">
+                        <div class="d-flex align-items-center">
+                            <i class="ti ti-crown fs-3 text-success me-3"></i>
+                            <div>
+                                <h5 class="alert-heading mb-1 text-white">🎉 Congratulations!</h5>
+                                <p class="mb-0 text-white-50">You've achieved all available milestones! You're a true
+                                    champion!</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @else
+                    {{-- No milestones configured in the system --}}
+                    <div class="alert alert-info border-0 mb-4"
+                        style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%); border-left: 4px solid #3b82f6 !important;">
+                        <div class="d-flex align-items-center">
+                            <i class="ti ti-info-circle fs-3 text-info me-3"></i>
+                            <div>
+                                <h5 class="alert-heading mb-1 text-white">No Milestones Available</h5>
+                                <p class="mb-0 text-white-50">Milestone rewards are currently being configured. Check back
+                                    soon!</p>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             @endif
 
             <!-- Milestone Progress Section -->
@@ -400,13 +415,78 @@
             font-size: 20px;
             color: rgba(255, 255, 255, 0.6);
         }
+
+        /* ===============================
+       MOBILE RESPONSIVENESS
+    ================================ */
+        @media only screen and (max-width: 768px) {
+            .milestone-circle {
+                width: 260px;
+                height: 260px;
+                outline-offset: 10px;
+            }
+
+            .milestone-center {
+                width: 210px;
+                height: 210px;
+            }
+
+            .milestone-level {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 10px;
+            }
+
+            .milestone-label {
+                font-size: 13px;
+            }
+
+            .milestone-value {
+                font-size: 34px;
+            }
+
+            .milestone-sub {
+                font-size: 16px;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .milestone-circle {
+                width: 220px;
+                height: 220px;
+                outline-offset: 8px;
+            }
+
+            .milestone-center {
+                width: 180px;
+                height: 180px;
+            }
+
+            .milestone-level {
+                width: 42px;
+                height: 42px;
+            }
+
+            .milestone-label {
+                font-size: 12px;
+            }
+
+            .milestone-value {
+                font-size: 30px;
+            }
+
+            .milestone-sub {
+                font-size: 14px;
+            }
+        }
     </style>
 
     {{-- all milestone section   --}}
     <style>
         /* ===============================
-           MILESTONE PROGRESS WRAPPER
-        ================================ */
+                   MILESTONE PROGRESS WRAPPER
+                ================================ */
         .milestone-progress-wrapper {
             display: flex;
             flex-direction: column;
@@ -414,8 +494,8 @@
         }
 
         /* ===============================
-           MILESTONE CARD
-        ================================ */
+                   MILESTONE CARD
+                ================================ */
         .milestone-card {
             background: linear-gradient(135deg,
                     rgba(255, 255, 255, 0.06),
@@ -440,8 +520,8 @@
         }
 
         /* ===============================
-           HEADER SECTION
-        ================================ */
+                   HEADER SECTION
+                ================================ */
         .milestone-header {
             display: flex;
             flex-direction: column;
@@ -483,8 +563,8 @@
         }
 
         /* ===============================
-           REWARD BADGE
-        ================================ */
+                   REWARD BADGE
+                ================================ */
         .milestone-reward {
             max-width: 100%;
         }
@@ -519,8 +599,8 @@
         }
 
         /* ===============================
-           PROGRESS SECTION
-        ================================ */
+                   PROGRESS SECTION
+                ================================ */
         .milestone-progress {
             margin-top: 18px;
         }
@@ -570,8 +650,8 @@
         }
 
         /* ===============================
-           RESPONSIVENESS
-        ================================ */
+                   RESPONSIVENESS
+                ================================ */
         @media (max-width: 768px) {
             .milestone-card {
                 padding: 18px;
