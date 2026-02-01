@@ -61,8 +61,18 @@
                             $profilePicture = $user->profile->profile_picture ?? null;
                         @endphp
 
-                        <img src="{{ $profilePicture ? asset('storage/profile_pictures/' . $profilePicture) : asset('dashboard_assets/assets/images/users/user-avatar.jpg') }}"
-                            width="40" class="rounded-circle me-lg-2 d-flex image-profile" alt="user-image">
+                        <div class="position-relative d-inline-block">
+
+                            <img src="{{ $profilePicture ? asset('storage/profile_pictures/' . $profilePicture) : asset('dashboard_assets/assets/images/users/user-avatar.jpg') }}"
+                                width="40" class="rounded-circle me-lg-2 d-flex image-profile" alt="user-image">
+
+                            @if (Auth::user()->is_ambassador)
+                                <span class="verified-badge">
+                                    <i class="ti ti-check"></i>
+                                </span>
+                            @endif
+                        </div>
+
                         <span class="d-lg-flex flex-column gap-1 d-none">
                             <h5 class="my-0">{{ Auth::user()->name }}</h5>
                             <h6 class="my-0 fw-normal">{{ Auth::user()->email }}</h6>
@@ -152,15 +162,30 @@
         object-fit: cover !important;
         border-radius: 50%;
     }
+
+    .verified-badge {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 14px;
+        height: 14px;
+        background: #4986DB;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #fff;
+    }
+
+    .verified-badge i {
+        font-size: 10px;
+        color: #fff;
+    }
 </style>
 
 
 
 <style type="text/css">
-    /* .languageTranslate {
-
-    } */
-
     .goog-logo-link {
         display: none !important;
     }

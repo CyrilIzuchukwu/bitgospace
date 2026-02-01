@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminPdfController;
 use App\Http\Controllers\Admin\AdminSupportController;
 use App\Http\Controllers\Admin\AdminWithdrawalController;
 use App\Http\Controllers\Admin\AltLeadController;
+use App\Http\Controllers\Admin\AmbassadorRewardController;
 use App\Http\Controllers\Admin\LeaderboardStageController;
 use App\Http\Controllers\Admin\ManageEmailController;
 use App\Http\Controllers\Admin\PlanController;
@@ -114,6 +115,7 @@ Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact
 
 
 Route::post('/admin/register', [UserController::class, 'createAdmin'])->name('admin.create');
+
 
 Route::get('/sign-up', [UserController::class, 'showRegistrationForm'])->middleware('check.referral')
     ->name('user.register-form');
@@ -277,6 +279,7 @@ Route::middleware(['auth'])->prefix('user')->group(function () {
 
     Route::middleware(['kyc.verified'])->controller(UserAmbassadorController::class)->group(function () {
         Route::get('/ambassador', 'ambassador')->name('user.ambassador');
+        Route::get('/ambassador/milestone', 'milestone')->name('user.ambassador.milestone');
         Route::post('/ambassador/request',  'requestAmbassadorship')->name('ambassador.request');
     });
 
@@ -466,6 +469,17 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
 
     Route::get('learderboard/user-progress', [AltLeadController::class, 'userProgress'])
         ->name('admin.leaderboard.progress');
+
+
+    // Ambassador Reward Routes
+    Route::controller(AmbassadorRewardController::class)->group(function () {
+        Route::get('/ambassador/rewards', 'index')->name('ambassador.rewards.index');
+        Route::get('/ambassador/rewards/create', 'create')->name('ambassador.rewards.create');
+        Route::post('/ambassador/rewards', 'store')->name('ambassador.rewards.store');
+        Route::get('/ambassador/rewards/{reward}/edit', 'edit')->name('ambassador.rewards.edit');
+        Route::put('/ambassador/rewards/{reward}/update', 'update')->name('ambassador.rewards.update');
+        Route::delete('/ambassador/rewards/{id}/delete', 'delete')->name('ambassador.rewards.delete');
+    });
 });
 
 

@@ -2,7 +2,7 @@
 @section('content')
     <div class="page-content">
 
-        <div class="page-container">
+        <div class="page-container ambassado-reward">
 
 
             <div class="page-title-head d-flex align-items-sm-center flex-sm-row flex-column gap-2">
@@ -29,344 +29,96 @@
                                         </p>
                                     </div>
 
-                                    <!-- Incentive Card -->
-                                    <div class="incentive-card">
-                                        <div class="incentive-card-icon">
-                                            <img src="{{ asset('dashboard_assets/assets/images/amb/2k.png') }}"
-                                                alt="Award image">
+
+                                    <div class="ambassador-wrapper">
+
+                                        <!-- Row 1 -->
+                                        <div class="grid grid-row-1">
+                                            <div class="amb-card">
+                                                <img src="{{ asset('dashboard_assets/assets/images/amb/tag1.png') }}"
+                                                    alt="Santorini" loading="lazy">
+                                            </div>
+                                            <div class="amb-card">
+                                                <img src="{{ asset('dashboard_assets/assets/images/amb/tag2.png') }}"
+                                                    alt="Dubai" loading="lazy">
+                                            </div>
                                         </div>
 
-                                        <div class="incentive-card-content">
-                                            <div class="content-section">
-                                                <h4 class="incentive-title">50 Active Referrals</h4>
-                                                <p class="incentive-reward">Reward: 💵 USD $2,000</p>
-                                                <p class="incentive-description">Invite friends and get them active to claim
-                                                    your reward!</p>
+                                        <!-- Row 2 -->
+                                        <div class="grid grid-row-2">
+                                            <div class="amb-card">
+                                                <img src="{{ asset('dashboard_assets/assets/images/amb/tag3.png') }}"
+                                                    alt="Luxury Bags" loading="lazy">
                                             </div>
-
-                                            <div class="divider-line"></div>
-
-                                            <div class="avatar-section">
-                                                <div class="incentive-card-avatars">
-                                                    <img src="https://i.pravatar.cc/40?img=1" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=2" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=3" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=4" alt="Avatar"
-                                                        class="avatar-img">
-                                                </div>
+                                            <div class="amb-card">
+                                                <img src="{{ asset('dashboard_assets/assets/images/amb/tag4.png') }}"
+                                                    alt="G Wagon" loading="lazy">
                                             </div>
-
                                         </div>
 
-                                    </div>
-
-                                    <div class="incentive-card">
-                                        <div class="incentive-card-icon">
-                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag2.png') }}"
-                                                alt="Award image">
-                                        </div>
-
-                                        <div class="incentive-card-content">
-                                            <div class="content-section">
-                                                <h4 class="incentive-title">100 Active Referrals</h4>
-                                                <p class="incentive-reward">Reward: 💰 USD $4,500</p>
-                                                <p class="incentive-description">Grow your network and unlock higher cash
-                                                    rewards.</p>
+                                        <!-- Row 3 -->
+                                        <div class="grid grid-row-3">
+                                            <div class="amb-card">
+                                                <img src="{{ asset('dashboard_assets/assets/images/amb/tag5.png') }}"
+                                                    alt="Rolls Royce" loading="lazy">
                                             </div>
-
-                                            <div class="divider-line"></div>
-
-                                            <div class="avatar-section">
-                                                <div class="incentive-card-avatars">
-                                                    <img src="https://i.pravatar.cc/40?img=1" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=2" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=3" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=4" alt="Avatar"
-                                                        class="avatar-img">
-                                                </div>
-                                            </div>
-
                                         </div>
 
                                     </div>
 
-                                    <div class="incentive-card">
-                                        <div class="incentive-card-icon">
-                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag3.png') }}"
-                                                alt="Award image">
+                                    <!-- Reward List Table -->
+                                    <div class="reward-list-section mt-5">
+                                        <div class="reward-header text-center mb-4">
+                                            <h3 class="text-white">
+                                                <span class="gift-icon">🎁</span> Reward List
+                                            </h3>
                                         </div>
 
-                                        <div class="incentive-card-content">
-                                            <div class="content-section">
-                                                <h4 class="incentive-title">500 Active Referrals</h4>
-                                                <p class="incentive-reward">Reward: 💸 USD $15,000</p>
-                                                <p class="incentive-description">Big milestones come with bigger rewards.
-                                                </p>
-                                            </div>
-
-                                            <div class="divider-line"></div>
-
-                                            <div class="avatar-section">
-                                                <div class="incentive-card-avatars">
-                                                    <img src="https://i.pravatar.cc/40?img=1" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=2" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=3" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=4" alt="Avatar"
-                                                        class="avatar-img">
-                                                </div>
-                                            </div>
-
+                                        <div class="table-responsive">
+                                            <table class="reward-table table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Reward Titles</th>
+                                                        <th>Verified Active Referrals</th>
+                                                        <th>Entitlement / Reward</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @forelse($rewards as $index => $reward)
+                                                        <tr
+                                                            class="{{ $index % 2 == 0 ? 'reward-row-dark' : 'reward-row-light' }}">
+                                                            <td data-label="Reward Title">{{ $reward->title }}</td>
+                                                            <td data-label="Active Referrals">
+                                                                {{ number_format($reward->required_referrals) }} Active
+                                                                Referrals</td>
+                                                            <td data-label="Reward">
+                                                                @if ($reward->reward_type == 'cash' && $reward->cash_amount)
+                                                                    Cash reward of USD
+                                                                    ${{ number_format($reward->cash_amount, 2) }}
+                                                                @elseif($reward->reward_type == 'mixed' && $reward->cash_amount)
+                                                                    {{ $reward->description }}
+                                                                @else
+                                                                    {{ $reward->description }}
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                    @empty
+                                                        <tr class="reward-row-dark">
+                                                            <td colspan="3" class="text-center text-white py-4">
+                                                                No rewards available at the moment. Check back soon!
+                                                            </td>
+                                                        </tr>
+                                                    @endforelse
+                                                </tbody>
+                                            </table>
                                         </div>
-
                                     </div>
 
-                                    <div class="incentive-card">
-                                        <div class="incentive-card-icon">
-                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag4.png') }}"
-                                                alt="Award image">
-                                        </div>
-
-                                        <div class="incentive-card-content">
-                                            <div class="content-section">
-                                                <h4 class="incentive-title">1,000 Active Referrals</h4>
-                                                <p class="incentive-reward">Reward: ✈️ Trip to Dubai + 👜 Birkin Bag
-                                                    ($10,000)</p>
-                                                <p class="incentive-description">Travel in style as a reward for your top
-                                                    referrals.</p>
-                                            </div>
-
-                                            <div class="divider-line"></div>
-
-                                            <div class="avatar-section">
-                                                <div class="incentive-card-avatars">
-                                                    <img src="https://i.pravatar.cc/40?img=1" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=2" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=3" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=4" alt="Avatar"
-                                                        class="avatar-img">
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="incentive-card">
-                                          <div class="incentive-card-icon ">
-                                             <img src="{{ asset('dashboard_assets/assets/images/amb/tag5.png') }}"
-                                                alt="Award image">
-                                        </div>
-
-                                        <div class="incentive-card-content">
-                                            <div class="content-section">
-                                                <h4 class="incentive-title">5,000 Active Referrals</h4>
-                                                <p class="incentive-reward">Reward: 🏖️ All-expenses-paid trip to Greece +
-                                                    USD $20,000</p>
-                                                <p class="incentive-description">Travel more and earn more.</p>
-                                            </div>
-
-                                            <div class="divider-line"></div>
-
-                                            <div class="avatar-section">
-                                                <div class="incentive-card-avatars">
-                                                    <img src="https://i.pravatar.cc/40?img=1" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=2" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=3" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=4" alt="Avatar"
-                                                        class="avatar-img">
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="incentive-card">
-                                        <div class="incentive-card-icon">
-                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag6.png') }}"
-                                                alt="Award image">
-                                        </div>
-
-                                        <div class="incentive-card-content">
-                                            <div class="content-section">
-                                                <h4 class="incentive-title">10,000 Active Referrals</h4>
-                                                <p class="incentive-reward">Reward: 🏆 USD $100,000</p>
-                                                <p class="incentive-description">A six-figure reward for consistent growth.
-                                                </p>
-                                            </div>
-
-                                            <div class="divider-line"></div>
-
-                                            <div class="avatar-section">
-                                                <div class="incentive-card-avatars">
-                                                    <img src="https://i.pravatar.cc/40?img=1" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=2" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=3" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=4" alt="Avatar"
-                                                        class="avatar-img">
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="incentive-card">
-                                        <div class="incentive-card-icon">
-                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag7.png') }}"
-                                                alt="Award image">
-                                        </div>
-
-                                        <div class="incentive-card-content">
-                                            <div class="content-section">
-                                                <h4 class="incentive-title">50,000 Active Referrals</h4>
-                                                <p class="incentive-reward">Reward: 👑 USD $220,000</p>
-                                                <p class="incentive-description">Exceptional performance deserves premium
-                                                    rewards.</p>
-                                            </div>
-
-                                            <div class="divider-line"></div>
-
-                                            <div class="avatar-section">
-                                                <div class="incentive-card-avatars">
-                                                    <img src="https://i.pravatar.cc/40?img=1" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=2" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=3" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=4" alt="Avatar"
-                                                        class="avatar-img">
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="incentive-card">
-                                        <div class="incentive-card-icon">
-                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag8.png') }}"
-                                                alt="Award image">
-                                        </div>
-
-                                        <div class="incentive-card-content">
-                                            <div class="content-section">
-                                                <h4 class="incentive-title">100,000 Active Referrals</h4>
-                                                <p class="incentive-reward">Reward: 💎 USD $300,000</p>
-                                                <p class="incentive-description">Welcome to the top tier of ambassadors.
-                                                </p>
-                                            </div>
-
-                                            <div class="divider-line"></div>
-
-                                            <div class="avatar-section">
-                                                <div class="incentive-card-avatars">
-                                                    <img src="https://i.pravatar.cc/40?img=1" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=2" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=3" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=4" alt="Avatar"
-                                                        class="avatar-img">
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="incentive-card">
-                                        <div class="incentive-card-icon">
-                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag99.png') }}"
-                                                alt="Award image">
-                                        </div>
-
-                                        <div class="incentive-card-content">
-                                            <div class="content-section">
-                                                <h4 class="incentive-title">500,000 Active Referrals</h4>
-                                                <p class="incentive-reward">Reward: 🚀 USD $450,000</p>
-                                                <p class="incentive-description">Elite status unlocked with massive
-                                                    earnings.</p>
-                                            </div>
-
-                                            <div class="divider-line"></div>
-
-                                            <div class="avatar-section">
-                                                <div class="incentive-card-avatars">
-                                                    <img src="https://i.pravatar.cc/40?img=1" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=2" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=3" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=4" alt="Avatar"
-                                                        class="avatar-img">
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="incentive-card">
-                                         <div class="incentive-card-icon">
-                                            <img src="{{ asset('dashboard_assets/assets/images/amb/tag10.png') }}"
-                                                alt="Award image">
-                                        </div>
-
-                                        <div class="incentive-card-content">
-                                            <div class="content-section">
-                                                <h4 class="incentive-title">1,000,000 Active Referrals</h4>
-                                                <p class="incentive-reward">Reward: 🚗 2025 Mercedes-Benz G63 AMG + USD
-                                                    $300,000</p>
-                                                <p class="incentive-description">The ultimate reward for extraordinary
-                                                    achievement.</p>
-                                            </div>
-
-                                            <div class="divider-line"></div>
-
-                                            <div class="avatar-section">
-                                                <div class="incentive-card-avatars">
-                                                    <img src="https://i.pravatar.cc/40?img=1" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=2" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=3" alt="Avatar"
-                                                        class="avatar-img">
-                                                    <img src="https://i.pravatar.cc/40?img=4" alt="Avatar"
-                                                        class="avatar-img">
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
                                 </div>
 
-                                {{-- request button  --}}
 
                                 {{-- request button  --}}
-                                <div class="mt-4">
+                                <div class="mt-2">
                                     @if (auth()->user()->is_ambassador)
                                         <button class="submit-btn btn-success btn-default d-inline-block" disabled
                                             style="cursor: not-allowed;">
@@ -388,6 +140,19 @@
                                     @endif
                                 </div>
 
+
+                                <div class="text-left mt-4">
+                                    <h3 class="mb-2 text-white incentive-header-title">⚠️ Note</h3>
+                                    <p class="mb-2 text-left ambassador-text text-white">
+                                        Active Referrals means you have successfully referred people who have completed the
+                                        required actions on the platform and are verified as active users, according to the
+                                        company’s referral criteria.
+                                    </p>
+                                    <p class="mb-2 text-left ambassador-text text-white"> In short, it’s not just inviting
+                                        people. It’s confirmed and active participants on
+                                        the platform.</p>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -400,121 +165,14 @@
         <!-- end Footer -->
 
         <style>
+            .card {
+                margin-top: 0px;
+            }
+
             .ambassador-text {
                 font-size: 18px;
             }
 
-            .incentive-card {
-                display: flex;
-                align-items: center;
-                gap: 20px;
-                margin-top: 30px;
-            }
-
-            .incentive-card-icon {
-                width: 100px;
-                height: 100px;
-                /* background: white; */
-                border-radius: 12px;
-                flex-shrink: 0;
-                overflow: hidden;
-            }
-
-            .incentive-card-icon.no-image {
-                background: white;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-
-
-            .incentive-card-icon img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            .incentive-card-icon.no-image img {
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                object-fit: contain !important;
-            }
-
-            .incentive-card-content {
-                display: flex;
-                background: #FFFFFF;
-                align-items: center;
-                justify-content: space-between;
-                padding: 20px;
-                height: 100px;
-                border-radius: 12px;
-                width: 100%;
-                gap: 20px;
-            }
-
-            .content-section {
-                flex: 0 0 auto;
-                width: 70%;
-            }
-
-            .divider-line {
-                width: 1px;
-                height: 60px;
-                background: repeating-linear-gradient(to bottom,
-                        #d0d0d0 0,
-                        #d0d0d0 4px,
-                        transparent 4px,
-                        transparent 8px);
-                flex-shrink: 0;
-            }
-
-            .avatar-section {
-                flex: 0 0 auto;
-                margin-left: auto;
-            }
-
-            .incentive-title {
-                font-size: 20px;
-                font-weight: 700;
-                color: #1a1a1a;
-                margin: 0 0 8px 0;
-            }
-
-            .incentive-reward {
-                font-size: 14px;
-                font-weight: 600;
-                color: #2c2c2c;
-                margin: 0 0 8px 0;
-            }
-
-            .incentive-description {
-                font-size: 12px;
-                color: #646464;
-                margin: 0;
-            }
-
-            .incentive-card-avatars {
-                display: flex;
-                gap: -8px;
-                flex-shrink: 0;
-                padding-right: 40px
-            }
-
-            .avatar-img {
-                width: 36px;
-                height: 36px;
-                border-radius: 50%;
-                border: 3px solid #f8f9fa;
-                margin-left: -8px;
-            }
-
-            .avatar-img:first-child {
-                margin-left: 0;
-            }
 
             @media only screen and (max-width: 767px) {
                 .incentive-header-title {
@@ -526,80 +184,176 @@
                     font-size: 14px;
                 }
 
-                .incentive-card {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: stretch;
-                    gap: 15px;
-                    margin-top: 20px;
+            }
+
+            .ambassador-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+                margin-top: 30px;
+            }
+
+            /* Row 1: Left narrower, Right wider */
+            .grid-row-1 {
+                display: grid;
+                grid-template-columns: 55fr 45fr;
+                gap: 20px;
+            }
+
+            /* Row 2: Left wider, Right narrower */
+            .grid-row-2 {
+                display: grid;
+                grid-template-columns: 45fr 55fr;
+                gap: 20px;
+            }
+
+            /* Row 3: 1 full-width column */
+            .grid-row-3 {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            /* Card styling */
+            .amb-card {
+                width: 100%;
+                height: 350px;
+                overflow: hidden;
+                border-radius: 12px;
+            }
+
+            .amb-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+
+                .amb-card {
+                    height: 200px;
                 }
 
-                .incentive-card-icon {
+                .grid-row-1,
+                .grid-row-2 {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+
+
+            /* Reward List Table Styles */
+            .reward-list-section {
+                margin-top: 2rem;
+            }
+
+            .reward-header h3 {
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .gift-icon {
+                font-size: 32px;
+                margin-right: 8px;
+            }
+
+            .table-responsive {
+                overflow-x: auto;
+            }
+
+            .reward-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 10px;
+            }
+
+            .reward-table thead tr {
+                background: #F2F5FC;
+            }
+
+            .reward-table th {
+                padding: 15px 20px;
+                font-weight: 600;
+                color: #000000;
+                font-size: 14px;
+                text-align: left;
+            }
+
+            .reward-table th:nth-child(1) {
+                width: 25%;
+            }
+
+            .reward-table th:nth-child(2) {
+                width: 25%;
+            }
+
+            .reward-table th:nth-child(3) {
+                width: 50%;
+            }
+
+            .reward-table td {
+                padding: 20px;
+                font-size: 12px;
+            }
+
+            .reward-row-dark {
+                color: #fff;
+            }
+
+            .reward-row-light {
+                background: #F2F5FC80;
+            }
+
+            .reward-table td {
+                color: #fff !important;
+            }
+
+            /* Responsive - Mobile View */
+            @media (max-width: 768px) {
+                .ambassado-reward .card-body {
+                    padding: 1.5rem 0.9rem;
+                }
+
+                .reward-table thead {
+                    display: none;
+                }
+
+                .reward-table,
+                .reward-table tbody,
+                .reward-table tr,
+                .reward-table td {
+                    display: block;
                     width: 100%;
-                    height: 90px;
-                    background: white;
-                    border-radius: 12px;
-                    flex-shrink: 0;
                 }
 
-                .incentive-card-content {
-                    display: flex;
-                    background: #FFFFFF;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    justify-content: flex-start;
-                    padding: 16px;
-                    height: auto;
-                    border-radius: 12px;
-                    width: 100%;
-                    gap: 16px;
+                .reward-table tr {
+                    margin-bottom: 15px;
+                    border-radius: 8px;
+                    overflow: hidden;
                 }
 
-                .content-section {
-                    width: 100%;
+                .reward-table td {
+                    text-align: left;
+                    padding: 12px 15px;
+                    position: relative;
+                    border: none;
                 }
 
-                .divider-line {
-                    width: 100%;
-                    height: 1px;
-                    background: repeating-linear-gradient(to right,
-                            #d0d0d0 0,
-                            #d0d0d0 4px,
-                            transparent 4px,
-                            transparent 8px);
-                }
-
-                .avatar-section {
-                    width: 100%;
-                    margin-left: 0;
-                }
-
-                .incentive-title {
-                    font-size: 18px;
-                }
-
-                .incentive-reward {
+                .reward-table td:before {
+                    content: attr(data-label);
+                    font-weight: 600;
+                    display: block;
+                    margin-bottom: 5px;
                     font-size: 13px;
                 }
 
-                .incentive-description {
-                    font-size: 11px;
-                    margin-top: 10px;
-                }
-
-                .incentive-card-avatars {
-                    padding-right: 0;
-                    justify-content: flex-start;
-                }
-
-                .avatar-img {
-                    width: 32px;
-                    height: 32px;
-                    border: 2px solid #f8f9fa;
+                .reward-table td:not(:last-child) {
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
                 }
             }
         </style>
-
 
     </div>
 

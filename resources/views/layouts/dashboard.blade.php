@@ -26,7 +26,8 @@
     <link href="{{ asset('dashboard_assets/assets/css/vendor.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- App css -->
-    <link href="{{ asset('dashboard_assets/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
+    <link href="{{ asset('dashboard_assets/assets/css/app.min.css') }}" rel="stylesheet" type="text/css"
+        id="app-style" />
 
     <!-- Icons css -->
     <link href="{{ asset('dashboard_assets/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
@@ -38,7 +39,8 @@
     <link href="{{ asset('dashboard_assets/assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- custom responsiveness -->
-    <link href="{{ asset('dashboard_assets/assets/css/custom-responsiveness.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('dashboard_assets/assets/css/custom-responsiveness.css') }}" rel="stylesheet"
+        type="text/css" />
 
 
     <script src="https://cdn.jsdelivr.net/npm/@google-cloud/translate@7.0.0/dist/index.min.js"></script>
@@ -68,12 +70,15 @@
                 <div class="modal-content bg-transparent">
                     <div class="card mb-1">
                         @php
-                        $referralLink = Auth::user()->referral_link ?? url('/register?ref=' . Auth::user()->id);
+                            // $referralLink = Auth::user()->referral_link ?? url('/register?ref=' . Auth::user()->id);
+                            $referralLink =
+                                Auth::user()->referral_link ?? route('user.register-form', ['ref' => Auth::user()->id]);
                         @endphp
 
                         <div class="px-3 py-2 d-flex flex-row align-items-center" id="top-search">
                             <i class="ti ti-link fs-22"></i>
-                            <input type="input" id="referralLinkInput" class="form-control border-0" value="{{ $referralLink }}" readonly>
+                            <input type="input" id="referralLinkInput" class="form-control border-0"
+                                value="{{ $referralLink }}" readonly>
                             <div class="d-flex gap-2 align-items-center">
                                 <small class="text-success d-none" id="copyMessage">Copied!</small>
                                 <button type="button" id="copyReferralLink" class=" btn p-0">Copy</button>
@@ -139,24 +144,24 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    @if(session('success') || session('error') || session('info'))
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: @json(session('success') ? 'success' : (session('error') ? 'error' : 'info')),
-                title: @json(session('success') ?? session('error') ?? session('info')),
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer);
-                    toast.addEventListener('mouseleave', Swal.resumeTimer);
-                }
+    @if (session('success') || session('error') || session('info'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: @json(session('success') ? 'success' : (session('error') ? 'error' : 'info')),
+                    title: @json(session('success') ?? (session('error') ?? session('info'))),
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                    }
+                });
             });
-        });
-    </script>
+        </script>
     @endif
 
 

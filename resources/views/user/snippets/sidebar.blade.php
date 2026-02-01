@@ -159,10 +159,20 @@
                         </div>
                     </li>
 
+
+                    <li class="side-nav-title mt-3"> Ambassador Program </li>
+
                     <li class="side-nav-item">
                         <a href="{{ route('user.ambassador') }}" class="side-nav-link">
-                            <span class="menu-icon"><i class="ti ti-award"></i></span>
+                            <span class="menu-icon"><i class="ti ti-user-star"></i></span>
                             <span class="menu-text"> Ambassador Reward </span>
+                        </a>
+                    </li>
+
+                    <li class="side-nav-item">
+                        <a href="{{ route('user.ambassador.milestone') }}" class="side-nav-link">
+                            <span class="menu-icon"><i class="ti ti-trophy"></i></span>
+                            <span class="menu-text"> Reward Milestone </span>
                         </a>
                     </li>
 

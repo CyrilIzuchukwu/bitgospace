@@ -46,21 +46,40 @@
                         </a>
                     </li>
 
+
                     <li class="side-nav-item">
-                        <a class="side-nav-link" href="{{ route('admin.ambassador.requests') }}">
-                            <i class="ti ti-award"></i>
-                            <span>Ambassador Requests</span>
-                            @php
-                                $pendingCount = \App\Models\User::where(
-                                    'ambassador_request_status',
-                                    'pending',
-                                )->count();
-                            @endphp
-                            @if ($pendingCount > 0)
-                                <span class="badge bg-danger ms-auto">{{ $pendingCount }}</span>
-                            @endif
+                        <a data-bs-toggle="collapse" href="#ambassador" aria-expanded="false" aria-controls="ambassador"
+                            class="side-nav-link">
+                            <span class="menu-icon"><i class="ti ti-trophy"></i></span>
+                            <span class="menu-text">Ambassador</span>
+                            <span class="menu-arrow"></span>
                         </a>
+                        <div class="collapse" id="ambassador">
+                            <ul class="sub-menu">
+                                <li class="side-nav-item ">
+                                    <a href="{{ route('admin.ambassador.requests') }}" class="side-nav-link">
+                                        <span class="menu-text">Requests</span>
+                                         @php
+                                        $pendingCount = \App\Models\User::where(
+                                            'ambassador_request_status',
+                                            'pending',
+                                        )->count();
+                                    @endphp
+                                    @if ($pendingCount > 0)
+                                        <span class="badge bg-danger ms-auto">{{ $pendingCount }}</span>
+                                    @endif
+                                    </a>
+
+                                </li>
+                                <li class="side-nav-item">
+                                    <a href="{{ route('ambassador.rewards.index') }}" class="side-nav-link">
+                                        <span class="menu-text">Rewards</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
+
 
                     <li class="side-nav-item">
                         <a href="{{ route('admin.email.create') }}" class="side-nav-link">

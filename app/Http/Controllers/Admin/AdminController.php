@@ -132,8 +132,7 @@ class AdminController extends Controller
 
     public function userList()
     {
-        $users = User::with(['wallet'])
-            ->where('role', 'user')
+        $users = User::with(['wallet'])->where('role', 'user')
             ->latest()
             ->paginate(20);
 

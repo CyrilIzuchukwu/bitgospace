@@ -62,7 +62,7 @@
                                                 <th scope="col" class="text-muted">Status</th>
                                                 <th scope="col" class="text-muted">Currency</th>
                                                 <th scope="col" class="text-muted">Payment Method</th>
-                                                <th scope="col" class="text-muted">Txn Hash</th>
+                                                <th scope="col" class="text-muted" style="width: 20%">Txn Hash</th>
                                                 <th scope="col" class="text-muted">Date</th>
                                                 <th scope="col" class="text-muted text-center">Action</th>
                                             </tr>
@@ -96,7 +96,7 @@
                                                 </td>
                                                 <td>{{ $transaction->currency }}</td>
                                                 <td>{{ $transaction->deposit->payment_method ?? 'N/A' }}</td>
-                                                <td style="width: 300px !important; word-break: break-all; white-space: normal;">
+                                                <td style="width: 300px !important;  white-space: normal;">
                                                     {{ $transaction->transaction_hash ?? '-' }}
                                                 </td>
                                                 <td>{{ $transaction->created_at->format('M j, Y') }}</td>

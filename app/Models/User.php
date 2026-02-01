@@ -130,4 +130,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(User::class, 'referred_by');
     }
+
+    /**
+     * Get active referrals (referrals with at least one investment)
+     */
+    public function activeReferrals()
+    {
+        return $this->hasMany(User::class, 'referred_by')
+            ->whereHas('investments');
+    }
 }

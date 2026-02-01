@@ -23,6 +23,7 @@
                                 <li><a href="{{ route('/') }}">Home</a></li>
                                 <li><a href="{{ route('about-us') }}">About Us</a></li>
                                 <li><a href="{{ route('contact') }}">Contact Us</a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -36,6 +37,7 @@
                                     <li><a href="{{ route('meet-jarden') }}">Meet Jarden</a></li>
                                     <li><a href="{{ route('terms') }}">Terms & Conditions</a></li>
                                     <li><a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
+                                    <li><a href="https://www.youtube.com/channel/UCGcJhZzM8xEcir2O-HqR9WQ" target="_blank">Subscribe to our YouTube</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -55,14 +57,13 @@
                     </div>
                 </div>
                 <div class="col-md-7">
-                    <form class="rainbow-newsletter mt_md--20 mt_sm--20" onsubmit="window.open('https://www.youtube.com/channel/UCGcJhZzM8xEcir2O-HqR9WQ', '_blank'); return false;">
+                    <form class="rainbow-newsletter mt_md--20 mt_sm--20" >
                         <div class="form-group">
-                            <input type="email" required placeholder="Email Address">
+                            <input type="email" readonly required placeholder="Email Address">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn-default" style="display: flex; align-items: center; gap: 5px;">
                                 Subscribe
-                                <img src="https://res.cloudinary.com/dpfcntrwo/image/upload/v1750930721/youtube1_lfeokf.jpg" alt="YouTube" style="width: 24px; border-radius: 2px; display: inline-block; vertical-align: middle;">
                             </button>
                         </div>
                     </form>

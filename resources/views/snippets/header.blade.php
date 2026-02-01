@@ -34,7 +34,7 @@
 
 
                 <div class="header-right">
-                        
+
                         <div class="header-btn">
                             @auth
                             @if (auth()->user()->role === 'admin')

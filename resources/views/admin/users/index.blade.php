@@ -63,6 +63,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            
                                             @foreach($users as $user)
                                             <tr data-status="{{ $user->active ? 'active' : 'banned' }}" onclick="window.location='{{ route('admin.users.show', $user->id) }}'" style="cursor: pointer;">
                                                 <td>
