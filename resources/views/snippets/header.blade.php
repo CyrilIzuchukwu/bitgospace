@@ -35,23 +35,23 @@
 
                 <div class="header-right">
 
-                        <div class="header-btn">
-                            @auth
+                    <div class="header-btn">
+                        @auth
                             @if (auth()->user()->role === 'admin')
-                            <a class="default-btn" href="{{ route('admin.dashboard') }}">
-                                Admin Dashboard
-                            </a>
+                                <a class="default-btn" href="{{ route('admin.dashboard') }}">
+                                    Admin Dashboard
+                                </a>
                             @elseif (auth()->user()->role === 'user')
-                            <a class="default-btn" href="{{ route('user.dashboard') }}">
-                                Dashboard
-                            </a>
+                                <a class="default-btn" href="{{ route('user.dashboard') }}">
+                                    Dashboard
+                                </a>
                             @endif
-                            @else
+                        @else
                             <a class="default-btn" href="{{ route('login') }}">
                                 Login
                             </a>
-                            @endauth
-                        </div>
+                        @endauth
+                    </div>
 
 
                     <!-- Start Mobile-Menu-Bar -->

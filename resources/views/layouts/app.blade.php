@@ -9,10 +9,10 @@
     <meta name="description" content="At BitGoSpace, we simplify crypto earnings by using advanced AI to scan global exchanges for the best price differences — so you can earn passively through smart, automatic trades. Jarden does the hard work; you enjoy the returns..">
     <meta name="theme-style-mode" content="1">
 
-  
+
     <link rel="canonical" href="https://www.bitgospace.com/">
 
- 
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.bitgospace.com/">
     <meta property="og:title" content="BitGoSpace | AI-Powered Crypto Arbitrage Trading Platform">
@@ -119,7 +119,7 @@
 
     </main>
 
-    <!-- All Scripts  -->>
+    <!-- All Scripts  -->
     <div class="rainbow-back-top">
         <i class="ri-arrow-up-line"></i>
     </div>
@@ -242,7 +242,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @if(session('success') || session('error') || session('info'))
- 
+
     @endif
 
 

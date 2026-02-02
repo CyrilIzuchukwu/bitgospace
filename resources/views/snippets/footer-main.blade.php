@@ -50,7 +50,7 @@
     <div class="newsletter-area rainbow-newsletter-default">
         <div class="container">
             <div class="row row--0 newsletter-wrapper align-items-center border-top-bottom">
-                <div class="col-md-5">
+                {{-- <div class="col-md-5">
                     <div class="newsletter-section-title">
                         <h3 class="title">Subscribe to Updates</h3>
                         <p class="description">Get the latest tips, updates, and feature releases straight to your inbox.</p>
@@ -67,7 +67,7 @@
                             </button>
                         </div>
                     </form>
-                </div>
+                </div> --}}
                 <div class="col-md-12">
                     <div class="copyright-footer">
                         <p class="copy-text">© 2022 BitGoSpace. All rights reserved.</p>
